@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://ibb.co/Xfh64z4J.jpg" alt="Fintech Nova Dashboard" width="100%" />
+<img src="https://github.com/user-attachments/assets/8d4a1d8b-f4db-4baf-99c8-6d4f39795ee4" alt="Fintech Nova Dashboard" width="100%" />
 
   <br />
   <br />
