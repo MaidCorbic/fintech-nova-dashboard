@@ -1620,10 +1620,303 @@ color:rgba(255,255,255,.7);
   .page-nav button{width:48%;margin:4px 1%}
   .update-banner{width:90%;left:5%;right:auto}
 }
+
+/* === PAGE VISIBILITY FIX === */
+.page-content {
+  display: none;
+  width: 100%;
+}
+
+.page-content.active {
+  display: block;
+}
+
+/* Fix overflow na mobile */
+body {
+  overflow-x: hidden;
+}
+
+@media (max-width:768px){
+  .top-alert {
+    height:auto;
+    padding:12px;
+  }
+
+  .header {
+    margin-top:90px;
+  }
+}
+
+/* Modern micro-interactions */
+button, .card, .home-card {
+  will-change: transform;
+}
+
+.card:hover {
+  transform: translateY(-10px) scale(1.01);
+}
+
+/* Smooth font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* === PATCH: PAGE VISIBILITY FIX === */
+.page-content {
+  display: none;
+  width: 100%;
+}
+.page-content.active {
+  display: block;
+}
+
+/* === PATCH: MOBILE OVERFLOW FIX === */
+body {
+  overflow-x: hidden;
+}
+
+/* === PATCH: RISK % ALIGNMENT === */
+.risk-value {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.risk-value span {
+  font-size: 18px;
+  opacity: .6;
+  margin-top: -6px;
+}
+
+/* === PATCH: UPDATE MODAL === */
+.update-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.75);
+  backdrop-filter: blur(6px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.update-modal.active {
+  display: flex;
+}
+
+.update-box {
+  background: linear-gradient(135deg, rgba(2,8,23,.98), rgba(15,23,42,.95));
+  border: 1.5px solid rgba(168,85,247,.4);
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 520px;
+  width: 92%;
+  box-shadow: 0 30px 120px rgba(0,0,0,.6);
+}
+
+.update-box h2 {
+  margin: 0 0 12px 0;
+  font-size: 22px;
+  background: linear-gradient(90deg,#a855f7,#22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.update-log {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.update-item {
+  background: rgba(168,85,247,.12);
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.update-confirm {
+  margin-top: 22px;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#22d3ee,#0ea5e9);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* FIX: Razmak između % i grafikona (Risk) */
+.risk-chart-container {
+  position: relative;
+}
+
+.risk-value {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.risk-value strong {
+  font-size: 48px;
+  line-height: 1;
+}
+
+.risk-value span {
+  font-size: 18px;
+  margin-top: 6px;
+  opacity: 0.6;
+}
+
+/* FIX: Header vidljiv na desktopu */
+.header {
+  position: relative;
+  z-index: 2000;
+}
+
+.top-alert {
+  z-index: 3000;
+}
+
+/* Desktop poravnanje */
+@media (min-width: 1024px) {
+  .header {
+    margin-top: 80px;
+  }
+}
+
+/* MOBILE FIXES */
+@media (max-width: 600px) {
+  .risk-chart-container {
+    width: 150px;
+    height: 150px;
+  }
+
+  .risk-value strong {
+    font-size: 38px;
+  }
+
+  .payment-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .header-right {
+    gap: 10px;
+  }
+}
+/* LOGIN SCREEN */
+.login-screen{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(34,211,238,.15), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(168,85,247,.15), transparent 40%),
+    #020817;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:20000;
+  opacity:0;
+  pointer-events:none;
+  transition:.6s ease;
+}
+
+.login-screen.active{
+  opacity:1;
+  pointer-events:all;
+}
+
+.login-box{
+  width:90%;
+  max-width:360px;
+  background:rgba(15,23,42,.85);
+  border:1.5px solid rgba(34,211,238,.3);
+  border-radius:20px;
+  padding:32px;
+  text-align:center;
+  box-shadow:0 40px 120px rgba(0,0,0,.6);
+  animation:loginIn .6s ease;
+}
+
+@keyframes loginIn{
+  from{transform:translateY(40px);opacity:0}
+  to{transform:none;opacity:1}
+}
+
+.login-box h2{
+  margin:0 0 8px 0;
+  font-size:26px;
+  background:linear-gradient(90deg,#22d3ee,#a855f7);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.login-box p{
+  font-size:13px;
+  opacity:.6;
+  margin-bottom:24px;
+}
+
+.login-box input{
+  margin-bottom:14px;
+  text-align:center;
+}
+
+.login-box button{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  background:linear-gradient(135deg,#22d3ee,#0ea5e9);
+  font-weight:700;
+  cursor:pointer;
+  margin-top:8px;
+}
+
+.login-box small{
+  display:block;
+  margin-top:16px;
+  opacity:.4;
+  font-size:11px;
+}
+
+@media(max-width:768px){
+  .button-row{
+    position:sticky;
+    bottom:10px;
+    background:#020817;
+    padding:10px;
+    z-index:1000;
+    border-radius:16px;
+  }
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- LOGIN SCREEN -->
+<div id="loginScreen" class="login-screen active">
+  <div class="login-box">
+    <h2>Fintech Nova</h2>
+    <p>Siguran pristup vašem računu</p>
+
+    <input id="loginName" type="text" placeholder="Ime korisnika">
+    <input id="loginPin" type="password" placeholder="PIN kod">
+
+    <button onclick="login()">Prijava</button>
+
+    <small>Demo: upiši bilo šta</small>
+  </div>
+</div>
+
 
 <!-- TOP ALERT -->
 <div class="top-alert">
@@ -1633,15 +1926,6 @@ color:rgba(255,255,255,.7);
   </div>
 </div>
 
-<!-- UPDATE BANNER -->
-<div id="updateBanner" class="update-banner" style="display:none;">
-  <i class="fas fa-star"></i>
-  <div>
-    <strong>✨ Nova Verzija!</strong><br>
-    <span id="updateText">Dodane nove kategoije i poboljšanja</span>
-  </div>
-  <button class="update-close" onclick="closeUpdateBanner()"><i class="fas fa-times"></i></button>
-</div>
 
 <!-- PAGE NAVIGATION -->
 <div class="page-nav">
@@ -1789,6 +2073,16 @@ color:rgba(255,255,255,.7);
           <i class="fas fa-plane"></i>
           <span>Putovanja</span>
         </button>
+<button class="payment-category-btn" onclick="selectPaymentCategory(event, 'subscriptions')">
+  <i class="fas fa-sync"></i>
+  <span>Pretplate</span>
+</button>
+
+<button class="payment-category-btn" onclick="selectPaymentCategory(event, 'donations')">
+  <i class="fas fa-hand-holding-heart"></i>
+  <span>Donacije</span>
+</button>
+
       </div>
     </div>
     
@@ -1860,6 +2154,50 @@ color:rgba(255,255,255,.7);
       <div id="transactionsList"></div>
     </div>
   </div>
+
+<div class="transactions-preview" style="display:block">
+  <h4><i class="fas fa-clock"></i> Timeline Aktivnosti</h4>
+
+  <div class="transaction-item">
+    <div class="transaction-left">
+      <div class="transaction-icon" style="background:rgba(34,211,238,.15)">
+        <i class="fas fa-sign-in-alt"></i>
+      </div>
+      <div class="transaction-details">
+        <strong>Prijava na sistem</strong>
+        <span>Danas • 14:32</span>
+      </div>
+    </div>
+    <div class="transaction-amount">OK</div>
+  </div>
+
+  <div class="transaction-item">
+    <div class="transaction-left">
+      <div class="transaction-icon" style="background:rgba(34,197,94,.15)">
+        <i class="fas fa-credit-card"></i>
+      </div>
+      <div class="transaction-details">
+        <strong>Plaćanje</strong>
+        <span>€120 • Hrana</span>
+      </div>
+    </div>
+    <div class="transaction-amount">−€120</div>
+  </div>
+
+  <div class="transaction-item">
+    <div class="transaction-left">
+      <div class="transaction-icon" style="background:rgba(168,85,247,.15)">
+        <i class="fas fa-cog"></i>
+      </div>
+      <div class="transaction-details">
+        <strong>Promjena postavki</strong>
+        <span>Sigurnost</span>
+      </div>
+    </div>
+    <div class="transaction-amount">✔</div>
+  </div>
+</div>
+
 
   <!-- SPEND CHART -->
   <div class="card">
@@ -2347,18 +2685,22 @@ const alerts = [
 let alertIndex = 0
 
 /* SWITCH PAGE */
-function switchPage(pageName) {
-  document.querySelectorAll('.page-content').forEach(el => el.style.display = 'none')
-  document.getElementById(pageName + 'Page').style.display = pageName === 'home' ? 'grid' : 'block'
-  
-  document.querySelectorAll('.page-nav button').forEach(btn => btn.classList.remove('active'))
-  document.querySelector(`[data-page="${pageName}"]`).classList.add('active')
+function switchPage(page) {
+  document.querySelectorAll('.page-content').forEach(p => {
+    p.classList.remove('active');
+    p.style.display = 'none';
+  });
 
-  if (pageName === 'dashboard') {
-    document.getElementById("headerSubtitle").textContent = "Pregled kartice i sigurnosnih aktivnosti"
-  } else {
-    document.getElementById("headerSubtitle").textContent = "Otkrijte nove mogućnosti i usluge"
-  }
+  const target = page === 'dashboard'
+    ? document.getElementById('dashboardPage')
+    : document.getElementById('homePage');
+
+  target.classList.add('active');
+  target.style.display = 'block';
+
+  document.querySelectorAll('.nav-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.page === page);
+  });
 }
 
 /* CURRENCY LIST INITIALIZATION */
@@ -2398,19 +2740,6 @@ function showNotification(type, message, duration = 3500) {
   }, duration)
 }
 
-/* SHOW UPDATE BANNER */
-function showUpdateBanner() {
-  const banner = document.getElementById("updateBanner")
-  banner.style.display = "flex"
-  setTimeout(() => {
-    banner.style.display = "none"
-  }, 6000)
-}
-
-/* CLOSE UPDATE BANNER */
-function closeUpdateBanner() {
-  document.getElementById("updateBanner").style.display = "none"
-}
 
 /* CLOCK */
 function updateClock() {
@@ -2986,6 +3315,55 @@ render()
 setTimeout(() => {
   showUpdateBanner()
 }, 3000)
+</script>
+
+<script>
+const APP_VERSION = '1.4.0';
+
+const updates = [
+  '📱 Popravljen responsive prikaz na mobilnim uređajima',
+  '🧭 Ispravljeno prebacivanje Dashboard / Početna',
+  '⚡ Optimizovane animacije i Chart render',
+  '🎨 Osvježen moderni UI sa boljim kontrastom',
+  '🛡️ Stabilizovan security status prikaz'
+];
+
+function showUpdateIfNeeded() {
+  const last = localStorage.getItem('app_version');
+  if (last !== APP_VERSION) {
+    const container = document.getElementById('updateContent');
+    container.innerHTML = updates
+      .map(u => `<div class="update-item">${u}</div>`)
+      .join('');
+    document.getElementById('updateBanner').style.display = 'flex';
+    localStorage.setItem('app_version', APP_VERSION);
+  }
+}
+
+function closeUpdateBanner(){
+  document.getElementById('updateBanner').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', showUpdateIfNeeded);
+
+function login(){
+  const name = document.getElementById('loginName').value || 'Korisniče';
+  document.getElementById('userName').innerText = name;
+  document.getElementById('userInitials').innerText = name.substring(0,2).toUpperCase();
+
+  document.getElementById('loginScreen').classList.remove('active');
+
+  showNotification('success','Uspješna prijava!');
+}
+/* GREETING */
+const hour = new Date().getHours();
+const greeting =
+  hour < 12 ? 'Dobro jutro' :
+  hour < 18 ? 'Dobar dan' : 'Dobro veče';
+
+document.getElementById('headerSubtitle').innerText =
+  greeting + ', pregled vaših finansija';
+
 </script>
 
 </body>
