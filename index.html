@@ -1,0 +1,2992 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8">
+<title>Fintech Nova - Premium Banking</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+background:
+    radial-gradient(circle at 10% 10%, rgba(34,211,238,.12), transparent 50%),
+    radial-gradient(circle at 90% 20%, rgba(239,68,68,.08), transparent 50%),
+    radial-gradient(circle at 50% 90%, rgba(168,85,247,.08), transparent 50%),
+    #020817;
+color:#e5e7eb;
+font-family:Inter;
+min-height:100vh;
+}
+
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background:rgba(34,211,238,.4);
+  border-radius:10px;
+}
+::-webkit-scrollbar-thumb:hover{background:rgba(34,211,238,.6)}
+
+/* ===== TOP ALERT ===== */
+.top-alert{
+position:fixed;
+top:0;
+left:0;
+right:0;
+height:60px;
+background:linear-gradient(90deg, rgba(34,211,238,.12), rgba(168,85,247,.08));
+border-bottom:1px solid rgba(34,211,238,.15);
+backdrop-filter:blur(12px);
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+z-index:5000;
+padding:0 24px;
+animation:slideDown .5s ease-out;
+}
+
+.alert-icon{
+font-size:18px;
+animation:pulse 2s infinite;
+}
+
+.alert-text{
+font-size:13px;
+font-weight:500;
+text-align:center;
+background:linear-gradient(90deg, #22d3ee, #a855f7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+}
+
+@keyframes slideDown{
+from{transform:translateY(-100%);opacity:0}
+to{transform:translateY(0);opacity:1}
+}
+
+@keyframes pulse{
+0%,100%{opacity:1;transform:scale(1)}
+50%{opacity:.6;transform:scale(1.1)}
+}
+
+/* ===== HEADER ===== */
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:24px 32px;
+max-width:1400px;
+margin:auto;
+margin-top:60px;
+}
+
+.header-left{
+display:flex;
+align-items:center;
+gap:24px;
+}
+
+.header-avatar{
+width:60px;
+height:60px;
+border-radius:16px;
+background:linear-gradient(135deg, #22d3ee, #a855f7);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+font-weight:700;
+box-shadow:0 8px 24px rgba(34,211,238,.2);
+}
+
+.header-text h1{
+font-size:24px;
+font-weight:700;
+margin:0;
+background:linear-gradient(90deg, #22d3ee, #a855f7);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+letter-spacing:-.5px;
+}
+
+.header-text p{
+font-size:13px;
+opacity:.6;
+margin:4px 0 0 0;
+}
+
+.header-right{
+display:flex;
+gap:16px;
+align-items:center;
+justify-content:flex-end;
+}
+
+.status-badge{
+display:flex;
+align-items:center;
+gap:10px;
+padding:10px 18px;
+background:rgba(34,197,94,.1);
+border:1.5px solid rgba(34,197,94,.3);
+border-radius:12px;
+backdrop-filter:blur(10px);
+transition:.3s;
+}
+
+.status-badge:hover{
+background:rgba(34,197,94,.15);
+border-color:rgba(34,197,94,.4);
+}
+
+.status-dot{
+width:12px;
+height:12px;
+background:#22c55e;
+border-radius:50%;
+animation:statusPulse 2s infinite;
+box-shadow:0 0 8px rgba(34,197,94,.6);
+}
+
+@keyframes statusPulse{
+0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 8px rgba(34,197,94,.6)}
+50%{opacity:.7;transform:scale(1.15);box-shadow:0 0 12px rgba(34,197,94,.8)}
+}
+
+.status-text{
+font-size:13px;
+font-weight:600;
+color:#86efac;
+}
+
+.header-btn{
+display:flex;
+align-items:center;
+justify-content:center;
+width:42px;
+height:42px;
+border-radius:12px;
+background:rgba(34,211,238,.1);
+border:1.5px solid rgba(34,211,238,.25);
+color:#22d3ee;
+cursor:pointer;
+transition:all .3s;
+font-size:18px;
+}
+
+.header-btn:hover{
+background:rgba(34,211,238,.2);
+border-color:rgba(34,211,238,.4);
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(34,211,238,.2);
+}
+
+.clock{
+font-weight:600;
+letter-spacing:1px;
+background:rgba(34,211,238,.1);
+padding:10px 18px;
+border-radius:14px;
+border:1.5px solid rgba(34,211,238,.25);
+font-size:14px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.clock i{
+font-size:16px;
+}
+
+.quick-stats{
+display:flex;
+gap:18px;
+}
+
+.stat-item{
+padding:12px 18px;
+background:rgba(34,211,238,.08);
+border-radius:12px;
+border:1.5px solid rgba(34,211,238,.15);
+transition:.3s;
+}
+
+.stat-item:hover{
+background:rgba(34,211,238,.12);
+border-color:rgba(34,211,238,.3);
+}
+
+.stat-item-label{
+font-size:11px;
+opacity:.6;
+text-transform:uppercase;
+letter-spacing:.6px;
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.stat-item-label i{
+font-size:14px;
+opacity:.8;
+}
+
+.stat-item-value{
+font-size:16px;
+font-weight:700;
+background:linear-gradient(90deg, #22d3ee, #0ea5e9);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+margin-top:4px;
+}
+
+@media(max-width:1024px){
+.quick-stats{display:none}
+.header{flex-direction:column;gap:16px;text-align:center}
+.header-right{justify-content:center;width:100%;flex-wrap:wrap}
+.header-left{flex-direction:column}
+}
+
+/* ===== LAYOUT ===== */
+.container{
+display:grid;
+grid-template-columns:1.2fr 0.8fr;
+gap:28px;
+padding:32px;
+max-width:1400px;
+margin:auto;
+}
+
+.home-container{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+gap:24px;
+padding:32px;
+max-width:1400px;
+margin:auto;
+}
+
+@media(max-width:1024px){
+.container{grid-template-columns:1fr}
+.home-container{grid-template-columns:repeat(auto-fit, minmax(250px, 1fr))}
+}
+
+/* ===== CARD ===== */
+.card{
+background:linear-gradient(135deg, rgba(2,8,23,.75), rgba(15,23,42,.5));
+backdrop-filter:blur(20px);
+border:1px solid rgba(34,211,238,.1);
+border-radius:24px;
+padding:24px;
+position:relative;
+overflow:hidden;
+transition:all .3s cubic-bezier(.4, 0, .2, 1);
+box-shadow:
+  0 20px 60px rgba(0,0,0,.3),
+  inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:linear-gradient(
+120deg,
+transparent 30%,
+rgba(34,211,238,.08),
+transparent 70%
+);
+opacity:0;
+transition:.6s ease;
+}
+
+.card:hover::before{opacity:1}
+
+.card:hover{
+  transform:translateY(-12px);
+  border-color:rgba(34,211,238,.25);
+  box-shadow:
+    0 40px 100px rgba(34,211,238,.1),
+    inset 0 1px 0 rgba(34,211,238,.15);
+}
+
+.card > *{
+position:relative;
+z-index:1;
+}
+
+.card h3{
+margin:0 0 8px 0;
+font-size:18px;
+font-weight:700;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.card h3 i{
+font-size:20px;
+background:linear-gradient(135deg, #22d3ee, #0ea5e9);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+}
+
+.card .sub{
+opacity:.6;
+font-size:13px;
+margin-bottom:16px;
+}
+
+/* ===== HOME SECTION ===== */
+.home-card{
+background:linear-gradient(135deg, rgba(2,8,23,.75), rgba(15,23,42,.5));
+backdrop-filter:blur(20px);
+border:1px solid rgba(34,211,238,.1);
+border-radius:20px;
+padding:20px;
+position:relative;
+overflow:hidden;
+transition:all .3s cubic-bezier(.4, 0, .2, 1);
+box-shadow:0 20px 60px rgba(0,0,0,.3);
+cursor:pointer;
+}
+
+.home-card::before{
+content:"";
+position:absolute;
+inset:0;
+pointer-events:none;
+background:linear-gradient(120deg, transparent 30%, rgba(34,211,238,.08), transparent 70%);
+opacity:0;
+transition:.6s ease;
+}
+
+.home-card:hover::before{opacity:1}
+
+.home-card:hover{
+transform:translateY(-8px);
+border-color:rgba(34,211,238,.25);
+box-shadow:0 30px 80px rgba(34,211,238,.15);
+}
+
+.home-card > *{
+position:relative;
+z-index:1;
+}
+
+.home-card-icon{
+font-size:40px;
+margin-bottom:12px;
+color:#22d3ee;
+}
+
+.home-card h4{
+font-size:16px;
+font-weight:700;
+margin:0 0 6px 0;
+}
+
+.home-card p{
+font-size:12px;
+opacity:.6;
+margin:0;
+}
+
+/* ===== BANK CARD ===== */
+.bank-card-wrapper{
+display:flex;
+justify-content:center;
+margin-bottom:24px;
+}
+
+.bank-card{
+width:100%;
+max-width:380px;
+aspect-ratio:1.586;
+border-radius:20px;
+padding:28px;
+background:linear-gradient(135deg,
+  rgba(34,211,238,.15),
+  rgba(168,85,247,.08)),
+  linear-gradient(to bottom right, #020617, #111827);
+border:1.5px solid rgba(34,211,238,.2);
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+position:relative;
+overflow:hidden;
+transition:all .4s cubic-bezier(.4, 0, .2, 1);
+box-shadow:
+  0 25px 50px rgba(34,211,238,.15),
+  inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+.bank-card::after{
+content:"";
+position:absolute;
+inset:-60%;
+background:linear-gradient(
+120deg,
+transparent 40%,
+rgba(34,211,238,.25),
+transparent 60%
+);
+animation:holo 8s linear infinite;
+}
+
+.bank-card:hover{
+transform:rotateX(8deg) rotateY(-8deg) translateZ(0);
+box-shadow:
+  0 35px 80px rgba(34,211,238,.2),
+  inset 0 1px 0 rgba(34,211,238,.3);
+}
+
+@keyframes holo{
+0%{transform:translateX(-100%) rotate(25deg)}
+100%{transform:translateX(100%) rotate(25deg)}
+}
+
+.card-top{
+display:flex;
+justify-content:space-between;
+align-items:center;
+font-size:14px;
+font-weight:600;
+}
+
+.card-brand{
+background:linear-gradient(90deg, #22d3ee, #0ea5e9);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+}
+
+.status{
+padding:6px 14px;
+border-radius:999px;
+font-size:11px;
+font-weight:600;
+transition:.3s;
+backdrop-filter:blur(10px);
+}
+
+.status.active{
+  background:rgba(34,197,94,.2);
+  color:#86efac;
+  box-shadow:0 0 12px rgba(34,197,94,.3);
+  border:1px solid rgba(34,197,94,.4);
+}
+
+.status.frozen{
+  background:rgba(239,68,68,.2);
+  color:#fca5a5;
+  box-shadow:0 0 12px rgba(239,68,68,.3);
+  border:1px solid rgba(239,68,68,.4);
+}
+
+.card-chip{
+width:50px;height:36px;
+background:linear-gradient(135deg,#facc15,#ca8a04);
+border-radius:8px;
+margin:20px 0;
+box-shadow:0 0 25px rgba(250,204,21,.35);
+}
+
+.card-number{
+letter-spacing:3px;
+font-size:16px;
+font-weight:500;
+}
+
+.card-footer{
+display:flex;
+justify-content:space-between;
+font-size:13px;
+opacity:.85;
+font-weight:500;
+}
+
+/* ===== BALANCE SECTION ===== */
+.balance-section{
+margin-top:28px;
+padding:20px;
+background:linear-gradient(135deg, rgba(34,211,238,.08), rgba(168,85,247,.06));
+border:1.5px solid rgba(34,211,238,.15);
+border-radius:16px;
+}
+
+.balance-section .sub{
+margin-bottom:12px;
+}
+
+.balance-amount{
+font-size:36px;
+font-weight:700;
+background:linear-gradient(90deg, #22d3ee, #06b6d4);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+margin:8px 0;
+letter-spacing:-1px;
+}
+
+/* ===== INPUTS ===== */
+.form-group{
+margin-top:18px;
+}
+
+.form-group label{
+display:block;
+font-size:12px;
+font-weight:600;
+margin-bottom:8px;
+text-transform:uppercase;
+letter-spacing:.5px;
+opacity:.7;
+}
+
+input,select{
+width:100%;
+background:rgba(2,8,23,.6);
+border:1.5px solid rgba(34,211,238,.15);
+border-radius:12px;
+padding:12px 14px;
+color:#e5e7eb;
+transition:all .2s;
+font-family:Inter;
+font-size:14px;
+}
+
+input::placeholder{opacity:.4}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+-webkit-appearance:none;
+margin:0;
+}
+
+input[type=number]{
+-moz-appearance:textfield;
+}
+
+input:focus,select:focus{
+outline:none;
+border-color:#22d3ee;
+background:rgba(34,211,238,.08);
+box-shadow:
+    0 0 0 2.5px rgba(34,211,238,.2),
+    0 0 25px rgba(34,211,238,.3);
+}
+
+select{
+background:linear-gradient(135deg, rgba(34,211,238,.1), rgba(168,85,247,.08)),
+          rgba(2,8,23,.6);
+background-clip:padding-box;
+cursor:pointer;
+}
+
+select option{
+background:#020817;
+color:#e5e7eb;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+border:none;
+padding:12px 20px;
+border-radius:12px;
+font-weight:600;
+cursor:pointer;
+transition:all .3s cubic-bezier(.4, 0, .2, 1);
+position:relative;
+overflow:hidden;
+font-size:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:8px;
+}
+
+.btn:active{transform:scale(.95)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+.btn-primary{
+background:linear-gradient(135deg,#22d3ee,#0ea5e9);
+color:#0b0e14;
+box-shadow:0 8px 25px rgba(34,211,238,.35);
+}
+
+.btn-primary:hover:not(:disabled){
+box-shadow:0 12px 40px rgba(34,211,238,.5);
+transform:translateY(-3px);
+}
+
+.btn-success{
+background:linear-gradient(135deg, rgba(34,197,94,.8), rgba(22,163,74,.8));
+color:#fff;
+border:1.5px solid rgba(34,197,94,.4);
+box-shadow:0 8px 25px rgba(34,197,94,.25);
+}
+
+.btn-success:hover:not(:disabled){
+box-shadow:0 12px 40px rgba(34,197,94,.4);
+transform:translateY(-3px);
+background:linear-gradient(135deg, rgba(34,197,94,.95), rgba(22,163,74,.95));
+}
+
+.btn-danger{
+background:linear-gradient(135deg, rgba(239,68,68,.8), rgba(153,27,27,.8));
+color:white;
+border:1.5px solid rgba(239,68,68,.4);
+box-shadow:0 8px 25px rgba(239,68,68,.25);
+}
+
+.btn-danger:hover:not(:disabled){
+box-shadow:0 12px 40px rgba(239,68,68,.4);
+transform:translateY(-3px);
+background:linear-gradient(135deg, rgba(239,68,68,.95), rgba(153,27,27,.95));
+}
+
+/* ===== ACTION BUTTONS ===== */
+.button-row{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.button-row .btn{
+flex:1;
+}
+
+.quick-actions{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(100px, 1fr));
+gap:10px;
+margin-top:20px;
+}
+
+.action-btn{
+background:rgba(34,211,238,.08);
+border:1.5px solid rgba(34,211,238,.2);
+padding:14px 12px;
+border-radius:14px;
+font-size:11px;
+cursor:pointer;
+transition:all .3s;
+text-align:center;
+font-weight:600;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+color:#e5e7eb;
+}
+
+.action-icon{
+font-size:28px;
+width:44px;
+height:44px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(34,211,238,.1);
+border-radius:10px;
+transition:.3s;
+color:#22d3ee;
+}
+
+.action-btn:hover .action-icon{
+background:rgba(34,211,238,.2);
+transform:scale(1.1);
+}
+
+.action-btn:hover{
+background:rgba(34,211,238,.15);
+border-color:rgba(34,211,238,.4);
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(34,211,238,.2);
+color:#22d3ee;
+}
+
+.action-btn.active{
+background:linear-gradient(135deg, rgba(34,211,238,.3), rgba(168,85,247,.2));
+border-color:#22d3ee;
+color:#22d3ee;
+box-shadow:0 8px 25px rgba(34,211,238,.3);
+}
+
+/* ===== CHARTS ===== */
+canvas{
+opacity:0;
+transform:scale(.95);
+animation:chartIn 1s ease-out forwards;
+}
+
+@keyframes chartIn{
+to{opacity:1;transform:scale(1)}
+}
+
+#spendChart{height:200px;max-height:200px;}
+#riskChart{height:240px;max-height:240px;}
+#categoryChart{height:260px;max-height:260px;}
+
+.chart-container{
+position:relative;
+margin-top:16px;
+}
+
+.chart-label{
+font-size:12px;
+opacity:.6;
+margin-top:12px;
+background:rgba(34,211,238,.08);
+padding:8px 12px;
+border-radius:8px;
+border-left:3px solid #22d3ee;
+}
+
+/* ===== CATEGORY CONTROLS ===== */
+.category-controls{
+display:flex;
+gap:8px;
+margin:16px 0;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.category-filter{
+padding:8px 16px;
+background:rgba(34,211,238,.08);
+border:1.5px solid rgba(34,211,238,.2);
+border-radius:8px;
+font-size:12px;
+cursor:pointer;
+transition:.3s;
+font-weight:600;
+color:#e5e7eb;
+}
+
+.category-filter:hover{
+background:rgba(34,211,238,.15);
+border-color:rgba(34,211,238,.35);
+}
+
+.category-filter.active{
+background:linear-gradient(135deg, #22d3ee, #0ea5e9);
+color:#0b0e14;
+border-color:#22d3ee;
+box-shadow:0 4px 12px rgba(34,211,238,.3);
+}
+
+/* ===== CATEGORY CHART IMPROVEMENTS ===== */
+.category-stats{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));
+gap:12px;
+margin-top:20px;
+}
+
+.category-stat{
+background:rgba(34,211,238,.08);
+border:1px solid rgba(34,211,238,.15);
+border-radius:12px;
+padding:12px;
+text-align:center;
+transition:.3s;
+}
+
+.category-stat:hover{
+background:rgba(34,211,238,.12);
+border-color:rgba(34,211,238,.3);
+}
+
+.category-stat-icon{
+font-size:24px;
+margin-bottom:6px;
+color:#22d3ee;
+}
+
+.category-stat-name{
+font-size:12px;
+font-weight:600;
+text-transform:uppercase;
+opacity:.7;
+margin-bottom:8px;
+color:#ffffff;
+}
+
+.category-stat-value{
+font-size:18px;
+font-weight:700;
+color:#22d3ee;
+display:block;
+margin-top:4px;
+}
+
+/* ===== RISK SECTION ===== */
+.risk-wrap{
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:20px 0;
+flex-direction:column;
+gap:16px;
+}
+
+.risk-chart-container{
+position:relative;
+width:180px;
+height:180px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.risk-ring{
+position:absolute;
+inset:12px;
+border-radius:50%;
+pointer-events:none;
+filter:blur(2px);
+opacity:.8;
+transition:.6s ease;
+}
+
+.risk-ring.danger{
+animation: riskPulse 2s infinite;
+}
+
+@keyframes riskPulse{
+0%{transform:scale(1);opacity:.6}
+50%{transform:scale(1.08);opacity:1}
+100%{transform:scale(1);opacity:.6}
+}
+
+.risk-value{
+position:relative;
+z-index:2;
+text-align:center;
+}
+
+.risk-value strong{
+font-size:56px;
+font-weight:700;
+background:linear-gradient(90deg, #22d3ee, #0ea5e9);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+display:block;
+}
+
+.risk-tooltip{
+font-size:12px;
+margin-top:8px;
+opacity:.7;
+font-weight:500;
+}
+
+.risk-text{
+font-size:14px;
+opacity:.8;
+margin-top:12px;
+font-weight:600;
+}
+
+.risk-analysis{
+margin-top:16px;
+padding:16px;
+background:rgba(34,211,238,.08);
+border-radius:12px;
+border-left:4px solid #22d3ee;
+}
+
+.risk-analysis-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:8px 0;
+font-size:12px;
+border-bottom:1px solid rgba(34,211,238,.1);
+}
+
+.risk-analysis-item:last-child{
+border-bottom:none;
+}
+
+.risk-analysis-label{
+opacity:.7;
+}
+
+.risk-analysis-meter{
+flex:1;
+height:4px;
+background:rgba(34,211,238,.2);
+border-radius:2px;
+margin:0 12px;
+overflow:hidden;
+}
+
+.risk-analysis-bar{
+height:100%;
+border-radius:2px;
+transition:width .4s ease;
+}
+
+.risk-analysis-value{
+color:#22d3ee;
+font-weight:600;
+min-width:35px;
+text-align:right;
+}
+
+/* ===== STATS GRID ===== */
+.stats-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:16px;
+}
+
+.stat-box{
+background:rgba(34,211,238,.08);
+border:1px solid rgba(34,211,238,.15);
+border-radius:12px;
+padding:14px;
+text-align:center;
+font-size:12px;
+transition:.3s;
+}
+
+.stat-box:hover{
+background:rgba(34,211,238,.12);
+border-color:rgba(34,211,238,.3);
+}
+
+.stat-box strong{
+display:block;
+font-size:18px;
+background:linear-gradient(90deg, #22d3ee, #0ea5e9);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+margin-bottom:4px;
+}
+
+/* ===== PAYMENT CATEGORIES ===== */
+.payment-category-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(120px, 1fr));
+gap:10px;
+margin-top:12px;
+}
+
+.payment-category-btn{
+padding:12px;
+background:rgba(34,211,238,.08);
+border:1.5px solid rgba(34,211,238,.2);
+border-radius:12px;
+cursor:pointer;
+transition:all .3s;
+text-align:center;
+font-weight:600;
+font-size:13px;
+color:#ffffff;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:8px;
+}
+
+.payment-category-btn i{
+font-size:22px;
+color:#22d3ee;
+}
+
+.payment-category-btn:hover{
+background:rgba(34,211,238,.15);
+border-color:rgba(34,211,238,.4);
+transform:translateY(-3px);
+}
+
+.payment-category-btn.active{
+background:linear-gradient(135deg, rgba(34,211,238,.3), rgba(168,85,247,.2));
+border-color:#22d3ee;
+color:#ffffff;
+box-shadow:0 8px 25px rgba(34,211,238,.3);
+}
+
+/* ===== CURRENCY LIST ===== */
+.currency-list{
+display:grid;
+gap:8px;
+margin-top:12px;
+max-height:200px;
+overflow-y:auto;
+}
+
+.currency-item{
+padding:10px 12px;
+background:rgba(34,211,238,.08);
+border:1px solid rgba(34,211,238,.15);
+border-radius:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+cursor:pointer;
+transition:.3s;
+font-size:13px;
+}
+
+.currency-item:hover{
+background:rgba(34,211,238,.12);
+border-color:rgba(34,211,238,.3);
+}
+
+.currency-item strong{
+color:#22d3ee;
+}
+
+/* ===== AI CHAT ===== */
+.chat{
+display:flex;
+flex-direction:column;
+height:520px;
+}
+
+.chat-header{
+margin-bottom:16px;
+}
+
+.chat-header h3{
+margin:0 0 4px 0;
+font-size:16px;
+font-weight:700;
+}
+
+.chat-header .sub{
+margin:0;
+}
+
+.chat-log{
+flex:1;
+overflow-y:auto;
+font-size:13px;
+padding-right:8px;
+margin-bottom:14px;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.msg{
+animation:msgIn .3s ease-out both;
+padding:12px 14px;
+border-radius:12px;
+max-width:85%;
+word-wrap:break-word;
+line-height:1.4;
+}
+
+.msg.user{
+color:#0b0e14;
+background:linear-gradient(135deg,#22d3ee,#0ea5e9);
+align-self:flex-end;
+border-bottom-right-radius:3px;
+font-weight:500;
+box-shadow:0 4px 15px rgba(34,211,238,.3);
+}
+
+.msg.bot{
+color:#e5e7eb;
+background:rgba(51,65,85,.5);
+border:1px solid rgba(34,211,238,.25);
+align-self:flex-start;
+border-bottom-left-radius:3px;
+}
+
+.msg.bot::after{
+  content:"";
+  display:inline-block;
+  width:6px;
+  height:6px;
+  margin-left:8px;
+  border-radius:50%;
+  background:#22d3ee;
+  animation:blink 1.2s infinite;
+}
+
+@keyframes blink{
+0%,100%{opacity:.2}
+50%{opacity:1}
+}
+
+@keyframes msgIn{
+from{opacity:0;transform:translateY(8px)}
+to{opacity:1;transform:none}
+}
+
+.chat-input-wrap{
+display:flex;
+gap:8px;
+align-items:flex-end;
+}
+
+.chat-input-wrap input{
+margin:0;
+flex:1;
+}
+
+.chat-input-wrap .btn{
+padding:11px 14px;
+height:42px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+flex-shrink:0;
+}
+
+/* ===== NOTIFICATION ===== */
+.notification{
+position:fixed;
+top:80px;
+right:20px;
+background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(14,165,233,.85));
+border:1.5px solid rgba(34,211,238,.5);
+border-radius:14px;
+padding:16px 20px;
+color:#0b0e14;
+font-weight:600;
+font-size:13px;
+backdrop-filter:blur(15px);
+box-shadow:0 15px 50px rgba(34,211,238,.3);
+animation:slideIn .4s cubic-bezier(.4, 0, .2, 1);
+z-index:9999;
+}
+
+.notification.danger{
+background:linear-gradient(135deg, rgba(239,68,68,.95), rgba(153,27,27,.85));
+border-color:rgba(239,68,68,.5);
+box-shadow:0 15px 50px rgba(239,68,68,.3);
+color:#fff;
+}
+
+.notification.success{
+background:linear-gradient(135deg, rgba(34,197,94,.95), rgba(22,163,74,.85));
+border-color:rgba(34,197,94,.5);
+box-shadow:0 15px 50px rgba(34,197,94,.3);
+color:#fff;
+}
+
+.notification.warning{
+background:linear-gradient(135deg, rgba(250,204,21,.95), rgba(217,119,6,.85));
+border-color:rgba(250,204,21,.5);
+box-shadow:0 15px 50px rgba(250,204,21,.3);
+color:#0b0e14;
+}
+
+.notification.update{
+background:linear-gradient(135deg, rgba(168,85,247,.95), rgba(124,58,202,.85));
+border-color:rgba(168,85,247,.5);
+box-shadow:0 15px 50px rgba(168,85,247,.3);
+color:#fff;
+}
+
+@keyframes slideIn{
+from{
+  transform:translateX(400px);
+  opacity:0;
+}
+to{
+  transform:translateX(0);
+  opacity:1;
+}
+}
+
+/* ===== BALANCE FLASH ===== */
+.balance-flash{
+animation: balanceFlash .6s ease;
+}
+
+@keyframes balanceFlash{
+0%{color:#22d3ee;text-shadow:0 0 15px rgba(34,211,238,.8)}
+100%{color:inherit;text-shadow:none}
+}
+
+.bank-card.frozen{
+filter:grayscale(.8) brightness(.5);
+box-shadow:
+  0 25px 50px rgba(239,68,68,.2),
+  inset 0 0 30px rgba(239,68,68,.15);
+}
+
+/* ===== SETTINGS ===== */
+.settings-panel{
+background:rgba(34,211,238,.05);
+border:1.5px solid rgba(34,211,238,.15);
+border-radius:14px;
+padding:18px;
+margin-top:20px;
+}
+
+.settings-panel h4{
+margin:0 0 16px 0;
+font-size:13px;
+font-weight:700;
+text-transform:uppercase;
+letter-spacing:.5px;
+opacity:.8;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.settings-panel h4 i{
+font-size:15px;
+color:#22d3ee;
+}
+
+.settings-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 0;
+border-bottom:1px solid rgba(34,211,238,.1);
+font-size:13px;
+}
+
+.settings-item:last-child{
+border-bottom:none;
+}
+
+.settings-label{
+display:flex;
+flex-direction:column;
+gap:4px;
+flex:1;
+}
+
+.settings-label strong{
+color:#e5e7eb;
+}
+
+.settings-label small{
+opacity:.5;
+font-size:11px;
+}
+
+.toggle-switch{
+position:relative;
+width:44px;
+height:24px;
+background:rgba(34,211,238,.2);
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+border:1.5px solid rgba(34,211,238,.2);
+}
+
+.toggle-switch.active{
+background:rgba(34,197,94,.4);
+border-color:rgba(34,197,94,.4);
+}
+
+.toggle-switch::after{
+content:"";
+position:absolute;
+top:2px;
+left:2px;
+width:18px;
+height:18px;
+background:#fff;
+border-radius:9px;
+transition:.3s;
+}
+
+.toggle-switch.active::after{
+left:22px;
+}
+
+.settings-select{
+padding:6px 10px;
+font-size:12px;
+border:1.5px solid rgba(34,211,238,.2);
+background:rgba(2,8,23,.6);
+color:#e5e7eb;
+border-radius:8px;
+cursor:pointer;
+}
+
+/* ===== TRANSACTIONS PREVIEW ===== */
+.transactions-preview{
+margin-top:20px;
+padding:16px;
+background:rgba(34,211,238,.08);
+border:1px solid rgba(34,211,238,.15);
+border-radius:14px;
+}
+
+.transactions-preview h4{
+font-size:13px;
+font-weight:700;
+margin:0 0 12px 0;
+text-transform:uppercase;
+letter-spacing:.5px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.transactions-preview h4 i{
+font-size:15px;
+color:#22d3ee;
+}
+
+.transaction-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:10px 0;
+border-bottom:1px solid rgba(34,211,238,.1);
+font-size:12px;
+}
+
+.transaction-item:last-child{
+border-bottom:none;
+}
+
+.transaction-left{
+display:flex;
+gap:8px;
+align-items:center;
+}
+
+.transaction-icon{
+width:36px;
+height:36px;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+}
+
+.transaction-details strong{
+display:block;
+margin-bottom:2px;
+}
+
+.transaction-details span{
+opacity:.6;
+font-size:11px;
+}
+
+.transaction-amount{
+font-weight:700;
+color:#22d3ee;
+}
+
+/* ===== MODAL DIALOG ===== */
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+backdrop-filter:blur(6px);
+z-index:10000;
+align-items:center;
+justify-content:center;
+animation:fadeIn .3s ease;
+overflow-y:auto;
+}
+
+.modal.active{
+display:flex;
+}
+
+.modal-content{
+background:linear-gradient(135deg, rgba(2,8,23,.95), rgba(15,23,42,.85));
+border:1.5px solid rgba(34,211,238,.25);
+border-radius:20px;
+padding:28px;
+max-width:500px;
+width:90%;
+box-shadow:0 25px 100px rgba(0,0,0,.5);
+animation:slideUp .4s ease;
+margin:auto;
+}
+
+.modal-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.modal-header h2{
+margin:0;
+font-size:20px;
+}
+
+.modal-close{
+background:none;
+border:none;
+color:#e5e7eb;
+font-size:24px;
+cursor:pointer;
+transition:.3s;
+padding:0;
+width:32px;
+height:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.modal-close:hover{
+color:#22d3ee;
+transform:rotate(90deg);
+}
+
+@keyframes fadeIn{
+from{opacity:0}
+to{opacity:1}
+}
+
+@keyframes slideUp{
+from{transform:translateY(40px);opacity:0}
+to{transform:none;opacity:1}
+}
+
+/* ===== SETTINGS PAGE ===== */
+.settings-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+gap:16px;
+}
+
+.settings-card{
+background:linear-gradient(135deg, rgba(2,8,23,.75), rgba(15,23,42,.5));
+border:1px solid rgba(34,211,238,.1);
+border-radius:16px;
+padding:20px;
+transition:all .3s;
+}
+
+.settings-card:hover{
+transform:translateY(-4px);
+border-color:rgba(34,211,238,.25);
+}
+
+.settings-card h4{
+margin:0 0 12px 0;
+font-size:14px;
+font-weight:700;
+display:flex;
+align-items:center;
+gap:8px;
+color:#22d3ee;
+}
+
+.settings-card i{
+font-size:20px;
+}
+
+.settings-card-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.settings-card-item{
+display:flex;
+align-items:center;
+justify-content:space-between;
+font-size:13px;
+padding:8px 0;
+}
+
+/* ===== PAGE NAVIGATION ===== */
+.page-nav{
+position:fixed;
+top:20px;
+right:180px;
+z-index:4999;
+}
+
+.page-nav button{
+padding:8px 16px;
+background:rgba(34,211,238,.1);
+border:1.5px solid rgba(34,211,238,.25);
+color:#22d3ee;
+border-radius:10px;
+cursor:pointer;
+transition:all .3s;
+font-weight:600;
+font-size:12px;
+margin:0 4px;
+}
+
+.page-nav button:hover{
+background:rgba(34,211,238,.2);
+border-color:rgba(34,211,238,.4);
+}
+
+.page-nav button.active{
+background:linear-gradient(135deg, #22d3ee, #0ea5e9);
+color:#0b0e14;
+border-color:#22d3ee;
+}
+
+/* ===== UPDATE BANNER ===== */
+.update-banner{
+position:fixed;
+bottom:30px;
+right:30px;
+background:linear-gradient(135deg, rgba(168,85,247,.95), rgba(124,58,202,.85));
+border:1.5px solid rgba(168,85,247,.5);
+border-radius:14px;
+padding:16px 20px;
+color:#fff;
+font-weight:600;
+font-size:13px;
+backdrop-filter:blur(15px);
+box-shadow:0 15px 50px rgba(168,85,247,.3);
+animation:slideIn .4s cubic-bezier(.4, 0, .2, 1);
+z-index:9999;
+max-width:300px;
+display:flex;
+gap:12px;
+align-items:center;
+}
+
+.update-banner i{
+font-size:20px;
+animation:pulse 2s infinite;
+}
+
+.update-close{
+background:none;
+border:none;
+color:#fff;
+cursor:pointer;
+font-size:16px;
+margin-left:auto;
+transition:.3s;
+}
+
+.update-close:hover{
+color:rgba(255,255,255,.7);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:768px){
+  .header{padding:16px;margin-top:70px}
+  .container{padding:16px;gap:16px}
+  .home-container{padding:16px;gap:16px}
+  .card{padding:16px}
+  #spendChart{height:140px}
+  #categoryChart{height:200px}
+  .notification{right:10px;left:10px}
+  .quick-actions{grid-template-columns:repeat(2, 1fr)}
+  .chat{height:400px}
+  .quick-stats{display:none}
+  .page-nav{right:10px;top:auto;bottom:20px}
+  .page-nav button{padding:6px 12px;font-size:11px;margin:4px 2px}
+  .category-controls{justify-content:center}
+  .category-stats{grid-template-columns:repeat(3, 1fr)}
+  .update-banner{right:10px;left:10px;bottom:100px}
+}
+
+@media (max-width:480px){
+  .header-text h1{font-size:20px}
+  .button-row{flex-direction:column}
+  .category-stats{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .modal-content{width:95%;padding:20px}
+  .balance-amount{font-size:28px}
+  .page-nav{width:100%;right:auto;left:auto;bottom:auto;top:65px}
+  .page-nav button{width:48%;margin:4px 1%}
+  .update-banner{width:90%;left:5%;right:auto}
+}
+</style>
+</head>
+
+<body>
+
+<!-- TOP ALERT -->
+<div class="top-alert">
+  <i class="fas fa-shield-alt alert-icon"></i>
+  <div class="alert-text">
+    <span id="topAlertText">Dobrodošao u Fintech Nova - Sigurna finansijska rješenja</span>
+  </div>
+</div>
+
+<!-- UPDATE BANNER -->
+<div id="updateBanner" class="update-banner" style="display:none;">
+  <i class="fas fa-star"></i>
+  <div>
+    <strong>✨ Nova Verzija!</strong><br>
+    <span id="updateText">Dodane nove kategoije i poboljšanja</span>
+  </div>
+  <button class="update-close" onclick="closeUpdateBanner()"><i class="fas fa-times"></i></button>
+</div>
+
+<!-- PAGE NAVIGATION -->
+<div class="page-nav">
+  <button class="nav-btn active" data-page="dashboard" onclick="switchPage('dashboard')">
+    <i class="fas fa-chart-line"></i> Dashboard
+  </button>
+  <button class="nav-btn" data-page="home" onclick="switchPage('home')">
+    <i class="fas fa-home"></i> Početna
+  </button>
+</div>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-avatar" id="userInitials">FN</div>
+    <div class="header-text">
+      <h1>Dobrodošao nazad, <span id="userName">Korisniče</span>!</h1>
+      <p id="headerSubtitle">Pregled kartice i sigurnosnih aktivnosti</p>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="quick-stats">
+      <div class="stat-item">
+        <div class="stat-item-label"><i class="fas fa-wallet"></i> Saldo</div>
+        <div class="stat-item-value" id="headerBalance">€2340</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item-label"><i class="fas fa-shield"></i> Rizik</div>
+        <div class="stat-item-value" id="headerRisk">32%</div>
+      </div>
+    </div>
+    <div class="status-badge">
+      <div class="status-dot"></div>
+      <div class="status-text">Aktivan</div>
+    </div>
+    <button class="header-btn" title="Notifikacije" onclick="showNotification('success', '📬 Nema novih notifikacija!')">
+      <i class="fas fa-bell"></i>
+    </button>
+    <button class="header-btn" title="Postavke" onclick="openSettings()">
+      <i class="fas fa-cog"></i>
+    </button>
+    <div id="clock" class="clock">
+      <i class="fas fa-clock"></i>
+      <span id="clockTime">00:00:00</span>
+    </div>
+  </div>
+</div>
+
+<!-- DASHBOARD PAGE -->
+<div id="dashboardPage" class="page-content" style="display:block;">
+
+<!-- MAIN CONTAINER -->
+<div class="container">
+
+<!-- LEFT SIDE - MAIN CARD & ACTIONS -->
+<div>
+  <div class="card">
+    <!-- BANK CARD -->
+    <div class="bank-card-wrapper">
+      <div class="bank-card">
+        <div class="card-top">
+          <span class="card-brand">Fintech Nova</span>
+          <span id="cardStatus" class="status active">Aktivna</span>
+        </div>
+        <div class="card-chip"></div>
+        <div class="card-number">•••• •••• •••• 4821</div>
+        <div class="card-footer">
+          <span id="cardName">JOHN DOE</span>
+          <span>09/28</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BALANCE SECTION -->
+    <div class="balance-section">
+      <p class="sub">Ukupna raspoloživa sredstva</p>
+      <div class="balance-amount"><span id="symbol">€</span><span id="balance">2340.00</span></div>
+      <div class="form-group">
+        <label>Valuta</label>
+        <select id="currency" onchange="render()">
+          <option value="EUR">EUR - Evro</option>
+          <option value="BAM">BAM - Konvertibilna Marka</option>
+          <option value="USD">USD - Američki Dolar</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- QUICK ACTIONS -->
+    <h3 style="margin-top:28px"><i class="fas fa-bolt"></i> Brze Akcije</h3>
+    <div class="quick-actions">
+      <button class="action-btn" onclick="quickAction('transfer')" title="Prenos sredstava">
+        <div class="action-icon"><i class="fas fa-arrow-right"></i></div>
+        <span>Prenos</span>
+      </button>
+      <button class="action-btn" onclick="quickAction('request')" title="Zahtjev plaćanja">
+        <div class="action-icon"><i class="fas fa-arrow-left"></i></div>
+        <span>Zahtjev</span>
+      </button>
+      <button class="action-btn" onclick="quickAction('invest')" title="Investicije">
+        <div class="action-icon"><i class="fas fa-chart-line"></i></div>
+        <span>Ulaganje</span>
+      </button>
+      <button class="action-btn" onclick="quickAction('bills')" title="Plaćanje računa">
+        <div class="action-icon"><i class="fas fa-file-invoice"></i></div>
+        <span>Računi</span>
+      </button>
+    </div>
+
+    <!-- PAYMENT SECTION -->
+    <h3 style="margin-top:28px"><i class="fas fa-credit-card"></i> Izvrši Plaćanje</h3>
+    
+    <div class="form-group">
+      <label>Kategorija Plaćanja</label>
+      <div class="payment-category-grid" id="paymentCategories">
+        <button class="payment-category-btn active" onclick="selectPaymentCategory(event, 'grocery')">
+          <i class="fas fa-shopping-cart"></i>
+          <span>Kupovine</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'food')">
+          <i class="fas fa-utensils"></i>
+          <span>Hrana</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'transport')">
+          <i class="fas fa-taxi"></i>
+          <span>Prijevoz</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'entertainment')">
+          <i class="fas fa-ticket-alt"></i>
+          <span>Zabava</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'utilities')">
+          <i class="fas fa-home"></i>
+          <span>Komunalne</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'health')">
+          <i class="fas fa-heartbeat"></i>
+          <span>Zdravlje</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'education')">
+          <i class="fas fa-graduation-cap"></i>
+          <span>Edukacija</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'travel')">
+          <i class="fas fa-plane"></i>
+          <span>Putovanja</span>
+        </button>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>Iznos</label>
+      <input id="amount" type="number" placeholder="0.00" min="0" step="0.01" inputmode="decimal">
+    </div>
+
+    <div class="form-group">
+      <label>Primatelj</label>
+      <select id="recipient">
+        <option>Odaberi primatelja...</option>
+        <option>Marko Marković</option>
+        <option>Ana Anić</option>
+        <option>Petar Petrović</option>
+        <option>Jelena Jelenić</option>
+        <option>Filip Filipović</option>
+        <option>Novi primatelj...</option>
+      </select>
+    </div>
+
+    <div class="button-row">
+      <button class="btn btn-success" onclick="pay()"><i class="fas fa-check"></i> Plati Sada</button>
+      <button class="btn btn-danger" onclick="toggleFreeze()" id="freezeBtn"><i class="fas fa-lock"></i> Zamrzni</button>
+    </div>
+
+    <!-- CURRENCY RATES -->
+    <div style="margin-top:28px;">
+      <h3><i class="fas fa-exchange-alt"></i> Kursne Stope</h3>
+      <div class="currency-list" id="currencyList"></div>
+    </div>
+
+    <!-- SETTINGS PANEL -->
+    <div class="settings-panel">
+      <h4><i class="fas fa-lock"></i> Brze Postavke Sigurnosti</h4>
+      <div class="settings-item">
+        <div class="settings-label">
+          <strong>Biometrijska Autentifikacija</strong>
+          <small>Face ID i Fingerprint</small>
+        </div>
+        <div class="toggle-switch active" onclick="toggleSetting(event, 'Biometrijska Autentifikacija', true)"></div>
+      </div>
+      <div class="settings-item">
+        <div class="settings-label">
+          <strong>2FA - Dvofaktorska Zaštita</strong>
+          <small>SMS + aplikacija</small>
+        </div>
+        <div class="toggle-switch active" onclick="toggleSetting(event, '2FA zaštita', true)"></div>
+      </div>
+      <div class="settings-item">
+        <div class="settings-label">
+          <strong>Notifikacije za Transakcije</strong>
+          <small>Push obavijesti</small>
+        </div>
+        <div class="toggle-switch active" onclick="toggleSetting(event, 'Notifikacije', true)"></div>
+      </div>
+      <div class="settings-item">
+        <div class="settings-label">
+          <strong>Dark Mode</strong>
+          <small>Uvijek uključeno</small>
+        </div>
+        <div class="toggle-switch active" onclick="toggleSetting(event, 'Dark Mode', true)"></div>
+      </div>
+    </div>
+
+    <!-- TRANSACTIONS PREVIEW -->
+    <div class="transactions-preview" id="transactionsPreview" style="display:none">
+      <h4><i class="fas fa-list"></i> Nedavne Transakcije</h4>
+      <div id="transactionsList"></div>
+    </div>
+  </div>
+
+  <!-- SPEND CHART -->
+  <div class="card">
+    <h3><i class="fas fa-chart-area"></i> Tok Potrošnje</h3>
+    <p class="sub">Dinamika vaših transakcija tokom sesije</p>
+    <div class="chart-container">
+      <canvas id="spendChart"></canvas>
+    </div>
+    <div class="chart-label"><i class="fas fa-lightbulb"></i> Grafikon akumulirane potrošnje u realnom vremenu</div>
+  </div>
+</div>
+
+<!-- RIGHT SIDE - RISK & AI -->
+<div style="display:grid;gap:28px">
+
+  <!-- RISK SECTION -->
+  <div class="card">
+    <h3><i class="fas fa-shield-alt"></i> Analiza Sigurnosnog Statusa</h3>
+    <p class="sub">Real-time procjena rizika i sigurnosti računa</p>
+    
+    <div class="risk-wrap">
+      <div class="risk-chart-container">
+        <div id="riskRing" class="risk-ring"></div>
+        <canvas id="riskChart"></canvas>
+        <div class="risk-value">
+          <strong id="riskValue">32</strong>
+          <span style="font-size:24px;opacity:.6">%</span>
+        </div>
+      </div>
+      <div id="riskTip" class="risk-tooltip"></div>
+      <div id="riskText" class="risk-text"></div>
+    </div>
+
+    <div class="risk-analysis">
+      <div class="risk-analysis-item">
+        <div class="risk-analysis-label">Autentifikacija</div>
+        <div class="risk-analysis-meter">
+          <div class="risk-analysis-bar" style="background: linear-gradient(90deg, #22d3ee, #0ea5e9); width: 95%;"></div>
+        </div>
+        <div class="risk-analysis-value">95%</div>
+      </div>
+      <div class="risk-analysis-item">
+        <div class="risk-analysis-label">Aktivnost Računa</div>
+        <div class="risk-analysis-meter">
+          <div class="risk-analysis-bar" style="background: linear-gradient(90deg, #34d399, #10b981); width: 78%;"></div>
+        </div>
+        <div class="risk-analysis-value">78%</div>
+      </div>
+      <div class="risk-analysis-item">
+        <div class="risk-analysis-label">Transakcije</div>
+        <div class="risk-analysis-meter">
+          <div class="risk-analysis-bar" style="background: linear-gradient(90deg, #fbbf24, #f59e0b); width: 62%;"></div>
+        </div>
+        <div class="risk-analysis-value">62%</div>
+      </div>
+      <div class="risk-analysis-item">
+        <div class="risk-analysis-label">Enkriptovani Promet</div>
+        <div class="risk-analysis-meter">
+          <div class="risk-analysis-bar" style="background: linear-gradient(90deg, #a78bfa, #8b5cf6); width: 100%;"></div>
+        </div>
+        <div class="risk-analysis-value">100%</div>
+      </div>
+      <div class="risk-analysis-item">
+        <div class="risk-analysis-label">Anomalije</div>
+        <div class="risk-analysis-meter">
+          <div class="risk-analysis-bar" style="background: linear-gradient(90deg, #34d399, #10b981); width: 5%;"></div>
+        </div>
+        <div class="risk-analysis-value">5%</div>
+      </div>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-box">
+        <strong id="transactionCount">0</strong>
+        Transakcija
+      </div>
+      <div class="stat-box">
+        <strong id="totalSpent">€0.00</strong>
+        Ukupno
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORY CHART -->
+  <div class="card">
+    <h3><i class="fas fa-pie-chart"></i> Analiza Trošenja po Kategorijama</h3>
+    <p class="sub" style="color:#e5e7eb;">Raspodjela vaših izdataka na osnovu tipa plaćanja</p>
+    
+    <div class="category-controls">
+      <button class="category-filter active" onclick="filterCategory('all')">Sve</button>
+      <button class="category-filter" onclick="filterCategory('food')">Hrana</button>
+      <button class="category-filter" onclick="filterCategory('transport')">Prijevoz</button>
+      <button class="category-filter" onclick="filterCategory('entertainment')">Zabava</button>
+      <button class="category-filter" onclick="filterCategory('other')">Ostalo</button>
+    </div>
+    
+    <div class="chart-container">
+      <canvas id="categoryChart"></canvas>
+    </div>
+
+    <div class="category-stats">
+      <div class="category-stat">
+        <div class="category-stat-icon"><i class="fas fa-utensils"></i></div>
+        <div class="category-stat-name">Hrana</div>
+        <div class="category-stat-value" id="cat-food">€0</div>
+      </div>
+      <div class="category-stat">
+        <div class="category-stat-icon"><i class="fas fa-taxi"></i></div>
+        <div class="category-stat-name">Prijevoz</div>
+        <div class="category-stat-value" id="cat-transport">€0</div>
+      </div>
+      <div class="category-stat">
+        <div class="category-stat-icon"><i class="fas fa-ticket-alt"></i></div>
+        <div class="category-stat-name">Zabava</div>
+        <div class="category-stat-value" id="cat-entertainment">€0</div>
+      </div>
+      <div class="category-stat">
+        <div class="category-stat-icon"><i class="fas fa-shopping-bag"></i></div>
+        <div class="category-stat-name">Ostalo</div>
+        <div class="category-stat-value" id="cat-other">€0</div>
+      </div>
+      <div class="category-stat">
+        <div class="category-stat-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="category-stat-name">Edukacija</div>
+        <div class="category-stat-value" id="cat-education">€0</div>
+      </div>
+      <div class="category-stat">
+        <div class="category-stat-icon"><i class="fas fa-plane"></i></div>
+        <div class="category-stat-name">Putovanja</div>
+        <div class="category-stat-value" id="cat-travel">€0</div>
+      </div>
+    </div>
+
+    <div class="chart-label"><i class="fas fa-chart-bar"></i> Detaljan pregled različitih tipova transakcija</div>
+  </div>
+
+  <!-- AI CHAT -->
+  <div class="card chat">
+    <div class="chat-header">
+      <h3><i class="fas fa-robot"></i> AI Asistent</h3>
+      <p class="sub">Postavi pitanje o svojem računu</p>
+    </div>
+    <div id="chatLog" class="chat-log">
+      <div class="msg bot">Zdravo! 👋 Ja sam tvoj financijski asistent. Tu sam da te pomognem sa bilo čim vezano uz tvoj račun!</div>
+    </div>
+    <div class="chat-input-wrap">
+      <input id="chatInput" type="text" placeholder="Postavi pitanje…" onkeydown="if(event.key==='Enter')askAI()">
+      <button class="btn btn-primary" onclick="askAI()"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+<!-- HOME PAGE -->
+<div id="homePage" class="page-content" style="display:none;">
+
+<div class="home-container">
+  <!-- CARD 1: Brze Akcije -->
+  <div class="home-card" onclick="switchPage('dashboard'); quickAction('transfer')">
+    <div class="home-card-icon"><i class="fas fa-paper-plane"></i></div>
+    <h4>Brz Prenos</h4>
+    <p>Pošalji novac prijateljima i porodici</p>
+  </div>
+
+  <!-- CARD 2: Investicije -->
+  <div class="home-card" onclick="switchPage('dashboard'); quickAction('invest')">
+    <div class="home-card-icon"><i class="fas fa-chart-line"></i></div>
+    <h4>Investicije</h4>
+    <p>Ulagaj u fondove sa minimalnim naknadama</p>
+  </div>
+
+  <!-- CARD 3: Štednja -->
+  <div class="home-card" onclick="showNotification('success', '💰 Štedni plan pokrenut - Postavi mesečnu štednju')">
+    <div class="home-card-icon"><i class="fas fa-piggy-bank"></i></div>
+    <h4>Štednja</h4>
+    <p>Automatski štedi deo svojih primanja</p>
+  </div>
+
+  <!-- CARD 4: Krediti -->
+  <div class="home-card" onclick="showNotification('success', '📊 Dostupan kreditor sa dobrih 3.5% - Primeni!')">
+    <div class="home-card-icon"><i class="fas fa-handshake"></i></div>
+    <h4>Krediti</h4>
+    <p>Brz pristup kreditorima sa malim kamatama</p>
+  </div>
+
+  <!-- CARD 5: Osiguranje -->
+  <div class="home-card" onclick="showNotification('success', '🛡️ Osiguranje računa je aktivirano - Zaštita do €100k')">
+    <div class="home-card-icon"><i class="fas fa-shield-alt"></i></div>
+    <h4>Osiguranje</h4>
+    <p>Zaštiti svojih novac od rizika</p>
+  </div>
+
+  <!-- CARD 6: Cashback -->
+  <div class="home-card" onclick="showNotification('success', '💳 Zaradio si €45.50 cashback-a - Trebaš više?')">
+    <div class="home-card-icon"><i class="fas fa-gift"></i></div>
+    <h4>Cashback Program</h4>
+    <p>Zaradite od 0.5% do 5% na svaki kupac</p>
+  </div>
+
+  <!-- CARD 7: Kartice -->
+  <div class="home-card" onclick="showNotification('success', '💳 Dostupne su Virtualne, Fizičke i Premium kartice')">
+    <div class="home-card-icon"><i class="fas fa-credit-card"></i></div>
+    <h4>Dodatne Kartice</h4>
+    <p>Kreiraj dodatne kartice za porodicu</p>
+  </div>
+
+  <!-- CARD 8: Valute -->
+  <div class="home-card" onclick="showNotification('success', '💱 Razmjenite valute sa boljim kursevima nego konkurencija')">
+    <div class="home-card-icon"><i class="fas fa-exchange-alt"></i></div>
+    <h4>Multi-valuta</h4>
+    <p>Upravljajte više valuta istovremeno</p>
+  </div>
+
+  <!-- CARD 9: Plaćanja -->
+  <div class="home-card" onclick="switchPage('dashboard'); quickAction('bills')">
+    <div class="home-card-icon"><i class="fas fa-file-invoice"></i></div>
+    <h4>Plaćanja Računa</h4>
+    <p>Plati sve svoje račune na jednom mjestu</p>
+  </div>
+
+  <!-- CARD 10: Fizička Lokacija -->
+  <div class="home-card" onclick="showNotification('success', '📍 Pronašli smo 45 Bankomata u vašoj blizini')">
+    <div class="home-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+    <h4>Nalazi Bankomata</h4>
+    <p>Pronađi najbliži bankomat ili ogradu</p>
+  </div>
+
+  <!-- CARD 11: Podrška -->
+  <div class="home-card" onclick="showNotification('success', '📞 Tim podrške je dostupan 24/7 - Kontaktiraj nas!')">
+    <div class="home-card-icon"><i class="fas fa-headset"></i></div>
+    <h4>24/7 Podrška</h4>
+    <p>Govor sa stručnjakom savetnicima</p>
+  </div>
+
+  <!-- CARD 12: Sigurnost -->
+  <div class="home-card" onclick="openSettings()">
+    <div class="home-card-icon"><i class="fas fa-lock"></i></div>
+    <h4>Sigurnosni Centar</h4>
+    <p>Upravljaj svim sigurnosnim postavkama</p>
+  </div>
+</div>
+
+</div>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2><i class="fas fa-cog" style="color:#22d3ee;margin-right:10px;"></i> Sve Postavke</h2>
+      <button class="modal-close" onclick="closeSettings()"><i class="fas fa-times"></i></button>
+    </div>
+    <div style="max-height:600px;overflow-y:auto;">
+      <!-- SIGURNOST -->
+      <div class="settings-card">
+        <h4><i class="fas fa-lock"></i> Sigurnost</h4>
+        <div class="settings-card-list">
+          <div class="settings-card-item">
+            <span>Biometrijska Autentifikacija</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Biometrijska autentifikacija')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>2FA - Dvofaktorska Zaštita</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, '2FA zaštita')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Pitanja za Sigurnost</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Pitanja za sigurnost')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Notifikacije o Pokušajima</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Notifikacije o pokušajima')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NOTIFIKACIJE -->
+      <div class="settings-card">
+        <h4><i class="fas fa-bell"></i> Notifikacije</h4>
+        <div class="settings-card-list">
+          <div class="settings-card-item">
+            <span>Obavijest Transakcija</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Obavijest transakcija')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Sigurnosne Obavijesti</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Sigurnosne obavijesti')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Obavijest o Novim Uslugama</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Obavijest o novim uslugama')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Email Obavijesti</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Email obavijesti')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRIVATNOST -->
+      <div class="settings-card">
+        <h4><i class="fas fa-user-secret"></i> Privatnost</h4>
+        <div class="settings-card-list">
+          <div class="settings-card-item">
+            <span>Djeljenje Podataka</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Djeljenje podataka')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Analitika i Praćenje</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Analitika i praćenje')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Marketinške Obavijesti</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Marketinške obavijesti')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Kolačići Trećih Strana</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Kolačići trećih strana')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PRIKAZ -->
+      <div class="settings-card">
+        <h4><i class="fas fa-palette"></i> Prikaz</h4>
+        <div class="settings-card-list">
+          <div class="settings-card-item">
+            <span>Dark Mode</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Dark mode')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Kompaktan Pregled</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Kompaktan pregled')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Animacije</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Animacije')"></div>
+          </div>
+          <div class="settings-card-item">
+            <span>Velika Slova</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Velika slova')"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAĆANJA -->
+      <div class="settings-card">
+        <h4><i class="fas fa-credit-card"></i> Plaćanja</h4>
+        <div class="settings-card-list">
+          <div class="settings-card-item">
+            <span>Dnevni Limit</span>
+            <select class="settings-select" id="dailyLimitSelect" onchange="setDailyLimit(this.value)">
+              <option value="5000">€5,000</option>
+              <option value="10000" selected>€10,000</option>
+              <option value="20000">€20,000</option>
+              <option value="unlimited">Bez limitacije</option>
+            </select>
+          </div>
+          <div class="settings-card-item">
+            <span>Mjesečni Limit</span>
+            <select class="settings-select" id="monthlyLimitSelect" onchange="setMonthlyLimit(this.value)">
+              <option value="50000">€50,000</option>
+              <option value="100000" selected>€100,000</option>
+              <option value="200000">€200,000</option>
+              <option value="unlimited">Bez limitacije</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const RATE_BAM = 1.95583
+const RATE_USD = 0.92
+
+const clockEl = document.getElementById("clockTime")
+const balanceEl = document.getElementById("balance")
+const currencyEl = document.getElementById("currency")
+const amountEl = document.getElementById("amount")
+const cardStatusEl = document.getElementById("cardStatus")
+const bankCardEl = document.querySelector(".bank-card")
+const riskRing = document.getElementById("riskRing")
+const riskTip = document.getElementById("riskTip")
+const freezeBtn = document.getElementById("freezeBtn")
+const recipientEl = document.getElementById("recipient")
+const settingsModal = document.getElementById("settingsModal")
+
+// Set user name
+const userNames = ["Marko", "Ana", "Petar", "Jelena", "Filip", "Maja"]
+const randomName = userNames[Math.floor(Math.random() * userNames.length)]
+document.getElementById("userName").textContent = randomName
+document.getElementById("userInitials").textContent = randomName.charAt(0) + randomName.charAt(randomName.length - 1)
+document.getElementById("cardName").textContent = randomName.toUpperCase() + " DOE"
+
+let state = {
+  balanceEUR: 2340,
+  risk: 32,
+  frozen: false,
+  spendHistory: [0],
+  transactions: [],
+  categories: {food: 0, transport: 0, entertainment: 0, other: 0, education: 0, travel: 0},
+  categoryFilter: "all",
+  selectedPaymentCategory: "grocery",
+  transactionHistory: [],
+  dailyLimit: "€10,000",
+  monthlyLimit: "€100,000",
+  settings: {
+    biometric: true,
+    twofa: true,
+    notifications: true,
+    darkmode: true,
+    compactView: false,
+    animations: true,
+    largeText: false,
+    dataSharing: false,
+    analytics: false,
+    marketing: false,
+    thirdPartyCookies: false
+  }
+}
+
+const paymentCategories = {
+  grocery: "Kupovine",
+  food: "Hrana",
+  transport: "Prijevoz",
+  entertainment: "Zabava",
+  utilities: "Komunalne",
+  health: "Zdravlje",
+  education: "Edukacija",
+  travel: "Putovanja"
+}
+
+const currencyRates = [
+  { code: "EUR", name: "Evro", rate: 1.00, symbol: "€" },
+  { code: "BAM", name: "Konvertibilna Marka", rate: RATE_BAM, symbol: "KM" },
+  { code: "USD", name: "Američki Dolar", rate: RATE_USD, symbol: "$" },
+  { code: "GBP", name: "Britanskih Funta", rate: 1.17, symbol: "£" },
+  { code: "CHF", name: "Švicarski Frank", rate: 1.03, symbol: "CHF" },
+  { code: "JPY", name: "Japanski Jen", rate: 155.80, symbol: "¥" }
+]
+
+const randomAIResponses = [
+  "Sigurno, sve je u redu! 👍",
+  "Izvještavam - nema sumnjive aktivnosti.",
+  "Karticu kontroliraš kao pro! 💪",
+  "Status je optimalan, nastavi dalje! ✨",
+  "Sve je pod kontrolom. Bravo! 🎯",
+  "Nema upozorenja na mom radaru. 👀",
+  "Tvoj račun je sigurniji nego Fort Knox! 🏦",
+  "Sistem je detektovao samo normalne aktivnosti.",
+  "Finansijska stabilnost na najvišem nivou! 📈",
+  "Sve transakcije su autentične i bezbjedne! ✅"
+]
+
+const notificationMessages = {
+  pay_success: "✅ Plaćanje uspješno! Sredstva su odjeljenja.",
+  pay_failed: "❌ Plaćanje nije moguće! Nedovoljno sredstava.",
+  pay_frozen: "🔒 Kartica je zamrznuta! Aktiviraj je prvo.",
+  freeze_on: "🔒 Kartica je zamrznuta zbog sigurnosti.",
+  freeze_off: "🔓 Kartica je aktivirana i spremna za upotrebu.",
+  risk_warning: "⚠️ Rizik se povećao! Budi oprezniji sa trošenjem.",
+  risk_high: "🚨 Visok rizik detektovan! Razmotri zamrzavanje.",
+  currency_change: "💱 Valuta promijenjena na "
+}
+
+const featureMessages = {
+  transfer: "💸 Prenos sredstava - Slanje novca je olakšano!",
+  request: "📥 Zahtjev plaćanja je poslán kontaktu.",
+  invest: "📈 Otvoren investicijski portal sa boljim prinosima.",
+  bills: "📋 Pregled svih računa - Automatski plaćaj račune."
+}
+
+const alerts = [
+  "🔐 Dobrodošao u Fintech Nova - Sigurna finansijska rješenja",
+  "💡 Savjet: Postavi limit transakcija za dodatnu sigurnost",
+  "🎁 Bonus: Otvori račun i dobij €5 cashback",
+  "📱 Upozorenje: Provjeri privatnost svojih podataka",
+  "🌟 Novi premium feature: Investicije sa 0% naknada!"
+]
+
+let alertIndex = 0
+
+/* SWITCH PAGE */
+function switchPage(pageName) {
+  document.querySelectorAll('.page-content').forEach(el => el.style.display = 'none')
+  document.getElementById(pageName + 'Page').style.display = pageName === 'home' ? 'grid' : 'block'
+  
+  document.querySelectorAll('.page-nav button').forEach(btn => btn.classList.remove('active'))
+  document.querySelector(`[data-page="${pageName}"]`).classList.add('active')
+
+  if (pageName === 'dashboard') {
+    document.getElementById("headerSubtitle").textContent = "Pregled kartice i sigurnosnih aktivnosti"
+  } else {
+    document.getElementById("headerSubtitle").textContent = "Otkrijte nove mogućnosti i usluge"
+  }
+}
+
+/* CURRENCY LIST INITIALIZATION */
+function initCurrencyList() {
+  const list = document.getElementById("currencyList")
+  list.innerHTML = ""
+  currencyRates.forEach(curr => {
+    const item = document.createElement("div")
+    item.className = "currency-item"
+    item.innerHTML = `
+      <div>
+        <strong>${curr.code}</strong> - ${curr.name}
+      </div>
+      <div>${curr.symbol} ${curr.rate.toFixed(2)}</div>
+    `
+    list.appendChild(item)
+  })
+}
+
+function updateTopAlert(){
+  document.getElementById("topAlertText").textContent = alerts[alertIndex % alerts.length]
+  alertIndex++
+}
+
+setInterval(updateTopAlert, 8000)
+
+/* NOTIFICATION SYSTEM */
+function showNotification(type, message, duration = 3500) {
+  const notif = document.createElement("div")
+  notif.className = `notification ${type}`
+  notif.innerHTML = message
+  document.body.appendChild(notif)
+  
+  setTimeout(() => {
+    notif.style.animation = "slideOut .3s ease-out forwards"
+    setTimeout(() => notif.remove(), 300)
+  }, duration)
+}
+
+/* SHOW UPDATE BANNER */
+function showUpdateBanner() {
+  const banner = document.getElementById("updateBanner")
+  banner.style.display = "flex"
+  setTimeout(() => {
+    banner.style.display = "none"
+  }, 6000)
+}
+
+/* CLOSE UPDATE BANNER */
+function closeUpdateBanner() {
+  document.getElementById("updateBanner").style.display = "none"
+}
+
+/* CLOCK */
+function updateClock() {
+  const now = new Date()
+  const hours = String(now.getHours()).padStart(2, '0')
+  const minutes = String(now.getMinutes()).padStart(2, '0')
+  const seconds = String(now.getSeconds()).padStart(2, '0')
+  clockEl.textContent = `${hours}:${minutes}:${seconds}`
+}
+
+updateClock()
+setInterval(updateClock, 1000)
+
+/* CHART GRADIENT HELPER */
+function makeGradient(ctx, c1, c2){
+  const g = ctx.createLinearGradient(0, 0, 0, 250)
+  g.addColorStop(0, c1)
+  g.addColorStop(1, c2)
+  return g
+}
+
+/* SPEND CHART */
+const spendCtx = document.getElementById("spendChart").getContext("2d")
+const spendChartInstance = new Chart(spendCtx, {
+  type: "line",
+  data: {
+    labels: [""],
+    datasets: [{
+      data: [0],
+      fill: true,
+      tension: 0.4,
+      backgroundColor: makeGradient(spendCtx, "rgba(34,211,238,.3)", "rgba(34,211,238,.02)"),
+      borderColor: "#22d3ee",
+      borderWidth: 3,
+      pointRadius: 5,
+      pointHoverRadius: 8,
+      pointBackgroundColor: "#22d3ee",
+      pointBorderColor: "#0b0e14",
+      pointBorderWidth: 2,
+      segment: {
+        borderColor: ctx => ctx.p1DataIndex > 0 ? "#22d3ee" : "rgba(34,211,238,.5)"
+      }
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    interaction: {mode: "index", intersect: false},
+    plugins: {
+      legend: {display: false},
+      tooltip: {
+        backgroundColor: "rgba(0,0,0,.85)",
+        titleColor: "#22d3ee",
+        bodyColor: "#e5e7eb",
+        borderColor: "rgba(34,211,238,.4)",
+        borderWidth: 1.5,
+        padding: 12,
+        displayColors: false,
+        titleFont: {size: 14, weight: "bold"},
+        bodyFont: {size: 13}
+      }
+    },
+    scales: {
+      x: {display: false},
+      y: {
+        display: true,
+        beginAtZero: true,
+        grid: {color: "rgba(34,211,238,.06)", drawBorder: false},
+        ticks: {color: "rgba(229,231,235,.5)", font: {size: 11}}
+      }
+    }
+  }
+})
+
+/* CATEGORY CHART */
+const categoryCtx = document.getElementById("categoryChart").getContext("2d")
+const categoryChartInstance = new Chart(categoryCtx, {
+  type: "bar",
+  data: {
+    labels: ["🍽️ Hrana", "🚗 Prijevoz", "🎬 Zabava", "🛍️ Ostalo", "📚 Edukacija", "✈️ Putovanja"],
+    datasets: [{
+      label: "Potrošnja po kategoriji",
+      data: [0, 0, 0, 0, 0, 0],
+      backgroundColor: [
+        "rgba(34,211,238,.7)",
+        "rgba(34,197,94,.7)",
+        "rgba(168,85,247,.7)",
+        "rgba(250,204,21,.7)",
+        "rgba(236,72,153,.7)",
+        "rgba(59,130,246,.7)"
+      ],
+      borderColor: [
+        "#22d3ee",
+        "#22c55e",
+        "#a855f7",
+        "#facc15",
+        "#ec4899",
+        "#3b82f6"
+      ],
+      borderWidth: 2,
+      borderRadius: 10,
+      barPercentage: 0.8,
+      categoryPercentage: 0.9
+    }]
+  },
+  options: {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+        labels: {
+          color: "rgba(229,231,235,.8)",
+          font: {size: 12},
+          padding: 14,
+          usePointStyle: true,
+          boxWidth: 6
+        }
+      },
+      tooltip: {
+        backgroundColor: "rgba(0,0,0,.85)",
+        bodyColor: "#e5e7eb",
+        borderColor: "rgba(34,211,238,.4)",
+        borderWidth: 1.5,
+        padding: 12,
+        displayColors: true,
+        callbacks: {
+          label: (ctx) => ` €${ctx.parsed.x.toFixed(2)}`
+        }
+      }
+    },
+    scales: {
+      x: {
+        display: true,
+        grid: {color: "rgba(34,211,238,.08)", drawBorder: false},
+        ticks: {color: "rgba(229,231,235,.5)", font: {size: 11}},
+        beginAtZero: true
+      },
+      y: {
+        grid: {display: false},
+        ticks: {color: "rgba(229,231,235,.7)", font: {size: 12, weight: "500"}}
+      }
+    }
+  }
+})
+
+/* RISK CHART */
+const riskCtx = document.getElementById("riskChart").getContext("2d")
+const riskChartInstance = new Chart(riskCtx, {
+  type: "doughnut",
+  data: {
+    datasets: [{
+      data: [68, 32],
+      backgroundColor: [
+        makeGradient(riskCtx, "rgba(34,211,238,.8)", "rgba(14,165,233,.5)"),
+        makeGradient(riskCtx, "rgba(239,68,68,.8)", "rgba(153,27,27,.5)")
+      ],
+      borderColor: "rgba(11,14,20,.8)",
+      borderWidth: 2.5,
+      spacing: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: "75%",
+    plugins: {
+      legend: {display: false},
+      tooltip: {
+        backgroundColor: "rgba(0,0,0,.85)",
+        bodyColor: "#e5e7eb",
+        borderColor: "rgba(34,211,238,.4)",
+        borderWidth: 1.5,
+        padding: 10,
+        titleFont: {size: 12}
+      }
+    }
+  }
+})
+
+/* UPDATE RISK UI */
+function updateRiskUI(){
+  riskChartInstance.data.datasets[0].data = [100 - state.risk, state.risk]
+  riskChartInstance.update()
+
+  const riskPercentage = Math.round(state.risk)
+  document.getElementById("riskValue").textContent = riskPercentage
+
+  let riskLabel, glow, msg
+  if (state.risk < 50) {
+    riskLabel = "Nizak rizik - Sve je sigurno ✅"
+    glow = "radial-gradient(circle, rgba(34,211,238,.5), transparent 65%)"
+    msg = "✔️ Tvoj račun je u odličnom sigurnosnom stanju"
+  } else if (state.risk < 80) {
+    riskLabel = "Srednji rizik - Budi oprezniji ⚠️"
+    glow = "radial-gradient(circle, rgba(250,204,21,.5), transparent 65%)"
+    msg = "⚠️ Detektovan povećan rizik - preporuka je smanjenje transakcija"
+  } else {
+    riskLabel = "Visok rizik - Nemedljeno dejstvo! 🚨"
+    glow = "radial-gradient(circle, rgba(239,68,68,.6), transparent 65%)"
+    msg = "🚨 Visok rizik – odmah zamrzni karticu i kontaktiraj podršku"
+  }
+
+  document.getElementById("riskText").textContent = riskLabel
+  riskRing.style.background = glow
+  riskTip.textContent = msg
+  riskRing.classList.toggle("danger", state.risk >= 80)
+
+  document.getElementById("transactionCount").textContent = state.transactions.length
+  const totalSpent = state.transactions.reduce((a, b) => a + b, 0)
+  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
+  document.getElementById("totalSpent").textContent = currSymbol + totalSpent.toFixed(2)
+
+  document.getElementById("headerRisk").textContent = riskPercentage + "%"
+  
+  updateTransactionsPreview()
+}
+
+/* UPDATE TRANSACTIONS PREVIEW */
+function updateTransactionsPreview(){
+  const preview = document.getElementById("transactionsPreview")
+  const list = document.getElementById("transactionsList")
+  
+  if (state.transactionHistory.length === 0) {
+    preview.style.display = "none"
+    return
+  }
+  
+  preview.style.display = "block"
+  list.innerHTML = ""
+  
+  const categoryIcons = {
+    grocery: "fa-shopping-cart",
+    food: "fa-utensils",
+    transport: "fa-taxi",
+    entertainment: "fa-ticket-alt",
+    utilities: "fa-home",
+    health: "fa-heartbeat",
+    education: "fa-graduation-cap",
+    travel: "fa-plane"
+  }
+  
+  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
+  
+  state.transactionHistory.slice(-5).reverse().forEach((transaction) => {
+    const iconClass = categoryIcons[transaction.category] || "fa-money-bill"
+    const item = document.createElement("div")
+    item.className = "transaction-item"
+    item.innerHTML = `
+      <div class="transaction-left">
+        <div class="transaction-icon" style="background:rgba(34,211,238,.15);color:#22d3ee">
+          <i class="fas ${iconClass}"></i>
+        </div>
+        <div class="transaction-details">
+          <strong>${transaction.recipient}</strong>
+          <span>Prije nekoliko trenutaka</span>
+        </div>
+      </div>
+      <div class="transaction-amount">-${currSymbol}${transaction.amount.toFixed(2)}</div>
+    `
+    list.appendChild(item)
+  })
+}
+
+/* UPDATE CATEGORY STATS */
+function updateCategoryChart(){
+  const categories = state.categories
+  
+  categoryChartInstance.data.datasets[0].data = [
+    categories.food,
+    categories.transport,
+    categories.entertainment,
+    categories.other,
+    categories.education,
+    categories.travel
+  ]
+  categoryChartInstance.update()
+
+  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
+  document.getElementById("cat-food").textContent = currSymbol + categories.food.toFixed(2)
+  document.getElementById("cat-transport").textContent = currSymbol + categories.transport.toFixed(2)
+  document.getElementById("cat-entertainment").textContent = currSymbol + categories.entertainment.toFixed(2)
+  document.getElementById("cat-other").textContent = currSymbol + categories.other.toFixed(2)
+  document.getElementById("cat-education").textContent = currSymbol + categories.education.toFixed(2)
+  document.getElementById("cat-travel").textContent = currSymbol + categories.travel.toFixed(2)
+}
+
+/* FILTER CATEGORY */
+function filterCategory(cat){
+  state.categoryFilter = cat
+  const buttons = document.querySelectorAll(".category-filter")
+  buttons.forEach(btn => btn.classList.remove("active"))
+  event.target.classList.add("active")
+  const catNames = {all: "svim kategorijama", food: "hrani", transport: "prijevozu", entertainment: "zabavi", other: "ostalom"}
+  showNotification("success", `📊 Filtriranje po ${catNames[cat]}`)
+}
+
+/* SELECT PAYMENT CATEGORY */
+function selectPaymentCategory(e, category) {
+  document.querySelectorAll(".payment-category-btn").forEach(btn => btn.classList.remove("active"))
+  e.target.closest(".payment-category-btn").classList.add("active")
+  state.selectedPaymentCategory = category
+}
+
+/* MAIN RENDER FUNCTION */
+function render(){
+  let value, rate, currSymbol
+  
+  if (currencyEl.value === "EUR") {
+    value = state.balanceEUR
+    currSymbol = "€"
+  } else if (currencyEl.value === "BAM") {
+    value = state.balanceEUR * RATE_BAM
+    currSymbol = "KM"
+  } else {
+    value = state.balanceEUR * RATE_USD
+    currSymbol = "$"
+  }
+
+  balanceEl.textContent = value.toFixed(2)
+  document.getElementById("symbol").textContent = currSymbol
+  document.getElementById("headerBalance").textContent = currSymbol + value.toFixed(0)
+
+  updateRiskUI()
+  updateCategoryChart()
+}
+
+/* PAY FUNCTION */
+function pay(){
+  const amount = parseFloat(amountEl.value)
+  const recipient = recipientEl.value
+  
+  if (!amount || amount <= 0) {
+    showNotification("danger", "❌ Unesite ispravan iznos!")
+    return
+  }
+
+  if (recipient === "Odaberi primatelja..." || recipient === "Novi primatelj...") {
+    showNotification("danger", "❌ Molimo odaberite primatelja!")
+    return
+  }
+  
+  if (state.frozen) {
+    showNotification("danger", notificationMessages.pay_frozen)
+    return
+  }
+
+  let eurAmount
+  if (currencyEl.value === "EUR") {
+    eurAmount = amount
+  } else if (currencyEl.value === "BAM") {
+    eurAmount = amount / RATE_BAM
+  } else {
+    eurAmount = amount / RATE_USD
+  }
+  
+  if (eurAmount > state.balanceEUR) {
+    showNotification("danger", notificationMessages.pay_failed)
+    return
+  }
+
+  balanceEl.classList.remove("balance-flash")
+  void balanceEl.offsetWidth
+  balanceEl.classList.add("balance-flash")
+
+  state.balanceEUR -= eurAmount
+  state.risk = Math.min(95, state.risk + amount / 100)
+  state.transactions.push(amount)
+
+  // Add to transaction history
+  state.transactionHistory.push({
+    amount: amount,
+    recipient: recipient,
+    category: state.selectedPaymentCategory,
+    timestamp: new Date()
+  })
+
+  const categoryMap = {
+    grocery: "other",
+    food: "food",
+    transport: "transport",
+    entertainment: "entertainment",
+    utilities: "other",
+    health: "other",
+    education: "education",
+    travel: "travel"
+  }
+  const mappedCat = categoryMap[state.selectedPaymentCategory]
+  state.categories[mappedCat] += amount
+
+  state.spendHistory.push(state.spendHistory.at(-1) + amount)
+  if (state.spendHistory.length > 30) {
+    state.spendHistory.shift()
+    spendChartInstance.data.labels.shift()
+    spendChartInstance.data.datasets[0].data.shift()
+  }
+
+  spendChartInstance.data.labels.push("")
+  spendChartInstance.data.datasets[0].data.push(state.spendHistory.at(-1))
+  spendChartInstance.update()
+
+  showNotification("success", notificationMessages.pay_success)
+  
+  if (state.risk >= 80) {
+    setTimeout(() => showNotification("danger", notificationMessages.risk_high, 4000), 1500)
+  } else if (state.risk >= 60) {
+    setTimeout(() => showNotification("warning", notificationMessages.risk_warning, 4000), 1500)
+  }
+
+  amountEl.value = ""
+  recipientEl.value = "Odaberi primatelja..."
+  render()
+}
+
+/* TOGGLE FREEZE FUNCTION */
+function toggleFreeze(){
+  state.frozen = !state.frozen
+  cardStatusEl.textContent = state.frozen ? "Zamrznuta" : "Aktivna"
+  cardStatusEl.className = "status " + (state.frozen ? "frozen" : "active")
+  bankCardEl.classList.toggle("frozen", state.frozen)
+  freezeBtn.innerHTML = state.frozen ? '<i class="fas fa-lock-open"></i> Odmrzni' : '<i class="fas fa-lock"></i> Zamrzni'
+  freezeBtn.classList.toggle("btn-success", !state.frozen)
+  freezeBtn.classList.toggle("btn-danger", state.frozen)
+  
+  const message = state.frozen ? notificationMessages.freeze_on : notificationMessages.freeze_off
+  const type = state.frozen ? "danger" : "success"
+  showNotification(type, message)
+}
+
+/* QUICK ACTIONS */
+function quickAction(action){
+  const btn = event.target.closest(".action-btn") || event.currentTarget
+  if (btn.classList) {
+    btn.classList.add("active")
+    showNotification("success", featureMessages[action])
+    setTimeout(() => btn.classList.remove("active"), 1500)
+  }
+}
+
+/* SETTINGS MODAL */
+function openSettings(){
+  settingsModal.classList.add("active")
+}
+
+function closeSettings(){
+  settingsModal.classList.remove("active")
+}
+
+function toggleModalSetting(e, label){
+  e.currentTarget.classList.toggle("active")
+  const isActive = e.currentTarget.classList.contains("active")
+  
+  // Update state
+  const settingsMap = {
+    'Biometrijska autentifikacija': 'biometric',
+    '2FA zaštita': 'twofa',
+    'Pitanja za sigurnost': 'securityQuestions',
+    'Notifikacije o pokušajima': 'attemptNotifications',
+    'Obavijest transakcija': 'transactionNotifications',
+    'Sigurnosne obavijesti': 'securityNotifications',
+    'Obavijest o novim uslugama': 'newServiceNotifications',
+    'Email obavijesti': 'emailNotifications',
+    'Djeljenje podataka': 'dataSharing',
+    'Analitika i praćenje': 'analytics',
+    'Marketinške obavijesti': 'marketing',
+    'Kolačići trećih strana': 'thirdPartyCookies',
+    'Dark mode': 'darkmode',
+    'Kompaktan pregled': 'compactView',
+    'Animacije': 'animations',
+    'Velika slova': 'largeText'
+  }
+  
+  const settingKey = settingsMap[label]
+  if (settingKey) {
+    state.settings[settingKey] = isActive
+  }
+  
+  showNotification("success", `${isActive ? "✅" : "❌"} ${label} je ${isActive ? "aktivirana" : "deaktivirana"}`)
+}
+
+function setDailyLimit(value) {
+  const displayValues = {
+    '5000': '€5,000',
+    '10000': '€10,000',
+    '20000': '€20,000',
+    'unlimited': 'Bez limitacije'
+  }
+  state.dailyLimit = displayValues[value] || value
+  showNotification("update", `✅ Dnevni limit je postavljen na: ${state.dailyLimit}`)
+}
+
+function setMonthlyLimit(value) {
+  const displayValues = {
+    '50000': '€50,000',
+    '100000': '€100,000',
+    '200000': '€200,000',
+    'unlimited': 'Bez limitacije'
+  }
+  state.monthlyLimit = displayValues[value] || value
+  showNotification("update", `✅ Mjesečni limit je postavljen na: ${state.monthlyLimit}`)
+}
+
+/* AI CHAT */
+function askAI(){
+  const q = document.getElementById("chatInput").value.trim().toLowerCase()
+  if (!q) return
+
+  const userMsg = document.createElement("div")
+  userMsg.className = "msg user"
+  userMsg.textContent = q
+  document.getElementById("chatLog").appendChild(userMsg)
+
+  let response = randomAIResponses[Math.floor(Math.random() * randomAIResponses.length)]
+  
+  if (q.includes("stanje") || q.includes("saldo") || q.includes("balanc")) {
+    const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
+    const displayAmount = currencyEl.value === "EUR" ? state.balanceEUR : 
+                         currencyEl.value === "BAM" ? state.balanceEUR * RATE_BAM :
+                         state.balanceEUR * RATE_USD
+    response = `💰 Tvoje trenutno stanje je ${currSymbol}${displayAmount.toFixed(2)}`
+  }
+  else if (q.includes("rizik")) response = `🛡️ Trenutni rizik je ${Math.round(state.risk)}%`
+  else if (q.includes("kartica")) response = state.frozen ? "🔒 Kartica je zamrznuta." : "✅ Kartica je aktivna i spremna."
+  else if (q.includes("transakcij")) {
+    const total = state.transactions.reduce((a, b) => a + b, 0)
+    response = `📊 Izvršio si ${state.transactions.length} transakcija sa ukupno €${total.toFixed(2)}`
+  }
+  else if (q.includes("sigurnost")) response = "🔐 Tvoj račun je zaštićen sa najvišom razinom enkripcije i AI monitoringom!"
+  else if (q.includes("limite")) response = `⚙️ Dnevni limit je ${state.dailyLimit}, mjesečni je ${state.monthlyLimit}`
+  else if (q.includes("povratak") || q.includes("povrat")) response = "🔄 Povratne poreze trebaju 5-7 radnih dana"
+  else if (q.includes("podrška") || q.includes("pomoc")) response = "📞 Naš tim podrške je dostupan 24/7. Kontaktiraj nas na support@fintechnova.com"
+  else if (q.includes("plaćanje") || q.includes("transfer")) response = "💳 Možeš izvršiti plaćanje putem brze akcije 'Prenos' ili popuniti formu za plaćanje"
+  else if (q.includes("valuta") || q.includes("kurs")) response = "💱 Možeš vidjeti sve kursne stope u sekciji 'Kursne Stope' ispod opcija plaćanja"
+
+  setTimeout(() => {
+    const botMsg = document.createElement("div")
+    botMsg.className = "msg bot"
+    botMsg.textContent = response
+    document.getElementById("chatLog").appendChild(botMsg)
+    document.getElementById("chatLog").scrollTop = document.getElementById("chatLog").scrollHeight
+  }, 600)
+
+  document.getElementById("chatInput").value = ""
+  document.getElementById("chatLog").scrollTop = document.getElementById("chatLog").scrollHeight
+}
+
+/* TOGGLE SETTINGS */
+function toggleSetting(e, label, isRealSetting = false){
+  e.currentTarget.classList.toggle("active")
+  const isActive = e.currentTarget.classList.contains("active")
+  showNotification("success", `${isActive ? "✅" : "❌"} ${label} je ${isActive ? "aktivirana" : "deaktivirana"}`)
+}
+
+/* CURRENCY CHANGE EVENT */
+currencyEl.addEventListener("change", function(){
+  const currNames = {"EUR": "EUR (Evro)", "BAM": "BAM (Marka)", "USD": "USD (Dolar)"}
+  showNotification("success", notificationMessages.currency_change + currNames[this.value])
+  render()
+})
+
+/* CLOSE MODAL ON OUTSIDE CLICK */
+settingsModal.addEventListener("click", function(e){
+  if(e.target === settingsModal) closeSettings()
+})
+
+/* INITIALIZE */
+initCurrencyList()
+render()
+
+// Show update banner after 3 seconds
+setTimeout(() => {
+  showUpdateBanner()
+}, 3000)
+</script>
+
+</body>
+</html>
