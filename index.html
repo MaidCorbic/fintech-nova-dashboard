@@ -10,7 +10,62 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
-*{box-sizing:border-box}
+
+/* === LOGIN SKELETON === */
+
+<div class="login-dots" id="loginDots">
+  <span></span><span></span><span></span>
+</div>
+
+.login-box.loading > * {
+  opacity: 0;
+}
+.login-box.loading {
+  pointer-events: none;
+  filter: blur(0.3px);
+}
+
+.login-skeleton {
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.login-box.loading .login-skeleton {
+  display: flex;
+}
+
+.login-skeleton .skeleton {
+  height: 44px;
+  border-radius: 12px;
+}
+
+.login-skeleton .skeleton.title {
+  height: 28px;
+  width: 70%;
+  margin: 0 auto 6px;
+}
+
+.login-skeleton .skeleton.text {
+  height: 14px;
+  width: 85%;
+  margin: 0 auto 16px;
+}
+
+.login-skeleton .skeleton.button {
+  height: 46px;
+  margin-top: 10px;
+}
+
+  html{
+  scroll-behavior: smooth;
+}
+*{
+  box-sizing:border-box;
+  transition-duration: .25s;
+
+}
+  
 body{
 margin:0;
 background:
@@ -76,21 +131,62 @@ to{transform:translateY(0);opacity:1}
 }
 
 /* ===== HEADER ===== */
-.header{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:24px 32px;
-max-width:1400px;
-margin:auto;
-margin-top:60px;
+.header {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(34,211,238,.15);
+  animation:headerIn .6s ease-out;
+}
+@media (min-width:1024px){
+  .header{
+    grid-template-columns: auto 1fr auto;
+    padding: 0 32px;
+  }
+}
+@media (min-width:1024px){
+  .header{
+    padding: 12px 20px;   /* 👈 MANJI I ČIST */
+    gap: 16px;
+  }
+
+  .header-left{
+    padding-left: 0;      /* uklanja suvišan offset */
+    gap: 12px;
+  }
+
+  .header-right{
+    gap: 14px;            /* zbijenije, ali ne tijesno */
+  }
+
+  .quick-stats{
+    gap: 14px;
+  }
+
+  .stat-item{
+    min-width: 90px;
+  }
 }
 
-.header-left{
-display:flex;
-align-items:center;
-gap:24px;
+@keyframes headerIn{
+  from{
+    opacity:0;
+    transform:translateY(-10px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
 }
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-left: 24px;   /* OVO JE GLAVNI FIX */
+}
+
 
 .header-avatar{
 width:60px;
@@ -105,9 +201,31 @@ font-weight:700;
 box-shadow:0 8px 24px rgba(34,211,238,.2);
 }
 
+.header-avatar:hover{
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(34,211,238,.35);
+}
+
+.header-avatar,
+.status-badge,
+.header-btn{
+  cursor: pointer;
+  min-width:44px;
+  min-height:44px;
+}
+
+.status-badge:hover{
+  transform: translateY(-1px);
+}
+
+.header-btn:hover{
+  transform: translateY(-2px) scale(1.05);
+}
+
+
 .header-text h1{
-font-size:24px;
-font-weight:700;
+ font-size:25px;
+  font-weight:800;
 margin:0;
 background:linear-gradient(90deg, #22d3ee, #a855f7);
 -webkit-background-clip:text;
@@ -118,15 +236,16 @@ letter-spacing:-.5px;
 
 .header-text p{
 font-size:13px;
-opacity:.6;
+opacity:.5;
 margin:4px 0 0 0;
 }
 
-.header-right{
-display:flex;
-gap:16px;
-align-items:center;
-justify-content:flex-end;
+.header-right {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-content: flex-end;
 }
 
 .status-badge{
@@ -151,14 +270,15 @@ width:12px;
 height:12px;
 background:#22c55e;
 border-radius:50%;
-animation:statusPulse 2s infinite;
+animation: statusPulse 2s infinite;
 box-shadow:0 0 8px rgba(34,197,94,.6);
 }
 
 @keyframes statusPulse{
-0%,100%{opacity:1;transform:scale(1);box-shadow:0 0 8px rgba(34,197,94,.6)}
-50%{opacity:.7;transform:scale(1.15);box-shadow:0 0 12px rgba(34,197,94,.8)}
+  0%,100%{ box-shadow:0 0 6px rgba(34,197,94,.6) }
+  50%{ box-shadow:0 0 12px rgba(34,197,94,.9) }
 }
+
 
 .status-text{
 font-size:13px;
@@ -205,22 +325,83 @@ gap:8px;
 font-size:16px;
 }
 
-.quick-stats{
-display:flex;
-gap:18px;
+.quick-stats {
+  display: flex;
+  align-items: center;   /* BITNO */
+  gap: 16px;
 }
 
-.stat-item{
-padding:12px 18px;
-background:rgba(34,211,238,.08);
-border-radius:12px;
-border:1.5px solid rgba(34,211,238,.15);
-transition:.3s;
+.stat-item {
+ position: relative;
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all .25s ease;
+  outline:none;
+  user-select:none;
 }
+.stat-item-value{
+  font-size:17px;
+  letter-spacing:-0.4px;
+  line-height:1.2;
+}
+
 
 .stat-item:hover{
-background:rgba(34,211,238,.12);
-border-color:rgba(34,211,238,.3);
+ background: rgba(34,211,238,.18);
+  transform: translateY(-2px);
+}
+}
+
+.stat-item:focus,
+.stat-item:active{
+  outline: none;
+  transform: scale(0.96);
+}
+
+.stat-item::after{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius:16px;
+  background:linear-gradient(
+    135deg,
+    rgba(34,211,238,.6),
+    rgba(168,85,247,.5)
+  );
+  opacity:0;
+  filter:blur(6px);
+  transition:.3s;
+  z-index:-1;
+}
+
+.stat-item::before{
+  content: attr(data-tip);
+  position:absolute;
+  bottom:-38px;
+  left:50%;
+  transform:translateX(-50%);
+  background:rgba(15,23,42,.95);
+  border:1px solid rgba(34,211,238,.3);
+  padding:6px 10px;
+  font-size:11px;
+  border-radius:8px;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+}
+
+.stat-item:hover::before{
+  opacity:1;
+}
+
+.stat-item:active::after{
+  opacity:.8;
+}
+
+.stat-item:focus-visible{
+  box-shadow:0 0 0 2px rgba(34,211,238,.5);
 }
 
 .stat-item-label{
@@ -280,18 +461,14 @@ margin:auto;
 }
 
 /* ===== CARD ===== */
-.card{
-background:linear-gradient(135deg, rgba(2,8,23,.75), rgba(15,23,42,.5));
-backdrop-filter:blur(20px);
-border:1px solid rgba(34,211,238,.1);
-border-radius:24px;
-padding:24px;
-position:relative;
-overflow:hidden;
-transition:all .3s cubic-bezier(.4, 0, .2, 1);
-box-shadow:
-  0 20px 60px rgba(0,0,0,.3),
-  inset 0 1px 0 rgba(255,255,255,.05);
+.card {
+  background: rgba(15, 23, 42, 0.85);
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.05);
 }
 
 .card::before{
@@ -303,21 +480,20 @@ background:linear-gradient(
 120deg,
 transparent 30%,
 rgba(34,211,238,.08),
-transparent 70%
-);
+transparent 70%);
 opacity:0;
 transition:.6s ease;
+ border-radius: 20px;
 }
 
 .card:hover::before{opacity:1}
 
-.card:hover{
-  transform:translateY(-12px);
-  border-color:rgba(34,211,238,.25);
-  box-shadow:
-    0 40px 100px rgba(34,211,238,.1),
-    inset 0 1px 0 rgba(34,211,238,.15);
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+   border-color: transparent;
 }
+
 
 .card > *{
 position:relative;
@@ -579,14 +755,11 @@ input[type=number]{
 -moz-appearance:textfield;
 }
 
-input:focus,select:focus{
-outline:none;
-border-color:#22d3ee;
-background:rgba(34,211,238,.08);
-box-shadow:
-    0 0 0 2.5px rgba(34,211,238,.2),
-    0 0 25px rgba(34,211,238,.3);
+input:focus, select:focus {
+  outline: none;
+  border-color: #22d3ee;
 }
+
 
 select{
 background:linear-gradient(135deg, rgba(34,211,238,.1), rgba(168,85,247,.08)),
@@ -616,19 +789,40 @@ align-items:center;
 justify-content:center;
 gap:8px;
 }
+button:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 2px rgba(34,211,238,.6);
+}
+@media(max-width:768px){
+  .balance-amount{
+    font-size:30px;
+  }
 
-.btn:active{transform:scale(.95)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-
-.btn-primary{
-background:linear-gradient(135deg,#22d3ee,#0ea5e9);
-color:#0b0e14;
-box-shadow:0 8px 25px rgba(34,211,238,.35);
+  .header-text h1{
+    font-size:18px;
+  }
 }
 
-.btn-primary:hover:not(:disabled){
-box-shadow:0 12px 40px rgba(34,211,238,.5);
-transform:translateY(-3px);
+
+button:active,
+.action-btn:active,
+.stat-item:active{
+  transform: scale(.97);
+}
+
+.btn:disabled{
+  opacity:.5;
+  cursor:not-allowed
+}
+
+.btn-primary {
+  background: #22d3ee;
+  color: #020817;
+}
+
+.btn-primary:hover {
+  background: #0ea5e9;
+  transform: translateY(-2px);
 }
 
 .btn-success{
@@ -656,6 +850,28 @@ box-shadow:0 12px 40px rgba(239,68,68,.4);
 transform:translateY(-3px);
 background:linear-gradient(135deg, rgba(239,68,68,.95), rgba(153,27,27,.95));
 }
+
+.btn::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,.25),
+    transparent 70%
+  );
+  transform: translateX(-100%);
+}
+
+.btn:hover::after{
+  animation: btnShine .6s ease;
+}
+
+@keyframes btnShine{
+  to{ transform: translateX(100%) }
+}
+
 
 /* ===== ACTION BUTTONS ===== */
 .button-row{
@@ -858,20 +1074,21 @@ position:absolute;
 inset:12px;
 border-radius:50%;
 pointer-events:none;
-filter:blur(2px);
-opacity:.8;
+filter:blur(4px);
+opacity:.35;
 transition:.6s ease;
 }
 
 .risk-ring.danger{
-animation: riskPulse 2s infinite;
+  animation: riskPulse 2.5s ease-in-out infinite;
 }
 
 @keyframes riskPulse{
-0%{transform:scale(1);opacity:.6}
-50%{transform:scale(1.08);opacity:1}
-100%{transform:scale(1);opacity:.6}
+  0%{transform:scale(1);opacity:.3}
+  50%{transform:scale(1.04);opacity:.5}
+  100%{transform:scale(1);opacity:.3}
 }
+
 
 .risk-value{
 position:relative;
@@ -880,13 +1097,9 @@ text-align:center;
 }
 
 .risk-value strong{
-font-size:56px;
-font-weight:700;
-background:linear-gradient(90deg, #22d3ee, #0ea5e9);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-background-clip:text;
-display:block;
+  font-size:46px;
+  line-height:1.15;
+  letter-spacing:-0.5px;
 }
 
 .risk-tooltip{
@@ -975,12 +1188,14 @@ border-color:rgba(34,211,238,.3);
 
 .stat-box strong{
 display:block;
-font-size:18px;
+font-size:17px;
 background:linear-gradient(90deg, #22d3ee, #0ea5e9);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 background-clip:text;
 margin-bottom:4px;
+line-height:1.3;
+letter-spacing:-0.3px;
 }
 
 /* ===== PAYMENT CATEGORIES ===== */
@@ -1046,8 +1261,22 @@ align-items:center;
 cursor:pointer;
 transition:.3s;
 font-size:13px;
+position: relative;
+overflow: hidden;
 }
-
+.currency-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(34,211,238,.25),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: .4s;
+}
 .currency-item:hover{
 background:rgba(34,211,238,.12);
 border-color:rgba(34,211,238,.3);
@@ -1055,6 +1284,10 @@ border-color:rgba(34,211,238,.3);
 
 .currency-item strong{
 color:#22d3ee;
+}
+.currency-item.active {
+  border-color: #22d3ee;
+  background: rgba(34,211,238,.18);
 }
 
 /* ===== AI CHAT ===== */
@@ -1159,20 +1392,73 @@ flex-shrink:0;
 
 /* ===== NOTIFICATION ===== */
 .notification{
-position:fixed;
-top:80px;
-right:20px;
-background:linear-gradient(135deg, rgba(34,211,238,.95), rgba(14,165,233,.85));
-border:1.5px solid rgba(34,211,238,.5);
-border-radius:14px;
-padding:16px 20px;
-color:#0b0e14;
-font-weight:600;
-font-size:13px;
-backdrop-filter:blur(15px);
-box-shadow:0 15px 50px rgba(34,211,238,.3);
-animation:slideIn .4s cubic-bezier(.4, 0, .2, 1);
-z-index:9999;
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 420px;
+  width: calc(100% - 32px);
+
+  background: linear-gradient(
+    135deg,
+    rgba(34,211,238,.95),
+    rgba(14,165,233,.9)
+  );
+  border: 1.5px solid rgba(34,211,238,.5);
+  border-radius: 16px;
+  padding: 14px 18px;
+
+  color: #0b0e14;
+  font-weight: 600;
+  font-size: 13px;
+
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 50px rgba(34,211,238,.35);
+
+  z-index: 10000;
+  animation: toastIn .4s cubic-bezier(.4,0,.2,1);
+}
+
+.notification i{
+  font-size:18px;
+  margin-right:6px;
+}
+.notification::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  height:3px;
+  width:100%;
+  background:rgba(255,255,255,.4);
+  animation: notifLife 4s linear forwards;
+}
+
+@keyframes notifLife{
+  from{width:100%}
+  to{width:0}
+}
+
+
+@keyframes toastIn{
+  from{
+    transform: translateX(-50%) translateY(30px);
+    opacity: 0;
+  }
+  to{
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width:768px){
+  .notification{
+    top: auto;
+    bottom: 20px;
+    right: 12px;
+    left: 12px;
+    border-radius: 16px;
+  }
 }
 
 .notification.danger{
@@ -1204,15 +1490,28 @@ color:#fff;
 }
 
 @keyframes slideIn{
-from{
-  transform:translateX(400px);
-  opacity:0;
+  from{
+    transform:translateY(-10px);
+    opacity:0;
+  }
+  to{
+    transform:none;
+    opacity:1;
+  }
 }
-to{
-  transform:translateX(0);
-  opacity:1;
+@media (max-width:768px){
+  @keyframes slideIn{
+    from{
+      transform:translateY(20px);
+      opacity:0;
+    }
+    to{
+      transform:none;
+      opacity:1;
+    }
+  }
 }
-}
+
 
 /* ===== BALANCE FLASH ===== */
 .balance-flash{
@@ -1402,8 +1701,8 @@ color:#22d3ee;
 display:none;
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.7);
-backdrop-filter:blur(6px);
+  background: rgba(2,8,23,.75);
+  backdrop-filter: blur(12px);
 z-index:10000;
 align-items:center;
 justify-content:center;
@@ -1625,8 +1924,30 @@ color:rgba(255,255,255,.7);
 .page-content {
   display: none;
   width: 100%;
+  animation: fadeUp .5s ease;
+}
+.page-content.active > *{
+  animation: fadeUp .5s ease both;
 }
 
+@media(max-width:600px){
+  .risk-analysis,
+  .settings-panel {
+    display:none;
+  }
+}
+
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(8px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
 .page-content.active {
   display: block;
 }
@@ -1662,11 +1983,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* === PATCH: PAGE VISIBILITY FIX === */
-.page-content {
-  display: none;
-  width: 100%;
-}
 .page-content.active {
   display: block;
 }
@@ -1684,11 +2000,11 @@ body {
   justify-content: center;
 }
 
-.risk-value span {
-  font-size: 18px;
-  opacity: .6;
-  margin-top: -6px;
+.risk-value span{
+  font-size:16px;
+  margin-top:4px;
 }
+
 
 /* === PATCH: UPDATE MODAL === */
 .update-modal {
@@ -1885,18 +2201,110 @@ body {
   opacity:.4;
   font-size:11px;
 }
+@media (max-width:768px){
+  .header{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px;
+    padding:14px 16px;
+    margin-top:90px;
+  }
 
-@media(max-width:768px){
-  .button-row{
-    position:sticky;
-    bottom:10px;
-    background:#020817;
-    padding:10px;
-    z-index:1000;
-    border-radius:16px;
+  .header-left{
+    flex-direction:column;
+    align-items:center;
+    padding-left:0;
+    text-align:center;
+    gap:8px;
+  }
+
+  .header-text h1{
+    font-size:20px;
+    line-height:1.2;
+  }
+
+  .header-text p{
+    font-size:12px;
+  }
+
+  .header-right{
+    width:100%;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .clock{
+    order:3;
+    width:100%;
+    justify-content:center;
+  }
+
+  .status-badge{
+    order:1;
+  }
+}
+  .header-btn,
+  .status-badge,
+  .clock{
+    min-height:44px; /* Apple / Google touch standard */
+  }
+
+  .header-btn{
+    width:44px;
+    height:44px;
+  }
+  @media (max-width:480px){
+  .header *{
+    max-width:100%;
+  }
+}
+@media (hover:hover){
+  .stat-item:hover{
+    background:rgba(34,211,238,.12);
+    animation-play-state: paused;
+
   }
 }
 
+
+.balance-meta{
+  font-size:11px;
+  opacity:.5;
+  display:flex;
+  align-items:center;
+  gap:6px;
+}
+.balance-amount.changed{
+  animation: balancePop .5s ease;
+}
+
+@keyframes balancePop{
+  0%{transform:scale(1)}
+  50%{transform:scale(1.04)}
+  100%{transform:scale(1)}
+}
+
+/* HIGHLIGHT EFFECT */
+.highlight{
+  animation: highlightPulse 1.2s ease;
+}
+
+@keyframes highlightPulse{
+  0%{
+    box-shadow:0 0 0 rgba(34,211,238,0);
+    background:rgba(34,211,238,.05);
+  }
+  50%{
+    box-shadow:0 0 30px rgba(34,211,238,.45);
+    background:rgba(34,211,238,.15);
+  }
+  100%{
+    box-shadow:none;
+    background:inherit;
+  }
+}
 </style>
 </head>
 
@@ -1905,6 +2313,21 @@ body {
 <!-- LOGIN SCREEN -->
 <div id="loginScreen" class="login-screen active">
   <div class="login-box">
+    <div class="login-skeleton">
+  <div class="skeleton title"></div>
+  <div class="skeleton text"></div>
+
+  <div class="skeleton"></div>
+  <div class="skeleton"></div>
+
+  <div class="skeleton button"></div>
+  <div class="login-dots" id="loginDots">
+  <span></span><span></span><span></span>
+</div>
+
+</div>
+
+
     <h2>Fintech Nova</h2>
     <p>Siguran pristup vašem računu</p>
 
@@ -1933,7 +2356,7 @@ body {
     <i class="fas fa-chart-line"></i> Dashboard
   </button>
   <button class="nav-btn" data-page="home" onclick="switchPage('home')">
-    <i class="fas fa-home"></i> Početna
+    <i class="fas fa-home"></i> Vaš finansijski sistem
   </button>
 </div>
 
@@ -1949,11 +2372,11 @@ body {
 
   <div class="header-right">
     <div class="quick-stats">
-      <div class="stat-item">
+      <div class="stat-item" id="headerBalanceStat" data-tip="Ukupna raspoloživa sredstva">
         <div class="stat-item-label"><i class="fas fa-wallet"></i> Saldo</div>
         <div class="stat-item-value" id="headerBalance">€2340</div>
       </div>
-      <div class="stat-item">
+     <div class="stat-item" id="headerRiskStat" data-tip="Sigurnosni rizik računa">
         <div class="stat-item-label"><i class="fas fa-shield"></i> Rizik</div>
         <div class="stat-item-value" id="headerRisk">32%</div>
       </div>
@@ -2004,6 +2427,10 @@ body {
     <div class="balance-section">
       <p class="sub">Ukupna raspoloživa sredstva</p>
       <div class="balance-amount"><span id="symbol">€</span><span id="balance">2340.00</span></div>
+      <div class="balance-meta">
+  <i class="fas fa-sync-alt"></i> Ažurirano prije par sekundi
+</div>
+
       <div class="form-group">
         <label>Valuta</label>
         <select id="currency" onchange="render()">
@@ -2015,7 +2442,7 @@ body {
     </div>
 
     <!-- QUICK ACTIONS -->
-    <h3 style="margin-top:28px"><i class="fas fa-bolt"></i> Brze Akcije</h3>
+    <h3 style="margin-top:28px"><i class="fas fa-bolt"></i> Najčešće korištene akcije</h3>
     <div class="quick-actions">
       <button class="action-btn" onclick="quickAction('transfer')" title="Prenos sredstava">
         <div class="action-icon"><i class="fas fa-arrow-right"></i></div>
@@ -2105,7 +2532,7 @@ body {
     </div>
 
     <div class="button-row">
-      <button class="btn btn-success" onclick="pay()"><i class="fas fa-check"></i> Plati Sada</button>
+      <button class="btn btn-success" onclick="pay()"><i class="fas fa-check"></i> Plati sada</button>
       <button class="btn btn-danger" onclick="toggleFreeze()" id="freezeBtn"><i class="fas fa-lock"></i> Zamrzni</button>
     </div>
 
@@ -2201,7 +2628,7 @@ body {
 
   <!-- SPEND CHART -->
   <div class="card">
-    <h3><i class="fas fa-chart-area"></i> Tok Potrošnje</h3>
+    <h3><i class="fas fa-chart-area"></i> Tok potrošnje</h3>
     <p class="sub">Dinamika vaših transakcija tokom sesije</p>
     <div class="chart-container">
       <canvas id="spendChart"></canvas>
@@ -2215,7 +2642,7 @@ body {
 
   <!-- RISK SECTION -->
   <div class="card">
-    <h3><i class="fas fa-shield-alt"></i> Analiza Sigurnosnog Statusa</h3>
+    <h3><i class="fas fa-shield-alt"></i> Analiza sigurnosnog statusa</h3>
     <p class="sub">Real-time procjena rizika i sigurnosti računa</p>
     
     <div class="risk-wrap">
@@ -2283,7 +2710,7 @@ body {
 
   <!-- CATEGORY CHART -->
   <div class="card">
-    <h3><i class="fas fa-pie-chart"></i> Analiza Trošenja po Kategorijama</h3>
+    <h3><i class="fas fa-pie-chart"></i> Analiza trošenja po kategorijama</h3>
     <p class="sub" style="color:#e5e7eb;">Raspodjela vaših izdataka na osnovu tipa plaćanja</p>
     
     <div class="category-controls">
@@ -2349,41 +2776,40 @@ body {
     </div>
   </div>
 </div>
-
-</div>
-
-</div>
+    </div>
+        </div>
 
 <!-- HOME PAGE -->
 <div id="homePage" class="page-content" style="display:none;">
 
 <div class="home-container">
+  
   <!-- CARD 1: Brze Akcije -->
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('transfer')">
     <div class="home-card-icon"><i class="fas fa-paper-plane"></i></div>
     <h4>Brz Prenos</h4>
-    <p>Pošalji novac prijateljima i porodici</p>
+    <p>Pošalji novac prijateljima i porodici.</p>
   </div>
 
   <!-- CARD 2: Investicije -->
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('invest')">
     <div class="home-card-icon"><i class="fas fa-chart-line"></i></div>
     <h4>Investicije</h4>
-    <p>Ulagaj u fondove sa minimalnim naknadama</p>
+    <p>Ulaži u fondove sa minimalnim naknadama.</p>
   </div>
 
   <!-- CARD 3: Štednja -->
   <div class="home-card" onclick="showNotification('success', '💰 Štedni plan pokrenut - Postavi mesečnu štednju')">
     <div class="home-card-icon"><i class="fas fa-piggy-bank"></i></div>
     <h4>Štednja</h4>
-    <p>Automatski štedi deo svojih primanja</p>
+    <p>Automatski štedi dio svojih primanja.</p>
   </div>
 
   <!-- CARD 4: Krediti -->
   <div class="home-card" onclick="showNotification('success', '📊 Dostupan kreditor sa dobrih 3.5% - Primeni!')">
     <div class="home-card-icon"><i class="fas fa-handshake"></i></div>
     <h4>Krediti</h4>
-    <p>Brz pristup kreditorima sa malim kamatama</p>
+    <p>Brz pristup kreditorima sa malim kamatama.</p>
   </div>
 
   <!-- CARD 5: Osiguranje -->
@@ -2396,50 +2822,50 @@ body {
   <!-- CARD 6: Cashback -->
   <div class="home-card" onclick="showNotification('success', '💳 Zaradio si €45.50 cashback-a - Trebaš više?')">
     <div class="home-card-icon"><i class="fas fa-gift"></i></div>
-    <h4>Cashback Program</h4>
-    <p>Zaradite od 0.5% do 5% na svaki kupac</p>
+    <h4>Cashback program</h4>
+    <p>Zaradite od 0.5% do 5% na svakog kupca.</p>
   </div>
 
   <!-- CARD 7: Kartice -->
   <div class="home-card" onclick="showNotification('success', '💳 Dostupne su Virtualne, Fizičke i Premium kartice')">
     <div class="home-card-icon"><i class="fas fa-credit-card"></i></div>
-    <h4>Dodatne Kartice</h4>
-    <p>Kreiraj dodatne kartice za porodicu</p>
+    <h4>Dodatne kartice</h4>
+    <p>Kreiraj dodatne kartice za porodicu.</p>
   </div>
 
   <!-- CARD 8: Valute -->
   <div class="home-card" onclick="showNotification('success', '💱 Razmjenite valute sa boljim kursevima nego konkurencija')">
     <div class="home-card-icon"><i class="fas fa-exchange-alt"></i></div>
-    <h4>Multi-valuta</h4>
-    <p>Upravljajte više valuta istovremeno</p>
+    <h4>Multivaluta</h4>
+    <p>Upravljajte više valuta istovremeno.</p>
   </div>
 
   <!-- CARD 9: Plaćanja -->
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('bills')">
     <div class="home-card-icon"><i class="fas fa-file-invoice"></i></div>
     <h4>Plaćanja Računa</h4>
-    <p>Plati sve svoje račune na jednom mjestu</p>
+    <p>Plati sve svoje račune na jednom mjestu.</p>
   </div>
 
   <!-- CARD 10: Fizička Lokacija -->
   <div class="home-card" onclick="showNotification('success', '📍 Pronašli smo 45 Bankomata u vašoj blizini')">
     <div class="home-card-icon"><i class="fas fa-map-marker-alt"></i></div>
     <h4>Nalazi Bankomata</h4>
-    <p>Pronađi najbliži bankomat ili ogradu</p>
+    <p>Pronađi najbliži bankomat u tvom okruženju.</p>
   </div>
 
   <!-- CARD 11: Podrška -->
   <div class="home-card" onclick="showNotification('success', '📞 Tim podrške je dostupan 24/7 - Kontaktiraj nas!')">
     <div class="home-card-icon"><i class="fas fa-headset"></i></div>
     <h4>24/7 Podrška</h4>
-    <p>Govor sa stručnjakom savetnicima</p>
+    <p>Govor sa stručnjakom savetnicima.</p>
   </div>
 
   <!-- CARD 12: Sigurnost -->
   <div class="home-card" onclick="openSettings()">
     <div class="home-card-icon"><i class="fas fa-lock"></i></div>
     <h4>Sigurnosni Centar</h4>
-    <p>Upravljaj svim sigurnosnim postavkama</p>
+    <p>Upravljaj svim sigurnosnim postavkama.</p>
   </div>
 </div>
 
@@ -2458,19 +2884,19 @@ body {
         <h4><i class="fas fa-lock"></i> Sigurnost</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Biometrijska Autentifikacija</span>
+            <span>Biometrijska autentifikacija</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Biometrijska autentifikacija')"></div>
           </div>
           <div class="settings-card-item">
-            <span>2FA - Dvofaktorska Zaštita</span>
+            <span>2FA zaštita</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, '2FA zaštita')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Pitanja za Sigurnost</span>
+            <span>Pitanja za sigurnost</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Pitanja za sigurnost')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Notifikacije o Pokušajima</span>
+            <span>Notifikacije o pokušajima</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Notifikacije o pokušajima')"></div>
           </div>
         </div>
@@ -2481,19 +2907,19 @@ body {
         <h4><i class="fas fa-bell"></i> Notifikacije</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Obavijest Transakcija</span>
+            <span>Obavijest transakcija</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Obavijest transakcija')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Sigurnosne Obavijesti</span>
+            <span>Sigurnosne obavijesti</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Sigurnosne obavijesti')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Obavijest o Novim Uslugama</span>
+            <span>Obavijest o novim uslugama</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Obavijest o novim uslugama')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Email Obavijesti</span>
+            <span>Email obavijesti</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Email obavijesti')"></div>
           </div>
         </div>
@@ -2504,19 +2930,19 @@ body {
         <h4><i class="fas fa-user-secret"></i> Privatnost</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Djeljenje Podataka</span>
+            <span>Dijeljenje podataka</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Djeljenje podataka')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Analitika i Praćenje</span>
+            <span>Analitika i praćenje</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Analitika i praćenje')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Marketinške Obavijesti</span>
+            <span>Marketinške obavijesti</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Marketinške obavijesti')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Kolačići Trećih Strana</span>
+            <span>Kolačići trećih strana</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Kolačići trećih strana')"></div>
           </div>
         </div>
@@ -2574,6 +3000,22 @@ body {
 </div>
 
 <script>
+  function startDemoTour() {
+  const steps = [
+    "#headerBalanceStat",
+    ".bank-card",
+    ".balance-section",
+    ".quick-actions",
+    "#riskChart"
+  ]
+
+  steps.forEach((sel, i) => {
+    setTimeout(() => {
+      document.querySelector(sel)?.classList.add("highlight")
+    }, i * 1200)
+  })
+}
+
 const RATE_BAM = 1.95583
 const RATE_USD = 0.92
 
@@ -2590,11 +3032,17 @@ const recipientEl = document.getElementById("recipient")
 const settingsModal = document.getElementById("settingsModal")
 
 // Set user name
-const userNames = ["Marko", "Ana", "Petar", "Jelena", "Filip", "Maja"]
-const randomName = userNames[Math.floor(Math.random() * userNames.length)]
+// Umjesto randomName, pitaj korisnika
+const randomName = prompt("Unesite vaše ime:") || "Korisniče"
+
+// Postavi ime u header i karticu
 document.getElementById("userName").textContent = randomName
-document.getElementById("userInitials").textContent = randomName.charAt(0) + randomName.charAt(randomName.length - 1)
-document.getElementById("cardName").textContent = randomName.toUpperCase() + " DOE"
+document.getElementById("userInitials").textContent =
+  randomName.charAt(0) + randomName.charAt(randomName.length - 1)
+document.getElementById("cardName").textContent =
+  randomName.toUpperCase() + " DOE"
+
+
 
 let state = {
   balanceEUR: 2340,
@@ -2644,47 +3092,49 @@ const currencyRates = [
 ]
 
 const randomAIResponses = [
-  "Sigurno, sve je u redu! 👍",
-  "Izvještavam - nema sumnjive aktivnosti.",
-  "Karticu kontroliraš kao pro! 💪",
-  "Status je optimalan, nastavi dalje! ✨",
-  "Sve je pod kontrolom. Bravo! 🎯",
-  "Nema upozorenja na mom radaru. 👀",
-  "Tvoj račun je sigurniji nego Fort Knox! 🏦",
+  "Sigurno sve je u redu! ",
+  "Izvještavam...  nema sumnjive aktivnosti.",
+  "Karticu kontroliraš kao profesionalac! ",
+  "Status je optimalan, nastavi dalje! ",
+  "Sve je pod kontrolom. Bravo! ",
+  "Nema upozorenja na mom radaru. ",
+  "Tvoj račun je sigurniji nego Fort Knox! ",
   "Sistem je detektovao samo normalne aktivnosti.",
-  "Finansijska stabilnost na najvišem nivou! 📈",
-  "Sve transakcije su autentične i bezbjedne! ✅"
+  "Finansijska stabilnost na najvišem nivou! ",
+  "Sve transakcije su autentične i bezbjedne! "
+   "Hvala na povjerenju i dođite nam opet. "
 ]
 
 const notificationMessages = {
-  pay_success: "✅ Plaćanje uspješno! Sredstva su odjeljenja.",
-  pay_failed: "❌ Plaćanje nije moguće! Nedovoljno sredstava.",
-  pay_frozen: "🔒 Kartica je zamrznuta! Aktiviraj je prvo.",
-  freeze_on: "🔒 Kartica je zamrznuta zbog sigurnosti.",
-  freeze_off: "🔓 Kartica je aktivirana i spremna za upotrebu.",
-  risk_warning: "⚠️ Rizik se povećao! Budi oprezniji sa trošenjem.",
-  risk_high: "🚨 Visok rizik detektovan! Razmotri zamrzavanje.",
-  currency_change: "💱 Valuta promijenjena na "
+  pay_success: " Plaćanje uspješno! Sredstva su odjeljenja.",
+  pay_failed: " Plaćanje nije moguće! Nedovoljno sredstava.",
+  pay_frozen: " Kartica je zamrznuta! Aktiviraj je prvo.",
+  freeze_on: " Kartica je zamrznuta zbog sigurnosti.",
+  freeze_off: " Kartica je aktivirana i spremna za upotrebu.",
+  risk_warning: " Rizik se povećao! Budi oprezniji sa trošenjem.",
+  risk_high: " Visok rizik detektovan! Razmotri zamrzavanje.",
+  currency_change: " Valuta promijenjena na "
 }
 
 const featureMessages = {
-  transfer: "💸 Prenos sredstava - Slanje novca je olakšano!",
-  request: "📥 Zahtjev plaćanja je poslán kontaktu.",
-  invest: "📈 Otvoren investicijski portal sa boljim prinosima.",
-  bills: "📋 Pregled svih računa - Automatski plaćaj račune."
+  transfer: " Prenos sredstava - Slanje novca je olakšano!",
+  request: " Zahtjev plaćanja je poslan kontaktu.",
+  invest: " Otvoren investicijski portal sa boljim prinosima.",
+  bills: " Pregled svih računa - Automatski plaćaj račune."
 }
 
 const alerts = [
-  "🔐 Dobrodošao u Fintech Nova - Sigurna finansijska rješenja",
-  "💡 Savjet: Postavi limit transakcija za dodatnu sigurnost",
-  "🎁 Bonus: Otvori račun i dobij €5 cashback",
-  "📱 Upozorenje: Provjeri privatnost svojih podataka",
-  "🌟 Novi premium feature: Investicije sa 0% naknada!"
+  "Dobrodošao u Fintech Nova - Sigurna finansijska rješenja",
+  "Savjet: Postavi limit transakcija za dodatnu sigurnost",
+  "Bonus: Otvori račun i dobij €5 cashback",
+  "Upozorenje: Provjeri privatnost svojih podataka",
+  "Novi premium feature: Investicije sa 0% naknada!"
 ]
 
 let alertIndex = 0
 
 /* SWITCH PAGE */
+
 function switchPage(page) {
   document.querySelectorAll('.page-content').forEach(p => {
     p.classList.remove('active');
@@ -2763,52 +3213,87 @@ function makeGradient(ctx, c1, c2){
 
 /* SPEND CHART */
 const spendCtx = document.getElementById("spendChart").getContext("2d")
+
 const spendChartInstance = new Chart(spendCtx, {
   type: "line",
   data: {
     labels: [""],
     datasets: [{
       data: [0],
+
       fill: true,
-      tension: 0.4,
-      backgroundColor: makeGradient(spendCtx, "rgba(34,211,238,.3)", "rgba(34,211,238,.02)"),
+      tension: 0.45,
+
+      backgroundColor: makeGradient(
+        spendCtx,
+        "rgba(34,211,238,.18)",
+        "rgba(34,211,238,.01)"
+      ),
+
       borderColor: "#22d3ee",
-      borderWidth: 3,
-      pointRadius: 5,
-      pointHoverRadius: 8,
+      borderWidth: 2,
+
+      pointRadius: 0,                 // 👈 KLJUČNO
+      pointHoverRadius: 6,
+      pointHitRadius: 12,
+
       pointBackgroundColor: "#22d3ee",
-      pointBorderColor: "#0b0e14",
-      pointBorderWidth: 2,
+      pointBorderWidth: 0,
+
       segment: {
-        borderColor: ctx => ctx.p1DataIndex > 0 ? "#22d3ee" : "rgba(34,211,238,.5)"
+        borderColor: ctx =>
+          ctx.p1DataIndex > 0
+            ? "#22d3ee"
+            : "rgba(34,211,238,.4)"
       }
     }]
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
-    interaction: {mode: "index", intersect: false},
+
+    interaction: {
+      mode: "index",
+      intersect: false
+    },
+
     plugins: {
-      legend: {display: false},
+      legend: { display: false },
+
       tooltip: {
-        backgroundColor: "rgba(0,0,0,.85)",
-        titleColor: "#22d3ee",
-        bodyColor: "#e5e7eb",
-        borderColor: "rgba(34,211,238,.4)",
-        borderWidth: 1.5,
+        backgroundColor: "rgba(2,8,23,.95)",
+        borderColor: "rgba(34,211,238,.35)",
+        borderWidth: 1,
         padding: 12,
         displayColors: false,
-        titleFont: {size: 14, weight: "bold"},
-        bodyFont: {size: 13}
+
+        titleColor: "#22d3ee",
+        bodyColor: "#e5e7eb",
+
+        titleFont: { size: 13, weight: "600" },
+        bodyFont: { size: 12 }
       }
     },
+
     scales: {
-      x: {display: false},
+      x: {
+        display: false
+      },
       y: {
-        display: true,
         beginAtZero: true,
-        grid: {color: "rgba(34,211,238,.06)", drawBorder: false},
-        ticks: {color: "rgba(229,231,235,.5)", font: {size: 11}}
+
+        grid: {
+          color: "rgba(255,255,255,.04)",
+          drawBorder: false
+        },
+
+        ticks: {
+          maxTicksLimit: 5,
+          padding: 8,
+          callback: v => `€${v}`,
+          font: { size: 11 },
+          color: "rgba(226,232,240,.55)"
+        }
       }
     }
   }
@@ -2819,7 +3304,7 @@ const categoryCtx = document.getElementById("categoryChart").getContext("2d")
 const categoryChartInstance = new Chart(categoryCtx, {
   type: "bar",
   data: {
-    labels: ["🍽️ Hrana", "🚗 Prijevoz", "🎬 Zabava", "🛍️ Ostalo", "📚 Edukacija", "✈️ Putovanja"],
+    labels: [" Hrana", " Prijevoz", " Zabava", " Ostalo", " Edukacija", " Putovanja"],
     datasets: [{
       label: "Potrošnja po kategoriji",
       data: [0, 0, 0, 0, 0, 0],
@@ -2932,17 +3417,17 @@ function updateRiskUI(){
 
   let riskLabel, glow, msg
   if (state.risk < 50) {
-    riskLabel = "Nizak rizik - Sve je sigurno ✅"
+    riskLabel = "Nizak rizik - Sve je sigurno "
     glow = "radial-gradient(circle, rgba(34,211,238,.5), transparent 65%)"
-    msg = "✔️ Tvoj račun je u odličnom sigurnosnom stanju"
+    msg = "Tvoj račun je u odličnom sigurnosnom stanju"
   } else if (state.risk < 80) {
-    riskLabel = "Srednji rizik - Budi oprezniji ⚠️"
+    riskLabel = "Srednji rizik - Budi oprezniji"
     glow = "radial-gradient(circle, rgba(250,204,21,.5), transparent 65%)"
-    msg = "⚠️ Detektovan povećan rizik - preporuka je smanjenje transakcija"
+    msg = "Detektovan povećan rizik - preporuka je smanjenje transakcija"
   } else {
-    riskLabel = "Visok rizik - Nemedljeno dejstvo! 🚨"
+    riskLabel = "Visok rizik - Nemedljeno dejstvo!"
     glow = "radial-gradient(circle, rgba(239,68,68,.6), transparent 65%)"
-    msg = "🚨 Visok rizik – odmah zamrzni karticu i kontaktiraj podršku"
+    msg = "Visok rizik – odmah zamrzni karticu i kontaktiraj podršku"
   }
 
   document.getElementById("riskText").textContent = riskLabel
@@ -2954,7 +3439,6 @@ function updateRiskUI(){
   const totalSpent = state.transactions.reduce((a, b) => a + b, 0)
   const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
   document.getElementById("totalSpent").textContent = currSymbol + totalSpent.toFixed(2)
-
   document.getElementById("headerRisk").textContent = riskPercentage + "%"
   
   updateTransactionsPreview()
@@ -3264,17 +3748,17 @@ function askAI(){
     response = `💰 Tvoje trenutno stanje je ${currSymbol}${displayAmount.toFixed(2)}`
   }
   else if (q.includes("rizik")) response = `🛡️ Trenutni rizik je ${Math.round(state.risk)}%`
-  else if (q.includes("kartica")) response = state.frozen ? "🔒 Kartica je zamrznuta." : "✅ Kartica je aktivna i spremna."
+  else if (q.includes("kartica")) response = state.frozen ? " Kartica je zamrznuta." : " Kartica je aktivna i spremna."
   else if (q.includes("transakcij")) {
     const total = state.transactions.reduce((a, b) => a + b, 0)
-    response = `📊 Izvršio si ${state.transactions.length} transakcija sa ukupno €${total.toFixed(2)}`
+    response = ` Izvršio si ${state.transactions.length} transakcija sa ukupno €${total.toFixed(2)}`
   }
-  else if (q.includes("sigurnost")) response = "🔐 Tvoj račun je zaštićen sa najvišom razinom enkripcije i AI monitoringom!"
-  else if (q.includes("limite")) response = `⚙️ Dnevni limit je ${state.dailyLimit}, mjesečni je ${state.monthlyLimit}`
-  else if (q.includes("povratak") || q.includes("povrat")) response = "🔄 Povratne poreze trebaju 5-7 radnih dana"
-  else if (q.includes("podrška") || q.includes("pomoc")) response = "📞 Naš tim podrške je dostupan 24/7. Kontaktiraj nas na support@fintechnova.com"
-  else if (q.includes("plaćanje") || q.includes("transfer")) response = "💳 Možeš izvršiti plaćanje putem brze akcije 'Prenos' ili popuniti formu za plaćanje"
-  else if (q.includes("valuta") || q.includes("kurs")) response = "💱 Možeš vidjeti sve kursne stope u sekciji 'Kursne Stope' ispod opcija plaćanja"
+  else if (q.includes("sigurnost")) response = " Tvoj račun je zaštićen sa najvišom razinom enkripcije i AI monitoringom!"
+  else if (q.includes("limite")) response = ` Dnevni limit je ${state.dailyLimit}, mjesečni je ${state.monthlyLimit}`
+  else if (q.includes("povratak") || q.includes("povrat")) response = " Povratne poreze trebaju 5-7 radnih dana."
+  else if (q.includes("podrška") || q.includes("pomoc")) response = " Naš tim podrške je dostupan 24/7. Kontaktiraj nas na support@fintechnova.com."
+  else if (q.includes("plaćanje") || q.includes("transfer")) response = "Možeš izvršiti plaćanje putem brze akcije 'Prijenos' ili popuniti formu za plaćanje."
+  else if (q.includes("valuta") || q.includes("kurs")) response = " Možeš vidjeti sve kursne stope u sekciji 'Kursne Stope' ispod opcija plaćanja."
 
   setTimeout(() => {
     const botMsg = document.createElement("div")
@@ -3315,54 +3799,49 @@ render()
 setTimeout(() => {
   showUpdateBanner()
 }, 3000)
-</script>
-
-<script>
-const APP_VERSION = '1.4.0';
-
-const updates = [
-  '📱 Popravljen responsive prikaz na mobilnim uređajima',
-  '🧭 Ispravljeno prebacivanje Dashboard / Početna',
-  '⚡ Optimizovane animacije i Chart render',
-  '🎨 Osvježen moderni UI sa boljim kontrastom',
-  '🛡️ Stabilizovan security status prikaz'
-];
-
-function showUpdateIfNeeded() {
-  const last = localStorage.getItem('app_version');
-  if (last !== APP_VERSION) {
-    const container = document.getElementById('updateContent');
-    container.innerHTML = updates
-      .map(u => `<div class="update-item">${u}</div>`)
-      .join('');
-    document.getElementById('updateBanner').style.display = 'flex';
-    localStorage.setItem('app_version', APP_VERSION);
-  }
-}
-
-function closeUpdateBanner(){
-  document.getElementById('updateBanner').style.display = 'none';
-}
 
 document.addEventListener('DOMContentLoaded', showUpdateIfNeeded);
 
 function login(){
-  const name = document.getElementById('loginName').value || 'Korisniče';
-  document.getElementById('userName').innerText = name;
-  document.getElementById('userInitials').innerText = name.substring(0,2).toUpperCase();
+  // ... tvoja loading animacija
+  setTimeout(() => {
+    document.getElementById("loginScreen").classList.remove("active")
+    box.classList.remove("loading")
+    render()
+    updateHeader()
 
-  document.getElementById('loginScreen').classList.remove('active');
-
-  showNotification('success','Uspješna prijava!');
+    // scroll automatski na dashboard / home
+    const home = document.getElementById("home")
+    if(home) home.scrollIntoView({ behavior: "smooth" })
+  }, 1600)
 }
-/* GREETING */
-const hour = new Date().getHours();
-const greeting =
-  hour < 12 ? 'Dobro jutro' :
-  hour < 18 ? 'Dobar dan' : 'Dobro veče';
 
-document.getElementById('headerSubtitle').innerText =
-  greeting + ', pregled vaših finansija';
+function goToHome() {
+  // tražimo element home
+  const homeSection = document.getElementById("home")
+  if (!homeSection) return // ako ne postoji, ništa ne radimo
+
+  // scrollamo animirano do tog elementa
+  homeSection.scrollIntoView({ behavior: "smooth" })
+}
+
+// SALDO → scroll + highlight
+document.getElementById('headerBalanceStat')
+  .addEventListener('click', () => {
+    const balanceSection = document.querySelector('.balance-section');
+    balanceSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    balanceSection.classList.add('highlight');
+    setTimeout(() => balanceSection.classList.remove('highlight'), 1300);
+  });
+
+// RIZIK → highlight risk kartice
+document.getElementById('headerRiskStat')
+  .addEventListener('click', () => {
+    const riskCard = document.querySelector('#riskChart').closest('.card');
+    riskCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    riskCard.classList.add('highlight');
+    setTimeout(() => riskCard.classList.remove('highlight'), 1300);
+  });
 
 </script>
 
