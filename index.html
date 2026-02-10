@@ -13,10 +13,6 @@
 
 /* === LOGIN SKELETON === */
 
-<div class="login-dots" id="loginDots">
-  <span></span><span></span><span></span>
-</div>
-
 .login-box.loading > * {
   opacity: 0;
 }
@@ -350,7 +346,6 @@ font-size:16px;
 .stat-item:hover{
  background: rgba(34,211,238,.18);
   transform: translateY(-2px);
-}
 }
 
 .stat-item:focus,
@@ -2268,7 +2263,6 @@ body {
   }
 }
 
-
 .balance-meta{
   font-size:11px;
   opacity:.5;
@@ -2309,7 +2303,6 @@ body {
 </head>
 
 <body>
-
 <!-- LOGIN SCREEN -->
 <div id="loginScreen" class="login-screen active">
   <div class="login-box">
@@ -2776,8 +2769,10 @@ body {
     </div>
   </div>
 </div>
-    </div>
-        </div>
+
+</div>
+
+</div>
 
 <!-- HOME PAGE -->
 <div id="homePage" class="page-content" style="display:none;">
@@ -2788,28 +2783,28 @@ body {
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('transfer')">
     <div class="home-card-icon"><i class="fas fa-paper-plane"></i></div>
     <h4>Brz Prenos</h4>
-    <p>Pošalji novac prijateljima i porodici.</p>
+    <p>Pošalji novac prijateljima i porodici</p>
   </div>
 
   <!-- CARD 2: Investicije -->
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('invest')">
     <div class="home-card-icon"><i class="fas fa-chart-line"></i></div>
     <h4>Investicije</h4>
-    <p>Ulaži u fondove sa minimalnim naknadama.</p>
+    <p>Ulagaj u fondove sa minimalnim naknadama</p>
   </div>
 
   <!-- CARD 3: Štednja -->
   <div class="home-card" onclick="showNotification('success', '💰 Štedni plan pokrenut - Postavi mesečnu štednju')">
     <div class="home-card-icon"><i class="fas fa-piggy-bank"></i></div>
     <h4>Štednja</h4>
-    <p>Automatski štedi dio svojih primanja.</p>
+    <p>Automatski štedi deo svojih primanja</p>
   </div>
 
   <!-- CARD 4: Krediti -->
   <div class="home-card" onclick="showNotification('success', '📊 Dostupan kreditor sa dobrih 3.5% - Primeni!')">
     <div class="home-card-icon"><i class="fas fa-handshake"></i></div>
     <h4>Krediti</h4>
-    <p>Brz pristup kreditorima sa malim kamatama.</p>
+    <p>Brz pristup kreditorima sa malim kamatama</p>
   </div>
 
   <!-- CARD 5: Osiguranje -->
@@ -2822,50 +2817,50 @@ body {
   <!-- CARD 6: Cashback -->
   <div class="home-card" onclick="showNotification('success', '💳 Zaradio si €45.50 cashback-a - Trebaš više?')">
     <div class="home-card-icon"><i class="fas fa-gift"></i></div>
-    <h4>Cashback program</h4>
-    <p>Zaradite od 0.5% do 5% na svakog kupca.</p>
+    <h4>Cashback Program</h4>
+    <p>Zaradite od 0.5% do 5% na svaki kupac</p>
   </div>
 
   <!-- CARD 7: Kartice -->
   <div class="home-card" onclick="showNotification('success', '💳 Dostupne su Virtualne, Fizičke i Premium kartice')">
     <div class="home-card-icon"><i class="fas fa-credit-card"></i></div>
-    <h4>Dodatne kartice</h4>
-    <p>Kreiraj dodatne kartice za porodicu.</p>
+    <h4>Dodatne Kartice</h4>
+    <p>Kreiraj dodatne kartice za porodicu</p>
   </div>
 
   <!-- CARD 8: Valute -->
   <div class="home-card" onclick="showNotification('success', '💱 Razmjenite valute sa boljim kursevima nego konkurencija')">
     <div class="home-card-icon"><i class="fas fa-exchange-alt"></i></div>
-    <h4>Multivaluta</h4>
-    <p>Upravljajte više valuta istovremeno.</p>
+    <h4>Multi-valuta</h4>
+    <p>Upravljajte više valuta istovremeno</p>
   </div>
 
   <!-- CARD 9: Plaćanja -->
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('bills')">
     <div class="home-card-icon"><i class="fas fa-file-invoice"></i></div>
     <h4>Plaćanja Računa</h4>
-    <p>Plati sve svoje račune na jednom mjestu.</p>
+    <p>Plati sve svoje račune na jednom mjestu</p>
   </div>
 
   <!-- CARD 10: Fizička Lokacija -->
   <div class="home-card" onclick="showNotification('success', '📍 Pronašli smo 45 Bankomata u vašoj blizini')">
     <div class="home-card-icon"><i class="fas fa-map-marker-alt"></i></div>
     <h4>Nalazi Bankomata</h4>
-    <p>Pronađi najbliži bankomat u tvom okruženju.</p>
+    <p>Pronađi najbliži bankomat ili ogradu</p>
   </div>
 
   <!-- CARD 11: Podrška -->
   <div class="home-card" onclick="showNotification('success', '📞 Tim podrške je dostupan 24/7 - Kontaktiraj nas!')">
     <div class="home-card-icon"><i class="fas fa-headset"></i></div>
     <h4>24/7 Podrška</h4>
-    <p>Govor sa stručnjakom savetnicima.</p>
+    <p>Govor sa stručnjakom savetnicima</p>
   </div>
 
   <!-- CARD 12: Sigurnost -->
   <div class="home-card" onclick="openSettings()">
     <div class="home-card-icon"><i class="fas fa-lock"></i></div>
     <h4>Sigurnosni Centar</h4>
-    <p>Upravljaj svim sigurnosnim postavkama.</p>
+    <p>Upravljaj svim sigurnosnim postavkama</p>
   </div>
 </div>
 
@@ -2879,24 +2874,25 @@ body {
       <button class="modal-close" onclick="closeSettings()"><i class="fas fa-times"></i></button>
     </div>
     <div style="max-height:600px;overflow-y:auto;">
+      
       <!-- SIGURNOST -->
       <div class="settings-card">
         <h4><i class="fas fa-lock"></i> Sigurnost</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Biometrijska autentifikacija</span>
+            <span>Biometrijska Autentifikacija</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Biometrijska autentifikacija')"></div>
           </div>
           <div class="settings-card-item">
-            <span>2FA zaštita</span>
+            <span>2FA - Dvofaktorska Zaštita</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, '2FA zaštita')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Pitanja za sigurnost</span>
+            <span>Pitanja za Sigurnost</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Pitanja za sigurnost')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Notifikacije o pokušajima</span>
+            <span>Notifikacije o Pokušajima</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Notifikacije o pokušajima')"></div>
           </div>
         </div>
@@ -2907,19 +2903,19 @@ body {
         <h4><i class="fas fa-bell"></i> Notifikacije</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Obavijest transakcija</span>
+            <span>Obavijest Transakcija</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Obavijest transakcija')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Sigurnosne obavijesti</span>
+            <span>Sigurnosne Obavijesti</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Sigurnosne obavijesti')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Obavijest o novim uslugama</span>
+            <span>Obavijest o Novim Uslugama</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Obavijest o novim uslugama')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Email obavijesti</span>
+            <span>Email Obavijesti</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Email obavijesti')"></div>
           </div>
         </div>
@@ -2930,19 +2926,19 @@ body {
         <h4><i class="fas fa-user-secret"></i> Privatnost</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Dijeljenje podataka</span>
+            <span>Djeljenje Podataka</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Djeljenje podataka')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Analitika i praćenje</span>
+            <span>Analitika i Praćenje</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Analitika i praćenje')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Marketinške obavijesti</span>
+            <span>Marketinške Obavijesti</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Marketinške obavijesti')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Kolačići trećih strana</span>
+            <span>Kolačići Trećih Strana</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Kolačići trećih strana')"></div>
           </div>
         </div>
@@ -3042,8 +3038,6 @@ document.getElementById("userInitials").textContent =
 document.getElementById("cardName").textContent =
   randomName.toUpperCase() + " DOE"
 
-
-
 let state = {
   balanceEUR: 2340,
   risk: 32,
@@ -3083,44 +3077,43 @@ const paymentCategories = {
 }
 
 const currencyRates = [
-  { code: "EUR", name: "Evro", rate: 1.00, symbol: "€" },
+  { code: "EUR", name: "Euro", rate: 1.00, symbol: "€" },
   { code: "BAM", name: "Konvertibilna Marka", rate: RATE_BAM, symbol: "KM" },
   { code: "USD", name: "Američki Dolar", rate: RATE_USD, symbol: "$" },
-  { code: "GBP", name: "Britanskih Funta", rate: 1.17, symbol: "£" },
-  { code: "CHF", name: "Švicarski Frank", rate: 1.03, symbol: "CHF" },
+  { code: "GBP", name: "Britanske Funte", rate: 1.17, symbol: "£" },
+  { code: "CHF", name: "Švajcarski Franak", rate: 1.03, symbol: "CHF" },
   { code: "JPY", name: "Japanski Jen", rate: 155.80, symbol: "¥" }
 ]
 
 const randomAIResponses = [
-  "Sigurno sve je u redu! ",
-  "Izvještavam...  nema sumnjive aktivnosti.",
-  "Karticu kontroliraš kao profesionalac! ",
-  "Status je optimalan, nastavi dalje! ",
-  "Sve je pod kontrolom. Bravo! ",
-  "Nema upozorenja na mom radaru. ",
-  "Tvoj račun je sigurniji nego Fort Knox! ",
+  "Sigurno, sve je u redu! 👍",
+  "Izvještavam - nema sumnjive aktivnosti.",
+  "Karticu kontroliraš kao pro! 💪",
+  "Status je optimalan, nastavi dalje! ✨",
+  "Sve je pod kontrolom. Bravo! 🎯",
+  "Nema upozorenja na mom radaru. 👀",
+  "Tvoj račun je sigurniji nego Fort Knox! 🏦",
   "Sistem je detektovao samo normalne aktivnosti.",
-  "Finansijska stabilnost na najvišem nivou! ",
-  "Sve transakcije su autentične i bezbjedne! "
-   "Hvala na povjerenju i dođite nam opet. "
+  "Finansijska stabilnost na najvišem nivou! 📈",
+  "Sve transakcije su autentične i bezbjedne! ✅"
 ]
 
 const notificationMessages = {
-  pay_success: " Plaćanje uspješno! Sredstva su odjeljenja.",
-  pay_failed: " Plaćanje nije moguće! Nedovoljno sredstava.",
-  pay_frozen: " Kartica je zamrznuta! Aktiviraj je prvo.",
-  freeze_on: " Kartica je zamrznuta zbog sigurnosti.",
-  freeze_off: " Kartica je aktivirana i spremna za upotrebu.",
-  risk_warning: " Rizik se povećao! Budi oprezniji sa trošenjem.",
-  risk_high: " Visok rizik detektovan! Razmotri zamrzavanje.",
-  currency_change: " Valuta promijenjena na "
+  pay_success: "✅ Plaćanje uspješno! Sredstva su odjeljenja.",
+  pay_failed: "❌ Plaćanje nije moguće! Nedovoljno sredstava.",
+  pay_frozen: "🔒 Kartica je zamrznuta! Aktiviraj je prvo.",
+  freeze_on: "🔒 Kartica je zamrznuta zbog sigurnosti.",
+  freeze_off: "🔓 Kartica je aktivirana i spremna za upotrebu.",
+  risk_warning: "⚠️ Rizik se povećao! Budi oprezniji sa trošenjem.",
+  risk_high: "🚨 Visok rizik detektovan! Razmotri zamrzavanje.",
+  currency_change: "💱 Valuta promijenjena na "
 }
 
 const featureMessages = {
-  transfer: " Prenos sredstava - Slanje novca je olakšano!",
-  request: " Zahtjev plaćanja je poslan kontaktu.",
-  invest: " Otvoren investicijski portal sa boljim prinosima.",
-  bills: " Pregled svih računa - Automatski plaćaj račune."
+  transfer: "💸 Prenos sredstava - Slanje novca je olakšano!",
+  request: "📥 Zahtjev plaćanja je poslán kontaktu.",
+  invest: "📈 Otvoren investicijski portal sa boljim prinosima.",
+  bills: "📋 Pregled svih računa - Automatski plaćaj račune."
 }
 
 const alerts = [
@@ -3266,7 +3259,6 @@ const spendChartInstance = new Chart(spendCtx, {
         borderWidth: 1,
         padding: 12,
         displayColors: false,
-
         titleColor: "#22d3ee",
         bodyColor: "#e5e7eb",
 
@@ -3298,6 +3290,7 @@ const spendChartInstance = new Chart(spendCtx, {
     }
   }
 })
+
 
 /* CATEGORY CHART */
 const categoryCtx = document.getElementById("categoryChart").getContext("2d")
@@ -3439,6 +3432,7 @@ function updateRiskUI(){
   const totalSpent = state.transactions.reduce((a, b) => a + b, 0)
   const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
   document.getElementById("totalSpent").textContent = currSymbol + totalSpent.toFixed(2)
+
   document.getElementById("headerRisk").textContent = riskPercentage + "%"
   
   updateTransactionsPreview()
@@ -3844,6 +3838,5 @@ document.getElementById('headerRiskStat')
   });
 
 </script>
-
 </body>
 </html>
