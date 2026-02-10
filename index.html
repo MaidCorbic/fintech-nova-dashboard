@@ -12,6 +12,31 @@
 
 <style>
 
+@media (max-width:1024px) {
+	.header {
+		display: flex;          /* 👈 KLJUČNO */
+		flex-direction: column;
+		gap: 12px;
+		padding: 12px 16px;
+	}
+
+	.header-left {
+		padding-left: 0;        /* skida desktop offset */
+	}
+
+	.header-right {
+		grid-column: auto;      /* reset */
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+}
+@media (max-width:768px) {
+	.container,
+	.home-container {
+		padding: 16px;   /* 👈 pola manje */
+	}
+}
+
 .login-dots {
 	display: flex;
 	justify-content: center;
@@ -1559,7 +1584,7 @@ canvas {
 /* ===== NOTIFICATION ===== */
 .notification {
 	position: fixed;
-  padding: 10px 14px;      /* BILO 14px 18px */
+  padding: 12px 14px;      /* BILO 14px 18px */
 	bottom: 24px;
 	left: 50%;
 	transform: translateX(-50%);
@@ -1570,7 +1595,6 @@ canvas {
 			rgba(14, 165, 233, .9));
 	border: 1.5px solid rgba(34, 211, 238, .5);
 	border-radius: 12px;
-	padding: 14px 18px;
 	color: #0b0e14;
 	font-weight: 600;
 	font-size: 12px;
@@ -1625,9 +1649,10 @@ canvas {
 @media (max-width:768px) {
 	.notification {
 		top: auto;
-		bottom: 20px;
-		right: 12px;
 		left: 12px;
+		right: 12px;
+		bottom: 16px;
+		transform: none;
 		border-radius: 16px;
 	}
 }
@@ -2393,6 +2418,7 @@ body {
 }
 
 /* Desktop poravnanje */
+margin-top: 0; /* 👈 OBAVEZNO */
 @media (min-width: 1024px) {
 	.header {
 		margin-top: 80px;
