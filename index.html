@@ -11,6 +11,10 @@
 
 
 <style>
+body {
+  margin: 0;
+  padding-top: 60px; /* visina alerta */
+}
 
 @media (max-width:1024px) {
 	.header {
@@ -189,7 +193,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	gap: 12px;
-	z-index: 5000;
+	z-index: 100;
 	padding: 0 24px;
 	animation: slideDown .5s ease-out;
 }
@@ -243,6 +247,9 @@ body {
 	backdrop-filter: blur(14px);
 	border-bottom: 1px solid rgba(34, 211, 238, .15);
 	animation: headerIn .6s ease-out;
+  position: sticky;  /* ostaje na vrhu kad skrolaš */
+
+  flex-direction: row;
 }
 
 @media (min-width:1024px) {
