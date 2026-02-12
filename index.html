@@ -2,42 +2,38 @@
 <html lang="bs">
 <head>
 <meta charset="UTF-8">
-<title>Fintech Premium Banking</title>
+<title>Fintech Premium Bankarstvo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="fintech-favicon.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
 <style>
-body {
-  margin: 0;
-  padding-top: 60px; /* visina alerta */
-}
 
 @media (max-width:1024px) {
 	.header {
-		display: flex;          /* 👈 KLJUČNO */
+		display: flex;
 		flex-direction: column;
 		gap: 12px;
 		padding: 12px 16px;
 	}
 
 	.header-left {
-		padding-left: 0;        /* skida desktop offset */
+		padding-left: 0;
 	}
 
 	.header-right {
-		grid-column: auto;      /* reset */
+		grid-column: auto;
 		justify-content: center;
 		flex-wrap: wrap;
 	}
 }
+
 @media (max-width:768px) {
 	.container,
 	.home-container {
-		padding: 16px;   /* 👈 pola manje */
+		padding: 16px;
 	}
 }
 
@@ -65,20 +61,15 @@ body {
 }
 
 @keyframes dots {
-
 	0%,
 	80%,
 	100% {
 		transform: scale(0)
 	}
-
 	40% {
 		transform: scale(1)
 	}
 }
-
-
-/* === LOGIN SKELETON === */
 
 .login-skeleton .skeleton {
 	background: linear-gradient(90deg,
@@ -93,12 +84,10 @@ body {
 	from {
 		background-position: 200% 0
 	}
-
 	to {
 		background-position: -200% 0
 	}
 }
-
 
 .login-box.loading>* {
 	opacity: 0;
@@ -193,7 +182,7 @@ body {
 	align-items: center;
 	justify-content: center;
 	gap: 12px;
-	z-index: 100;
+	z-index: 1000;
 	padding: 0 24px;
 	animation: slideDown .5s ease-out;
 }
@@ -218,7 +207,6 @@ body {
 		transform: translateY(-100%);
 		opacity: 0
 	}
-
 	to {
 		transform: translateY(0);
 		opacity: 1
@@ -226,13 +214,11 @@ body {
 }
 
 @keyframes pulse {
-
 	0%,
 	100% {
 		opacity: 1;
 		transform: scale(1)
 	}
-
 	50% {
 		opacity: .6;
 		transform: scale(1.1)
@@ -247,34 +233,28 @@ body {
 	backdrop-filter: blur(14px);
 	border-bottom: 1px solid rgba(34, 211, 238, .15);
 	animation: headerIn .6s ease-out;
-  position: sticky;  /* ostaje na vrhu kad skrolaš */
-
-  flex-direction: row;
+	position: relative;
+	top: 0;
+	z-index: 10;
+margin-top: 60px; 
+	background: rgba(2, 8, 23, 0.4);
+pointer-events: none;
 }
 
 @media (min-width:1024px) {
 	.header {
 		grid-template-columns: auto 1fr auto;
-		padding: 0 32px;
-	}
-}
-
-@media (min-width:1024px) {
-	.header {
 		padding: 12px 20px;
-		/* 👈 MANJI I ČIST */
 		gap: 16px;
 	}
 
 	.header-left {
 		padding-left: 0;
-		/* uklanja suvišan offset */
 		gap: 12px;
 	}
 
 	.header-right {
 		gap: 14px;
-		/* zbijenije, ali ne tijesno */
 	}
 
 	.quick-stats {
@@ -291,7 +271,6 @@ body {
 		opacity: 0;
 		transform: translateY(-10px);
 	}
-
 	to {
 		opacity: 1;
 		transform: none;
@@ -303,9 +282,7 @@ body {
 	align-items: center;
 	gap: 16px;
 	padding-left: 24px;
-	/* OVO JE GLAVNI FIX */
 }
-
 
 .header-avatar {
 	width: 60px;
@@ -318,6 +295,7 @@ body {
 	font-size: 28px;
 	font-weight: 700;
 	box-shadow: 0 8px 24px rgba(34, 211, 238, .2);
+	flex-shrink: 0;
 }
 
 .header-avatar:hover {
@@ -340,7 +318,6 @@ body {
 .header-btn:hover {
 	transform: translateY(-2px) scale(1.05);
 }
-
 
 .header-text h1 {
 	font-size: 25px;
@@ -394,17 +371,14 @@ body {
 }
 
 @keyframes statusPulse {
-
 	0%,
 	100% {
 		box-shadow: 0 0 6px rgba(34, 197, 94, .6)
 	}
-
 	50% {
 		box-shadow: 0 0 12px rgba(34, 197, 94, .9)
 	}
 }
-
 
 .status-text {
 	font-size: 13px;
@@ -454,7 +428,6 @@ body {
 .quick-stats {
 	display: flex;
 	align-items: center;
-	/* BITNO */
 	gap: 16px;
 }
 
@@ -473,7 +446,6 @@ body {
 	letter-spacing: -0.4px;
 	line-height: 1.2;
 }
-
 
 .stat-item:hover {
 	background: rgba(34, 211, 238, .18);
@@ -515,6 +487,7 @@ body {
 	opacity: 0;
 	pointer-events: none;
 	transition: .25s;
+	z-index: 200;
 }
 
 .stat-item:hover::before {
@@ -562,7 +535,8 @@ body {
 	.header {
 		flex-direction: column;
 		gap: 16px;
-		text-align: center
+		text-align: center;
+		top: 60px;
 	}
 
 	.header-right {
@@ -572,7 +546,8 @@ body {
 	}
 
 	.header-left {
-		flex-direction: column
+		flex-direction: column;
+		padding-left: 0;
 	}
 }
 
@@ -614,6 +589,7 @@ body {
 	transition: transform 0.3s ease, box-shadow 0.3s ease;
 	box-shadow: 0 10px 30px rgba(0, 0, 0, .35),
 		inset 0 1px 0 rgba(255, 255, 255, .05);
+	position: relative;
 }
 
 .card::before {
@@ -639,7 +615,6 @@ body {
 	box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 	border-color: transparent;
 }
-
 
 .card>* {
 	position: relative;
@@ -777,7 +752,6 @@ body {
 	0% {
 		transform: translateX(-100%) rotate(25deg)
 	}
-
 	100% {
 		transform: translateX(100%) rotate(25deg)
 	}
@@ -914,8 +888,8 @@ input:focus,
 select:focus {
 	outline: none;
 	border-color: #22d3ee;
+	box-shadow: 0 0 12px rgba(34, 211, 238, .2);
 }
-
 
 select {
 	background: linear-gradient(135deg, rgba(34, 211, 238, .1), rgba(168, 85, 247, .08)),
@@ -944,6 +918,7 @@ select option {
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
+	min-height: 44px;
 }
 
 button:focus-visible {
@@ -961,7 +936,6 @@ button:focus-visible {
 	}
 }
 
-
 button:active,
 .action-btn:active,
 .stat-item:active {
@@ -978,7 +952,7 @@ button:active,
 	color: #020817;
 }
 
-.btn-primary:hover {
+.btn-primary:hover:not(:disabled) {
 	background: #0ea5e9;
 	transform: translateY(-2px);
 }
@@ -1029,7 +1003,6 @@ button:active,
 		transform: translateX(100%)
 	}
 }
-
 
 /* ===== ACTION BUTTONS ===== */
 .button-row {
@@ -1260,29 +1233,35 @@ canvas {
 		transform: scale(1);
 		opacity: .3
 	}
-
 	50% {
 		transform: scale(1.04);
 		opacity: .5
 	}
-
 	100% {
 		transform: scale(1);
 		opacity: .3
 	}
 }
 
-
 .risk-value {
-	position: relative;
-	z-index: 2;
-	text-align: center;
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
 }
 
 .risk-value strong {
-	font-size: 46px;
-	line-height: 1.15;
-	letter-spacing: -0.5px;
+	font-size: 48px;
+	line-height: 1;
+}
+
+.risk-value span {
+	font-size: 18px;
+	margin-top: 6px;
+	opacity: 0.6;
 }
 
 .risk-tooltip {
@@ -1290,6 +1269,7 @@ canvas {
 	margin-top: 8px;
 	opacity: .7;
 	font-weight: 500;
+	text-align: center;
 }
 
 .risk-text {
@@ -1297,6 +1277,7 @@ canvas {
 	opacity: .8;
 	margin-top: 12px;
 	font-weight: 600;
+	text-align: center;
 }
 
 .risk-analysis {
@@ -1544,12 +1525,10 @@ canvas {
 }
 
 @keyframes blink {
-
 	0%,
 	100% {
 		opacity: .2
 	}
-
 	50% {
 		opacity: 1
 	}
@@ -1560,7 +1539,6 @@ canvas {
 		opacity: 0;
 		transform: translateY(8px)
 	}
-
 	to {
 		opacity: 1;
 		transform: none
@@ -1591,7 +1569,7 @@ canvas {
 /* ===== NOTIFICATION ===== */
 .notification {
 	position: fixed;
-  padding: 12px 14px;      /* BILO 14px 18px */
+	padding: 12px 14px;
 	bottom: 24px;
 	left: 50%;
 	transform: translateX(-50%);
@@ -1609,9 +1587,9 @@ canvas {
 	box-shadow: 0 20px 50px rgba(34, 211, 238, .35);
 	z-index: 10000;
 	animation: toastIn .4s cubic-bezier(.4, 0, .2, 1);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .notification i {
@@ -1634,22 +1612,19 @@ canvas {
 	from {
 		width: 100%
 	}
-
 	to {
 		width: 0
 	}
 }
-
 
 @keyframes toastIn {
 	from {
 		transform: translateX(-50%) translateY(30px);
 		opacity: 0;
 	}
-
 	to {
 		transform: translateX(-50%) translateY(0);
-		opacity: 1;
+		opacity: 1
 	}
 }
 
@@ -1697,10 +1672,9 @@ canvas {
 		transform: translateY(-10px);
 		opacity: 0;
 	}
-
 	to {
 		transform: none;
-		opacity: 1;
+		opacity: 1
 	}
 }
 
@@ -1710,14 +1684,12 @@ canvas {
 			transform: translateY(20px);
 			opacity: 0;
 		}
-
 		to {
 			transform: none;
-			opacity: 1;
+			opacity: 1
 		}
 	}
 }
-
 
 /* ===== BALANCE FLASH ===== */
 .balance-flash {
@@ -1729,7 +1701,6 @@ canvas {
 		color: #22d3ee;
 		text-shadow: 0 0 15px rgba(34, 211, 238, .8)
 	}
-
 	100% {
 		color: inherit;
 		text-shadow: none
@@ -1807,6 +1778,7 @@ canvas {
 	cursor: pointer;
 	transition: .3s;
 	border: 1.5px solid rgba(34, 211, 238, .2);
+	flex-shrink: 0;
 }
 
 .toggle-switch.active {
@@ -1892,6 +1864,7 @@ canvas {
 	align-items: center;
 	justify-content: center;
 	font-size: 18px;
+	flex-shrink: 0;
 }
 
 .transaction-details strong {
@@ -1921,6 +1894,7 @@ canvas {
 	justify-content: center;
 	animation: fadeIn .3s ease;
 	overflow-y: auto;
+	padding: 20px;
 }
 
 .modal.active {
@@ -1933,7 +1907,7 @@ canvas {
 	border-radius: 20px;
 	padding: 28px;
 	max-width: 500px;
-	width: 90%;
+	width: 100%;
 	box-shadow: 0 25px 100px rgba(0, 0, 0, .5);
 	animation: slideUp .4s ease;
 	margin: auto;
@@ -1975,7 +1949,6 @@ canvas {
 	from {
 		opacity: 0
 	}
-
 	to {
 		opacity: 1
 	}
@@ -1986,7 +1959,6 @@ canvas {
 		transform: translateY(40px);
 		opacity: 0
 	}
-
 	to {
 		transform: none;
 		opacity: 1
@@ -2039,14 +2011,20 @@ canvas {
 	justify-content: space-between;
 	font-size: 13px;
 	padding: 8px 0;
+	flex-wrap: wrap;
+	gap: 10px;
+
 }
 
 /* ===== PAGE NAVIGATION ===== */
 .page-nav {
-	position: fixed;
-	top: 20px;
-	right: 180px;
-	z-index: 4999;
+	position: absolute;
+	 top: calc(60px + 100px); /* alert + header */
+	right: 20px;
+	top: 15px;
+	z-index: 99999;
+	display: flex;
+	gap: 15px;
 }
 
 .page-nav button {
@@ -2059,7 +2037,9 @@ canvas {
 	transition: all .3s;
 	font-weight: 600;
 	font-size: 12px;
-	margin: 0 4px;
+	display: flex;
+	align-items: center;
+	gap: 6px;
 }
 
 .page-nav button:hover {
@@ -2108,6 +2088,7 @@ canvas {
 	font-size: 16px;
 	margin-left: auto;
 	transition: .3s;
+	padding: 0;
 }
 
 .update-close:hover {
@@ -2118,7 +2099,9 @@ canvas {
 @media (max-width:768px) {
 	.header {
 		padding: 16px;
-		margin-top: 70px
+		margin-top: 60px;
+		position: relative;
+		top: auto;
 	}
 
 	.container {
@@ -2163,13 +2146,16 @@ canvas {
 	.page-nav {
 		right: 10px;
 		top: auto;
-		bottom: 20px
+		bottom: 120px;
+		flex-direction: column;
+		gap: 8px;
 	}
 
 	.page-nav button {
 		padding: 6px 12px;
 		font-size: 11px;
-		margin: 4px 2px
+		width: 100%;
+		justify-content: center;
 	}
 
 	.category-controls {
@@ -2183,7 +2169,8 @@ canvas {
 	.update-banner {
 		right: 10px;
 		left: 10px;
-		bottom: 100px
+		bottom: auto;
+		top: 80px;
 	}
 }
 
@@ -2214,26 +2201,70 @@ canvas {
 	}
 
 	.page-nav {
-		width: 100%;
-		right: auto;
-		left: auto;
-		bottom: auto;
-		top: 65px
+		width: calc(100% - 20px);
+		right: 10px;
+		left: 10px;
+		top: 70px;
+		flex-direction: row;
+		gap: 6px;
 	}
 
 	.page-nav button {
-		width: 48%;
-		margin: 4px 1%
+		flex: 1;
+		padding: 8px 8px;
+		font-size: 10px;
 	}
 
 	.update-banner {
 		width: 90%;
 		left: 5%;
-		right: auto
+		right: auto;
+		top: auto;
+		bottom: 80px;
+	}
+
+	.settings-card-item {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.settings-select {
+		width: 100%;
+	}
+
+	.chat-input-wrap input {
+		font-size: 14px;
+	}
+
+	.risk-chart-container {
+		width: 150px;
+		height: 150px;
+	}
+
+	.risk-value strong {
+		font-size: 38px;
+	}
+
+	.payment-category-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.header-right {
+		gap: 8px;
+	}
+
+	.header-btn {
+		width: 40px;
+		height: 40px;
+	}
+
+	.clock {
+		font-size: 12px;
+		padding: 8px 12px;
 	}
 }
 
-/* === PAGE VISIBILITY FIX === */
+/* ===== PAGE VISIBILITY FIX ===== */
 .page-content {
 	display: none;
 	width: 100%;
@@ -2243,24 +2274,13 @@ canvas {
 .page-content.active>* {
 	animation: fadeUp .5s ease both;
 	width: 100%;
-
 }
-
-@media(max-width:600px) {
-
-	.risk-analysis,
-	.settings-panel {
-		display: none;
-	}
-}
-
 
 @keyframes fadeUp {
 	from {
 		opacity: 0;
 		transform: translateY(8px);
 	}
-
 	to {
 		opacity: 1;
 		transform: none;
@@ -2275,19 +2295,9 @@ canvas {
 	.top-alert {
 		height: auto;
 		padding: 12px;
-	}
-
-	.header {
-		margin-top: 90px;
+		font-size: 12px;
 	}
 }
-
-/* === HEADER FINAL OVERRIDE === */
-.header {
-	position: relative;
-	z-index: 2000;
-}
-
 
 /* Modern micro-interactions */
 button,
@@ -2314,142 +2324,6 @@ body {
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 	overflow-x: hidden;
-}
-
-/* === PATCH: RISK % ALIGNMENT === */
-.risk-value {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.risk-value span {
-	font-size: 16px;
-	margin-top: 4px;
-}
-
-
-/* === PATCH: UPDATE MODAL === */
-.update-modal {
-	position: fixed;
-	inset: 0;
-	background: rgba(0, 0, 0, .75);
-	backdrop-filter: blur(6px);
-	display: none;
-	align-items: center;
-	justify-content: center;
-	z-index: 10000;
-}
-
-.update-modal.active {
-	display: flex;
-}
-
-.update-box {
-	background: linear-gradient(135deg, rgba(2, 8, 23, .98), rgba(15, 23, 42, .95));
-	border: 1.5px solid rgba(168, 85, 247, .4);
-	border-radius: 20px;
-	padding: 28px;
-	max-width: 520px;
-	width: 92%;
-	box-shadow: 0 30px 120px rgba(0, 0, 0, .6);
-}
-
-.update-box h2 {
-	margin: 0 0 12px 0;
-	font-size: 22px;
-	background: linear-gradient(90deg, #a855f7, #22d3ee);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
-.update-log {
-	display: grid;
-	gap: 10px;
-	margin-top: 16px;
-}
-
-.update-item {
-	background: rgba(168, 85, 247, .12);
-	padding: 10px 14px;
-	border-radius: 10px;
-	font-size: 13px;
-}
-
-.update-confirm {
-	margin-top: 22px;
-	width: 100%;
-	padding: 12px;
-	border: none;
-	border-radius: 12px;
-	background: linear-gradient(135deg, #22d3ee, #0ea5e9);
-	font-weight: 700;
-	cursor: pointer;
-}
-
-/* FIX: Razmak između % i grafikona (Risk) */
-.risk-chart-container {
-	position: relative;
-}
-
-.risk-value {
-	position: absolute;
-	inset: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	pointer-events: none;
-}
-
-.risk-value strong {
-	font-size: 48px;
-	line-height: 1;
-}
-
-.risk-value span {
-	font-size: 18px;
-	margin-top: 6px;
-	opacity: 0.6;
-}
-
-/* FIX: Header vidljiv na desktopu */
-.header {
-	position: relative;
-	z-index: 2000;
-}
-
-.top-alert {
-	z-index: 3000;
-}
-
-/* Desktop poravnanje */
-margin-top: 0; /* 👈 OBAVEZNO */
-@media (min-width: 1024px) {
-	.header {
-		margin-top: 80px;
-	}
-}
-
-/* MOBILE FIXES */
-@media (max-width: 600px) {
-	.risk-chart-container {
-		width: 150px;
-		height: 150px;
-	}
-
-	.risk-value strong {
-		font-size: 38px;
-	}
-
-	.payment-category-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-
-	.header-right {
-		gap: 10px;
-	}
 }
 
 /* LOGIN SCREEN */
@@ -2484,6 +2358,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
 	text-align: center;
 	box-shadow: 0 40px 120px rgba(0, 0, 0, .6);
 	animation: loginIn .6s ease;
+	position: relative;
 }
 
 @keyframes loginIn {
@@ -2491,7 +2366,6 @@ margin-top: 0; /* 👈 OBAVEZNO */
 		transform: translateY(40px);
 		opacity: 0
 	}
-
 	to {
 		transform: none;
 		opacity: 1
@@ -2526,6 +2400,13 @@ margin-top: 0; /* 👈 OBAVEZNO */
 	font-weight: 700;
 	cursor: pointer;
 	margin-top: 8px;
+	color: #0b0e14;
+	transition: all .3s;
+}
+
+.login-box button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px rgba(34, 211, 238, .3);
 }
 
 .login-box small {
@@ -2535,102 +2416,8 @@ margin-top: 0; /* 👈 OBAVEZNO */
 	font-size: 11px;
 }
 
-@media (max-width:768px) {
-	.header {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 14px;
-		padding: 14px 16px;
-		margin-top: 90px;
-	}
-
-	.header-left {
-		flex-direction: column;
-		align-items: center;
-		padding-left: 0;
-		text-align: center;
-		gap: 8px;
-	}
-
-	.header-text h1 {
-		font-size: 20px;
-		line-height: 1.2;
-	}
-
-	.header-text p {
-		font-size: 12px;
-	}
-
-	.header-right {
-		width: 100%;
-		justify-content: center;
-		flex-wrap: wrap;
-		gap: 10px;
-	}
-
-	.clock {
-		order: 3;
-		width: 100%;
-		justify-content: center;
-	}
-
-	.status-badge {
-		order: 1;
-	}
-}
-
-.header-btn,
-.status-badge,
-.clock {
-	min-height: 44px;
-	/* Apple / Google touch standard */
-}
-
-.header-btn {
-	width: 44px;
-	height: 44px;
-}
-
-@media (max-width:480px) {
-	.header * {
-		max-width: 100%;
-	}
-}
-
-@media (hover:hover) {
-	.stat-item:hover {
-		background: rgba(34, 211, 238, .12);
-		animation-play-state: paused;
-
-	}
-}
-
-
-.balance-meta {
-	font-size: 11px;
-	opacity: .5;
-	display: flex;
-	align-items: center;
-	gap: 6px;
-}
-
-.balance-amount.changed {
-	animation: balancePop .5s ease;
-}
-
-@keyframes balancePop {
-	0% {
-		transform: scale(1)
-	}
-
-	50% {
-		transform: scale(1.04)
-	}
-
-	100% {
-		transform: scale(1)
-	}
+.login-box.loading {
+	position: relative;
 }
 
 /* HIGHLIGHT EFFECT */
@@ -2643,16 +2430,116 @@ margin-top: 0; /* 👈 OBAVEZNO */
 		box-shadow: 0 0 0 rgba(34, 211, 238, 0);
 		background: rgba(34, 211, 238, .05);
 	}
-
 	50% {
 		box-shadow: 0 0 30px rgba(34, 211, 238, .45);
 		background: rgba(34, 211, 238, .15);
 	}
-
 	100% {
 		box-shadow: none;
 		background: inherit;
 	}
+}
+
+.balance-meta {
+	font-size: 11px;
+	opacity: .5;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 8px;
+}
+
+.balance-amount.changed {
+	animation: balancePop .5s ease;
+}
+
+@keyframes balancePop {
+	0% {
+		transform: scale(1)
+	}
+	50% {
+		transform: scale(1.04)
+	}
+	100% {
+		transform: scale(1)
+	}
+}
+
+/* LOADING SPINNER */
+.loading-spinner {
+	width: 40px;
+	height: 40px;
+	border: 4px solid rgba(34, 211, 238, .2);
+	border-top-color: #22d3ee;
+	border-radius: 50%;
+	animation: spin .8s linear infinite;
+	margin: 20px auto;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* FEATURE BADGE */
+.feature-badge {
+	display: inline-block;
+	background: linear-gradient(135deg, rgba(168, 85, 247, .3), rgba(34, 211, 238, .2));
+	border: 1px solid rgba(168, 85, 247, .4);
+	padding: 4px 8px;
+	border-radius: 6px;
+	font-size: 10px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #a855f7;
+	margin-top: 8px;
+}
+
+/* SAVINGS GOAL */
+.savings-goal {
+	background: rgba(168, 85, 247, .08);
+	border: 1px solid rgba(168, 85, 247, .2);
+	border-radius: 12px;
+	padding: 16px;
+	margin-top: 20px;
+}
+
+.savings-goal h4 {
+	margin: 0 0 12px 0;
+	font-size: 14px;
+	font-weight: 700;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.savings-goal h4 i {
+	color: #a855f7;
+	font-size: 18px;
+}
+
+.savings-progress {
+	width: 100%;
+	height: 8px;
+	background: rgba(168, 85, 247, .15);
+	border-radius: 4px;
+	overflow: hidden;
+	margin-bottom: 8px;
+}
+
+.savings-bar {
+	height: 100%;
+	background: linear-gradient(90deg, #a855f7, #d946ef);
+	border-radius: 4px;
+	transition: width .4s ease;
+}
+
+.savings-info {
+	display: flex;
+	justify-content: space-between;
+	font-size: 12px;
+	opacity: .8;
 }
 </style>
 </head>
@@ -2661,51 +2548,45 @@ margin-top: 0; /* 👈 OBAVEZNO */
 
 <!-- LOGIN SCREEN -->
 <div id="loginScreen" class="login-screen active">
-  <div class="login-box">
+  <div class="login-box" id="loginBox">
     <div class="login-skeleton">
-  <div class="skeleton title"></div>
-  <div class="skeleton text"></div>
+      <div class="skeleton title"></div>
+      <div class="skeleton text"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton"></div>
+      <div class="skeleton button"></div>
+      <div class="login-dots" id="loginDots">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
 
-  <div class="skeleton"></div>
-  <div class="skeleton"></div>
-
-  <div class="skeleton button"></div>
-  <div class="login-dots" id="loginDots">
-  <span></span><span></span><span></span>
-</div>
-
-</div>
-
-
-    <h2>Fintech Nova</h2>
+    <h2>Fintech</h2>
     <p>Siguran pristup vašem računu</p>
 
-    <input id="loginName" type="text" placeholder="Ime korisnika">
-    <input id="loginPin" type="password" placeholder="PIN kod">
+    <input id="loginName" type="text" placeholder="Korisničko ime" autocomplete="on">
+    <input id="loginPin" type="password" placeholder="PIN kod" autocomplete="on">
 
     <button onclick="login()">Prijava</button>
 
-    <small>Demo: upiši bilo šta</small>
+    <small>Demo: unesite bilo šta</small>
   </div>
 </div>
-
 
 <!-- TOP ALERT -->
 <div class="top-alert">
   <i class="fas fa-shield-alt alert-icon"></i>
   <div class="alert-text">
-    <span id="topAlertText">Dobrodošao u Fintech Nova - Sigurna finansijska rješenja</span>
+    <span id="topAlertText">Dobrodošli u Fintech, mjesto sigurnih finansijskih rješenja.</span>
   </div>
 </div>
-
 
 <!-- PAGE NAVIGATION -->
 <div class="page-nav">
   <button class="nav-btn active" data-page="dashboard" onclick="switchPage('dashboard')">
-    <i class="fas fa-chart-line"></i> Dashboard
+    <i class="fas fa-chart-line"></i> <span>Nadzorna ploča</span>
   </button>
   <button class="nav-btn" data-page="home" onclick="switchPage('home')">
-    <i class="fas fa-home"></i> Vaš finansijski sistem
+    <i class="fas fa-home"></i> <span>Početna</span>
   </button>
 </div>
 
@@ -2714,27 +2595,27 @@ margin-top: 0; /* 👈 OBAVEZNO */
   <div class="header-left">
     <div class="header-avatar" id="userInitials">FN</div>
     <div class="header-text">
-      <h1>Dobrodošao nazad, <span id="userName">Korisniče</span>!</h1>
-      <p id="headerSubtitle">Pregled kartice i sigurnosnih aktivnosti</p>
+      <h1>Dobrodošli, <span id="userName">Korisniče</span>!</h1>
+      <p id="headerSubtitle">Pregled kartice i aktivnosti</p>
     </div>
   </div>
 
   <div class="header-right">
     <div class="quick-stats">
-      <div class="stat-item" id="headerBalanceStat" data-tip="Ukupna raspoloživa sredstva">
+      <div class="stat-item" id="headerBalanceStat" data-tip="Ukupna raspoloživa sredstva :">
         <div class="stat-item-label"><i class="fas fa-wallet"></i> Saldo</div>
-        <div class="stat-item-value" id="headerBalance">€2340</div>
+        <div class="stat-item-value" id="headerBalance">€2.340</div>
       </div>
-     <div class="stat-item" id="headerRiskStat" data-tip="Sigurnosni rizik računa">
+      <div class="stat-item" id="headerRiskStat" data-tip="Sigurnosni rizik računa">
         <div class="stat-item-label"><i class="fas fa-shield"></i> Rizik</div>
         <div class="stat-item-value" id="headerRisk">32%</div>
       </div>
     </div>
     <div class="status-badge">
       <div class="status-dot"></div>
-      <div class="status-text">Aktivan</div>
+      <div class="status-text">Aktivna</div>
     </div>
-    <button class="header-btn" title="Notifikacije" onclick="showNotification('success', '📬 Nema novih notifikacija!')">
+    <button class="header-btn" title="Obavijesti" onclick="showNotification('success', 'Nema novih obavijesti!')">
       <i class="fas fa-bell"></i>
     </button>
     <button class="header-btn" title="Postavke" onclick="openSettings()">
@@ -2758,15 +2639,15 @@ margin-top: 0; /* 👈 OBAVEZNO */
   <div class="card">
     <!-- BANK CARD -->
     <div class="bank-card-wrapper">
-      <div class="bank-card">
+      <div class="bank-card" id="bankCard">
         <div class="card-top">
-          <span class="card-brand">Fintech Nova</span>
+          <span class="card-brand">Fintech</span>
           <span id="cardStatus" class="status active">Aktivna</span>
         </div>
         <div class="card-chip"></div>
         <div class="card-number">•••• •••• •••• 4821</div>
         <div class="card-footer">
-          <span id="cardName">JOHN DOE</span>
+          <span id="cardName">USERNAME</span>
           <span>09/28</span>
         </div>
       </div>
@@ -2775,23 +2656,36 @@ margin-top: 0; /* 👈 OBAVEZNO */
     <!-- BALANCE SECTION -->
     <div class="balance-section">
       <p class="sub">Ukupna raspoloživa sredstva</p>
-      <div class="balance-amount"><span id="symbol">€</span><span id="balance">2340.00</span></div>
+      <div class="balance-amount"><span id="symbol">€</span><span id="balance">2.340,00</span></div>
       <div class="balance-meta">
-  <i class="fas fa-sync-alt"></i> Ažurirano prije par sekundi
-</div>
+        <i class="fas fa-sync-alt"></i> Ažurirano upravo
+      </div>
 
       <div class="form-group">
         <label>Valuta</label>
         <select id="currency" onchange="render()">
           <option value="EUR">EUR - Euro</option>
-          <option value="BAM">BAM - Konvertibilna Marka</option>
-          <option value="USD">USD - Američki Dolar</option>
+          <option value="BAM">BAM - Konvertibilna marka</option>
+          <option value="USD">USD - Američki dolar</option>
         </select>
       </div>
     </div>
 
+    <!-- SAVINGS GOAL -->
+    <div class="savings-goal">
+      <h4><i class="fas fa-piggy-bank"></i> Cilj štednje</h4>
+      <p class="sub" style="margin-bottom: 12px;">Kampanja: Letnji odmor</p>
+      <div class="savings-progress">
+        <div class="savings-bar" id="savingsBar" style="width: 35%;"></div>
+      </div>
+      <div class="savings-info">
+        <span id="savingsAmount">€840 / €2.400</span>
+        <span>35%</span>
+      </div>
+    </div>
+
     <!-- QUICK ACTIONS -->
-    <h3 style="margin-top:28px"><i class="fas fa-bolt"></i> Najčešće korištene akcije</h3>
+    <h3 style="margin-top:28px"><i class="fas fa-bolt"></i> Brze akcije</h3>
     <div class="quick-actions">
       <button class="action-btn" onclick="quickAction('transfer')" title="Prenos sredstava">
         <div class="action-icon"><i class="fas fa-arrow-right"></i></div>
@@ -2812,10 +2706,10 @@ margin-top: 0; /* 👈 OBAVEZNO */
     </div>
 
     <!-- PAYMENT SECTION -->
-    <h3 style="margin-top:28px"><i class="fas fa-credit-card"></i> Izvrši Plaćanje</h3>
+    <h3 style="margin-top:28px"><i class="fas fa-credit-card"></i> Izvrši plaćanje</h3>
     
     <div class="form-group">
-      <label>Kategorija Plaćanja</label>
+      <label>Kategorija plaćanja</label>
       <div class="payment-category-grid" id="paymentCategories">
         <button class="payment-category-btn active" onclick="selectPaymentCategory(event, 'grocery')">
           <i class="fas fa-shopping-cart"></i>
@@ -2849,16 +2743,14 @@ margin-top: 0; /* 👈 OBAVEZNO */
           <i class="fas fa-plane"></i>
           <span>Putovanja</span>
         </button>
-<button class="payment-category-btn" onclick="selectPaymentCategory(event, 'subscriptions')">
-  <i class="fas fa-sync"></i>
-  <span>Pretplate</span>
-</button>
-
-<button class="payment-category-btn" onclick="selectPaymentCategory(event, 'donations')">
-  <i class="fas fa-hand-holding-heart"></i>
-  <span>Donacije</span>
-</button>
-
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'subscriptions')">
+          <i class="fas fa-sync"></i>
+          <span>Pretplate</span>
+        </button>
+        <button class="payment-category-btn" onclick="selectPaymentCategory(event, 'donations')">
+          <i class="fas fa-hand-holding-heart"></i>
+          <span>Donacije</span>
+        </button>
       </div>
     </div>
     
@@ -2870,7 +2762,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
     <div class="form-group">
       <label>Primatelj</label>
       <select id="recipient">
-        <option>Odaberi primatelja...</option>
+        <option>Odaberite primatelja...</option>
         <option>Marko Marković</option>
         <option>Ana Anić</option>
         <option>Petar Petrović</option>
@@ -2887,93 +2779,74 @@ margin-top: 0; /* 👈 OBAVEZNO */
 
     <!-- CURRENCY RATES -->
     <div style="margin-top:28px;">
-      <h3><i class="fas fa-exchange-alt"></i> Kursne Stope</h3>
+      <h3><i class="fas fa-exchange-alt"></i> Kursne stope</h3>
       <div class="currency-list" id="currencyList"></div>
     </div>
 
     <!-- SETTINGS PANEL -->
     <div class="settings-panel">
-      <h4><i class="fas fa-lock"></i> Brze Postavke Sigurnosti</h4>
+      <h4><i class="fas fa-lock"></i> Brze postavke sigurnosti</h4>
       <div class="settings-item">
         <div class="settings-label">
-          <strong>Biometrijska Autentifikacija</strong>
-          <small>Face ID i Fingerprint</small>
+          <strong>Biometrijska autentifikacija</strong>
+          <small>Face ID i otisak prsta</small>
         </div>
-        <div class="toggle-switch active" onclick="toggleSetting(event, 'Biometrijska Autentifikacija', true)"></div>
+        <div class="toggle-switch active" onclick="toggleSetting(event, 'Biometrijska autentifikacija', true)"></div>
       </div>
       <div class="settings-item">
         <div class="settings-label">
-          <strong>2FA - Dvofaktorska Zaštita</strong>
+          <strong>2FA - Dvofaktorska zaštita</strong>
           <small>SMS + aplikacija</small>
         </div>
         <div class="toggle-switch active" onclick="toggleSetting(event, '2FA zaštita', true)"></div>
       </div>
       <div class="settings-item">
         <div class="settings-label">
-          <strong>Notifikacije za Transakcije</strong>
+          <strong>Obavijesti za transakcije</strong>
           <small>Push obavijesti</small>
         </div>
-        <div class="toggle-switch active" onclick="toggleSetting(event, 'Notifikacije', true)"></div>
+        <div class="toggle-switch active" onclick="toggleSetting(event, 'Obavijesti', true)"></div>
       </div>
       <div class="settings-item">
         <div class="settings-label">
-          <strong>Dark Mode</strong>
+          <strong>Tamni prikaz</strong>
           <small>Uvijek uključeno</small>
         </div>
-        <div class="toggle-switch active" onclick="toggleSetting(event, 'Dark Mode', true)"></div>
+        <div class="toggle-switch active" onclick="toggleSetting(event, 'Tamni prikaz', true)"></div>
       </div>
     </div>
 
     <!-- TRANSACTIONS PREVIEW -->
-    <div class="transactions-preview" id="transactionsPreview" style="display:none">
-      <h4><i class="fas fa-list"></i> Nedavne Transakcije</h4>
-      <div id="transactionsList"></div>
+    <div class="transactions-preview">
+      <h4><i class="fas fa-clock"></i> Timeline aktivnosti</h4>
+
+      <div class="transaction-item">
+        <div class="transaction-left">
+          <div class="transaction-icon" style="background:rgba(34,211,238,.15);color:#22d3ee">
+            <i class="fas fa-sign-in-alt"></i>
+          </div>
+          <div class="transaction-details">
+            <strong>Prijava na sistem</strong>
+            <span>Upravo sada</span>
+          </div>
+        </div>
+        <div class="transaction-amount">✓</div>
+      </div>
+
+      <div class="transaction-item" id="firstTransaction" style="display:none">
+        <div class="transaction-left">
+          <div class="transaction-icon" style="background:rgba(34,197,94,.15);color:#22c55e">
+            <i class="fas fa-credit-card"></i>
+          </div>
+          <div class="transaction-details">
+            <strong id="transFirstName">Plaćanje</strong>
+            <span id="transFirstAmount"></span>
+          </div>
+        </div>
+        <div class="transaction-amount" id="transFirstValue"></div>
+      </div>
     </div>
   </div>
-
-<div class="transactions-preview" style="display:block">
-  <h4><i class="fas fa-clock"></i> Timeline Aktivnosti</h4>
-
-  <div class="transaction-item">
-    <div class="transaction-left">
-      <div class="transaction-icon" style="background:rgba(34,211,238,.15)">
-        <i class="fas fa-sign-in-alt"></i>
-      </div>
-      <div class="transaction-details">
-        <strong>Prijava na sistem</strong>
-        <span>Danas • 14:32</span>
-      </div>
-    </div>
-    <div class="transaction-amount">OK</div>
-  </div>
-
-  <div class="transaction-item">
-    <div class="transaction-left">
-      <div class="transaction-icon" style="background:rgba(34,197,94,.15)">
-        <i class="fas fa-credit-card"></i>
-      </div>
-      <div class="transaction-details">
-        <strong>Plaćanje</strong>
-        <span>€120 • Hrana</span>
-      </div>
-    </div>
-    <div class="transaction-amount">−€120</div>
-  </div>
-
-  <div class="transaction-item">
-    <div class="transaction-left">
-      <div class="transaction-icon" style="background:rgba(168,85,247,.15)">
-        <i class="fas fa-cog"></i>
-      </div>
-      <div class="transaction-details">
-        <strong>Promjena postavki</strong>
-        <span>Sigurnost</span>
-      </div>
-    </div>
-    <div class="transaction-amount">✔</div>
-  </div>
-</div>
-
 
   <!-- SPEND CHART -->
   <div class="card">
@@ -2992,7 +2865,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
   <!-- RISK SECTION -->
   <div class="card">
     <h3><i class="fas fa-shield-alt"></i> Analiza sigurnosnog statusa</h3>
-    <p class="sub">Real-time procjena rizika i sigurnosti računa</p>
+    <p class="sub">Real-time procjena rizika i sigurnosti računa.</p>
     
     <div class="risk-wrap">
       <div class="risk-chart-container">
@@ -3000,7 +2873,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
         <canvas id="riskChart"></canvas>
         <div class="risk-value">
           <strong id="riskValue">32</strong>
-          <span style="font-size:24px;opacity:.6">%</span>
+          <span>%</span>
         </div>
       </div>
       <div id="riskTip" class="risk-tooltip"></div>
@@ -3016,7 +2889,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
         <div class="risk-analysis-value">95%</div>
       </div>
       <div class="risk-analysis-item">
-        <div class="risk-analysis-label">Aktivnost Računa</div>
+        <div class="risk-analysis-label">Aktivnost računa</div>
         <div class="risk-analysis-meter">
           <div class="risk-analysis-bar" style="background: linear-gradient(90deg, #34d399, #10b981); width: 78%;"></div>
         </div>
@@ -3030,7 +2903,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
         <div class="risk-analysis-value">62%</div>
       </div>
       <div class="risk-analysis-item">
-        <div class="risk-analysis-label">Enkriptovani Promet</div>
+        <div class="risk-analysis-label">Enkriptovani promet</div>
         <div class="risk-analysis-meter">
           <div class="risk-analysis-bar" style="background: linear-gradient(90deg, #a78bfa, #8b5cf6); width: 100%;"></div>
         </div>
@@ -3048,10 +2921,10 @@ margin-top: 0; /* 👈 OBAVEZNO */
     <div class="stats-grid">
       <div class="stat-box">
         <strong id="transactionCount">0</strong>
-        Transakcija
+        Transakcije
       </div>
       <div class="stat-box">
-        <strong id="totalSpent">€0.00</strong>
+        <strong id="totalSpent">€0,00</strong>
         Ukupno
       </div>
     </div>
@@ -3060,7 +2933,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
   <!-- CATEGORY CHART -->
   <div class="card">
     <h3><i class="fas fa-pie-chart"></i> Analiza trošenja po kategorijama</h3>
-    <p class="sub" style="color:#e5e7eb;">Raspodjela vaših izdataka na osnovu tipa plaćanja</p>
+    <p class="sub" style="color:#e5e7eb;">Raspodjela vaših izdataka prema tipu plaćanja</p>
     
     <div class="category-controls">
       <button class="category-filter active" onclick="filterCategory('all')">Sve</button>
@@ -3078,50 +2951,50 @@ margin-top: 0; /* 👈 OBAVEZNO */
       <div class="category-stat">
         <div class="category-stat-icon"><i class="fas fa-utensils"></i></div>
         <div class="category-stat-name">Hrana</div>
-        <div class="category-stat-value" id="cat-food">€0</div>
+        <div class="category-stat-value" id="cat-food">€0,00</div>
       </div>
       <div class="category-stat">
         <div class="category-stat-icon"><i class="fas fa-taxi"></i></div>
         <div class="category-stat-name">Prijevoz</div>
-        <div class="category-stat-value" id="cat-transport">€0</div>
+        <div class="category-stat-value" id="cat-transport">€0,00</div>
       </div>
       <div class="category-stat">
         <div class="category-stat-icon"><i class="fas fa-ticket-alt"></i></div>
         <div class="category-stat-name">Zabava</div>
-        <div class="category-stat-value" id="cat-entertainment">€0</div>
+        <div class="category-stat-value" id="cat-entertainment">€0,00</div>
       </div>
       <div class="category-stat">
         <div class="category-stat-icon"><i class="fas fa-shopping-bag"></i></div>
         <div class="category-stat-name">Ostalo</div>
-        <div class="category-stat-value" id="cat-other">€0</div>
+        <div class="category-stat-value" id="cat-other">€0,00</div>
       </div>
       <div class="category-stat">
         <div class="category-stat-icon"><i class="fas fa-graduation-cap"></i></div>
         <div class="category-stat-name">Edukacija</div>
-        <div class="category-stat-value" id="cat-education">€0</div>
+        <div class="category-stat-value" id="cat-education">€0,00</div>
       </div>
       <div class="category-stat">
         <div class="category-stat-icon"><i class="fas fa-plane"></i></div>
         <div class="category-stat-name">Putovanja</div>
-        <div class="category-stat-value" id="cat-travel">€0</div>
+        <div class="category-stat-value" id="cat-travel">€0,00</div>
       </div>
     </div>
 
-    <div class="chart-label"><i class="fas fa-chart-bar"></i> Detaljan pregled različitih tipova transakcija</div>
+    <div class="chart-label"><i class="fas fa-chart-bar"></i> Detaljno pregled različitih tipova transakcija</div>
   </div>
 
   <!-- AI CHAT -->
   <div class="card chat">
     <div class="chat-header">
-      <h3><i class="fas fa-robot"></i> AI Asistent</h3>
-      <p class="sub">Postavi pitanje o svojem računu</p>
+      <h3><i class="fas fa-robot"></i> AI asistent</h3>
+      <p class="sub">Postavi pitanje o svojem računu.</p>
     </div>
     <div id="chatLog" class="chat-log">
-      <div class="msg bot">Zdravo! 👋 Ja sam tvoj financijski asistent. Tu sam da te pomognem sa bilo čim vezano uz tvoj račun!</div>
+      <div class="msg bot">Zdravo! Ja sam tvoj financijski asistent. Tu sam da ti pomognem sa bilo čim vezano uz tvoj račun!</div>
     </div>
     <div class="chat-input-wrap">
       <input id="chatInput" type="text" placeholder="Postavi pitanje…" onkeydown="if(event.key==='Enter')askAI()">
-      <button class="btn btn-primary" onclick="askAI()"><i class="fas fa-paper-plane"></i></button>
+      <button class="btn btn-primary" onclick="askAI()" style="min-height: auto;"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
 </div>
@@ -3131,14 +3004,14 @@ margin-top: 0; /* 👈 OBAVEZNO */
 </div>
 
 <!-- HOME PAGE -->
-<div id="homePage" class="page-content" style="display:none;">
+<div id="homePage" class="page-content">
 
 <div class="home-container">
   
-  <!-- CARD 1: Brze Akcije -->
+  <!-- CARD 1: Brz prenos -->
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('transfer')">
     <div class="home-card-icon"><i class="fas fa-paper-plane"></i></div>
-    <h4>Brz Prenos</h4>
+    <h4>Brz prenos</h4>
     <p>Pošalji novac prijateljima i porodici</p>
   </div>
 
@@ -3150,72 +3023,72 @@ margin-top: 0; /* 👈 OBAVEZNO */
   </div>
 
   <!-- CARD 3: Štednja -->
-  <div class="home-card" onclick="showNotification('success', '💰 Štedni plan pokrenut - Postavi mesečnu štednju')">
+  <div class="home-card" onclick="showNotification('success', 'Štedni plan je aktiviran - Postavi mesečnu štednju')">
     <div class="home-card-icon"><i class="fas fa-piggy-bank"></i></div>
     <h4>Štednja</h4>
-    <p>Automatski štedi deo svojih primanja</p>
+    <p>Automatski štedi dio svojih primanja</p>
   </div>
 
   <!-- CARD 4: Krediti -->
-  <div class="home-card" onclick="showNotification('success', '📊 Dostupan kreditor sa dobrih 3.5% - Primeni!')">
+  <div class="home-card" onclick="showNotification('success', 'Dostupan kreditor sa 3,5% - Primijeni!')">
     <div class="home-card-icon"><i class="fas fa-handshake"></i></div>
     <h4>Krediti</h4>
     <p>Brz pristup kreditorima sa malim kamatama</p>
   </div>
 
   <!-- CARD 5: Osiguranje -->
-  <div class="home-card" onclick="showNotification('success', '🛡️ Osiguranje računa je aktivirano - Zaštita do €100k')">
+  <div class="home-card" onclick="showNotification('success', 'Osiguranje računa je aktivirano - Zaštita do €100k')">
     <div class="home-card-icon"><i class="fas fa-shield-alt"></i></div>
     <h4>Osiguranje</h4>
-    <p>Zaštiti svojih novac od rizika</p>
+    <p>Zaštiti novac od rizika</p>
   </div>
 
   <!-- CARD 6: Cashback -->
-  <div class="home-card" onclick="showNotification('success', '💳 Zaradio si €45.50 cashback-a - Trebaš više?')">
+  <div class="home-card" onclick="showNotification('success', 'Zaradio si €45,50 cashback-a - Trebaj više?')">
     <div class="home-card-icon"><i class="fas fa-gift"></i></div>
-    <h4>Cashback Program</h4>
-    <p>Zaradite od 0.5% do 5% na svaki kupac</p>
+    <h4>Cashback program</h4>
+    <p>Zaradite 0,5% do 5% na svaki kupac</p>
   </div>
 
   <!-- CARD 7: Kartice -->
-  <div class="home-card" onclick="showNotification('success', '💳 Dostupne su Virtualne, Fizičke i Premium kartice')">
+  <div class="home-card" onclick="showNotification('success', 'Dostupne su virtuelne, fizičke i premium kartice')">
     <div class="home-card-icon"><i class="fas fa-credit-card"></i></div>
-    <h4>Dodatne Kartice</h4>
+    <h4>Dodatne kartice</h4>
     <p>Kreiraj dodatne kartice za porodicu</p>
   </div>
 
   <!-- CARD 8: Valute -->
-  <div class="home-card" onclick="showNotification('success', '💱 Razmjenite valute sa boljim kursevima nego konkurencija')">
+  <div class="home-card" onclick="showNotification('success', 'Razmijeni valute sa boljim kursevima')">
     <div class="home-card-icon"><i class="fas fa-exchange-alt"></i></div>
-    <h4>Multi-valuta</h4>
-    <p>Upravljajte više valuta istovremeno</p>
+    <h4>Multivalyuta</h4>
+    <p>Upravljaj više valuta istovremeno</p>
   </div>
 
   <!-- CARD 9: Plaćanja -->
   <div class="home-card" onclick="switchPage('dashboard'); quickAction('bills')">
     <div class="home-card-icon"><i class="fas fa-file-invoice"></i></div>
-    <h4>Plaćanja Računa</h4>
+    <h4>Plaćanja računa</h4>
     <p>Plati sve svoje račune na jednom mjestu</p>
   </div>
 
-  <!-- CARD 10: Fizička Lokacija -->
-  <div class="home-card" onclick="showNotification('success', '📍 Pronašli smo 45 Bankomata u vašoj blizini')">
+  <!-- CARD 10: Bankomati -->
+  <div class="home-card" onclick="showNotification('success', 'Pronašli smo 45 bankomata u vašoj blizini')">
     <div class="home-card-icon"><i class="fas fa-map-marker-alt"></i></div>
-    <h4>Nalazi Bankomata</h4>
+    <h4>Pronađi bankomat</h4>
     <p>Pronađi najbliži bankomat ili ogradu</p>
   </div>
 
   <!-- CARD 11: Podrška -->
-  <div class="home-card" onclick="showNotification('success', '📞 Tim podrške je dostupan 24/7 - Kontaktiraj nas!')">
+  <div class="home-card" onclick="showNotification('success', 'Tim podrške je dostupan 24/7 - Kontaktiraj nas!')">
     <div class="home-card-icon"><i class="fas fa-headset"></i></div>
     <h4>24/7 Podrška</h4>
-    <p>Govor sa stručnjakom savetnicima</p>
+    <p>Razgovori sa stručnjacima savetnicima</p>
   </div>
 
   <!-- CARD 12: Sigurnost -->
   <div class="home-card" onclick="openSettings()">
     <div class="home-card-icon"><i class="fas fa-lock"></i></div>
-    <h4>Sigurnosni Centar</h4>
+    <h4>Sigurnosni centar</h4>
     <p>Upravljaj svim sigurnosnim postavkama</p>
   </div>
 </div>
@@ -3226,7 +3099,7 @@ margin-top: 0; /* 👈 OBAVEZNO */
 <div id="settingsModal" class="modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h2><i class="fas fa-cog" style="color:#22d3ee;margin-right:10px;"></i> Sve Postavke</h2>
+      <h2><i class="fas fa-cog" style="color:#22d3ee;margin-right:10px;"></i> Sve postavke</h2>
       <button class="modal-close" onclick="closeSettings()"><i class="fas fa-times"></i></button>
     </div>
     <div style="max-height:600px;overflow-y:auto;">
@@ -3235,42 +3108,42 @@ margin-top: 0; /* 👈 OBAVEZNO */
         <h4><i class="fas fa-lock"></i> Sigurnost</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Biometrijska Autentifikacija</span>
+            <span>Biometrijska autentifikacija</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Biometrijska autentifikacija')"></div>
           </div>
           <div class="settings-card-item">
-            <span>2FA - Dvofaktorska Zaštita</span>
+            <span>2FA - Dvofaktorska zaštita</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, '2FA zaštita')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Pitanja za Sigurnost</span>
-            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Pitanja za sigurnost')"></div>
+            <span>Sigurnosna pitanja</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Sigurnosna pitanja')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Notifikacije o Pokušajima</span>
-            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Notifikacije o pokušajima')"></div>
+            <span>Obavijesti o pokušajima</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Obavijesti o pokušajima')"></div>
           </div>
         </div>
       </div>
 
-      <!-- NOTIFIKACIJE -->
+      <!-- OBAVIJESTI -->
       <div class="settings-card">
-        <h4><i class="fas fa-bell"></i> Notifikacije</h4>
+        <h4><i class="fas fa-bell"></i> Obavijesti</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Obavijest Transakcija</span>
+            <span>Obavijest transakcija</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Obavijest transakcija')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Sigurnosne Obavijesti</span>
+            <span>Sigurnosne obavijesti</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Sigurnosne obavijesti')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Obavijest o Novim Uslugama</span>
-            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Obavijest o novim uslugama')"></div>
+            <span>Obavijest novih usluga</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Obavijest novih usluga')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Email Obavijesti</span>
+            <span>Email obavijesti</span>
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Email obavijesti')"></div>
           </div>
         </div>
@@ -3281,19 +3154,19 @@ margin-top: 0; /* 👈 OBAVEZNO */
         <h4><i class="fas fa-user-secret"></i> Privatnost</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Djeljenje Podataka</span>
+            <span>Djeljenje podataka</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Djeljenje podataka')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Analitika i Praćenje</span>
+            <span>Analitika i praćenje</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Analitika i praćenje')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Marketinške Obavijesti</span>
+            <span>Marketinške obavijesti</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Marketinške obavijesti')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Kolačići Trećih Strana</span>
+            <span>Kolačići trećih strana</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Kolačići trećih strana')"></div>
           </div>
         </div>
@@ -3304,11 +3177,11 @@ margin-top: 0; /* 👈 OBAVEZNO */
         <h4><i class="fas fa-palette"></i> Prikaz</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Dark Mode</span>
-            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Dark mode')"></div>
+            <span>Tamni prikaz</span>
+            <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Tamni prikaz')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Kompaktan Pregled</span>
+            <span>Kompaktan pregled</span>
             <div class="toggle-switch" onclick="toggleModalSetting(event, 'Kompaktan pregled')"></div>
           </div>
           <div class="settings-card-item">
@@ -3316,8 +3189,8 @@ margin-top: 0; /* 👈 OBAVEZNO */
             <div class="toggle-switch active" onclick="toggleModalSetting(event, 'Animacije')"></div>
           </div>
           <div class="settings-card-item">
-            <span>Velika Slova</span>
-            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Velika slova')"></div>
+            <span>Veća slova</span>
+            <div class="toggle-switch" onclick="toggleModalSetting(event, 'Veća slova')"></div>
           </div>
         </div>
       </div>
@@ -3327,21 +3200,21 @@ margin-top: 0; /* 👈 OBAVEZNO */
         <h4><i class="fas fa-credit-card"></i> Plaćanja</h4>
         <div class="settings-card-list">
           <div class="settings-card-item">
-            <span>Dnevni Limit</span>
+            <span>Dnevni limit</span>
             <select class="settings-select" id="dailyLimitSelect" onchange="setDailyLimit(this.value)">
-              <option value="5000">€5,000</option>
-              <option value="10000" selected>€10,000</option>
-              <option value="20000">€20,000</option>
-              <option value="unlimited">Bez limitacije</option>
+              <option value="5000">€5.000</option>
+              <option value="10000" selected>€10.000</option>
+              <option value="20000">€20.000</option>
+              <option value="unlimited">Bez ograničenja</option>
             </select>
           </div>
           <div class="settings-card-item">
-            <span>Mjesečni Limit</span>
+            <span>Mjesečni limit</span>
             <select class="settings-select" id="monthlyLimitSelect" onchange="setMonthlyLimit(this.value)">
-              <option value="50000">€50,000</option>
-              <option value="100000" selected>€100,000</option>
-              <option value="200000">€200,000</option>
-              <option value="unlimited">Bez limitacije</option>
+              <option value="50000">€50.000</option>
+              <option value="100000" selected>€100.000</option>
+              <option value="200000">€200.000</option>
+              <option value="unlimited">Bez ograničenja</option>
             </select>
           </div>
         </div>
@@ -3351,48 +3224,32 @@ margin-top: 0; /* 👈 OBAVEZNO */
 </div>
 
 <script>
-function startDemoTour() {
-  const steps = [
-    "#headerBalanceStat",
-    ".bank-card",
-    ".balance-section",
-    ".quick-actions",
-    "#riskChart"
-  ]
+// KONSTANTE
+const RATE_BAM = 1.95583;
+const RATE_USD = 0.92;
 
-  steps.forEach((sel, i) => {
-    setTimeout(() => {
-      document.querySelector(sel)?.classList.add("highlight")
-    }, i * 1200)
-  })
-}
+// DOM ELEMENTI
+const clockEl = document.getElementById("clockTime");
+const balanceEl = document.getElementById("balance");
+const currencyEl = document.getElementById("currency");
+const amountEl = document.getElementById("amount");
+const cardStatusEl = document.getElementById("cardStatus");
+const bankCardEl = document.getElementById("bankCard");
+const riskRing = document.getElementById("riskRing");
+const riskTip = document.getElementById("riskTip");
+const freezeBtn = document.getElementById("freezeBtn");
+const recipientEl = document.getElementById("recipient");
+const settingsModal = document.getElementById("settingsModal");
+const loginScreen = document.getElementById("loginScreen");
+const loginBox = document.getElementById("loginBox");
 
-const RATE_BAM = 1.95583
-const RATE_USD = 0.92
+// Postavi korisničko ime
+const randomName = prompt("Unesite vaše ime:") || "Korisniče";
+document.getElementById("userName").textContent = randomName;
+document.getElementById("userInitials").textContent = randomName.charAt(0) + randomName.charAt(randomName.length - 1);
+document.getElementById("cardName").textContent = randomName.toUpperCase() + "";
 
-const clockEl = document.getElementById("clockTime")
-const balanceEl = document.getElementById("balance")
-const currencyEl = document.getElementById("currency")
-const amountEl = document.getElementById("amount")
-const cardStatusEl = document.getElementById("cardStatus")
-const bankCardEl = document.querySelector(".bank-card")
-const riskRing = document.getElementById("riskRing")
-const riskTip = document.getElementById("riskTip")
-const freezeBtn = document.getElementById("freezeBtn")
-const recipientEl = document.getElementById("recipient")
-const settingsModal = document.getElementById("settingsModal")
-
-// Set user name
-// Umjesto randomName, pitaj korisnika
-const randomName = prompt("Unesite vaše ime:") || "Korisniče"
-
-// Postavi ime u header i karticu
-document.getElementById("userName").textContent = randomName
-document.getElementById("userInitials").textContent =
-  randomName.charAt(0) + randomName.charAt(randomName.length - 1)
-document.getElementById("cardName").textContent =
-  randomName.toUpperCase() + " DOE"
-
+// STANJE APLIKACIJE
 let state = {
   balanceEUR: 2340,
   risk: 32,
@@ -3403,8 +3260,10 @@ let state = {
   categoryFilter: "all",
   selectedPaymentCategory: "grocery",
   transactionHistory: [],
-  dailyLimit: "€10,000",
-  monthlyLimit: "€100,000",
+  dailyLimit: "€10.000",
+  monthlyLimit: "€100.000",
+  savingsGoal: 2400,
+  savings: 840,
   settings: {
     biometric: true,
     twofa: true,
@@ -3418,7 +3277,7 @@ let state = {
     marketing: false,
     thirdPartyCookies: false
   }
-}
+};
 
 const paymentCategories = {
   grocery: "Kupovine",
@@ -3429,7 +3288,7 @@ const paymentCategories = {
   health: "Zdravlje",
   education: "Edukacija",
   travel: "Putovanja"
-}
+};
 
 const currencyRates = [
   { code: "EUR", name: "Euro", rate: 1.00, symbol: "€" },
@@ -3438,53 +3297,52 @@ const currencyRates = [
   { code: "GBP", name: "Britanske funte", rate: 1.17, symbol: "£" },
   { code: "CHF", name: "Švajcarski franak", rate: 1.03, symbol: "CHF" },
   { code: "JPY", name: "Japanski jen", rate: 155.80, symbol: "¥" }
-]
+];
 
 const randomAIResponses = [
-  "Dobrodošao u Fintech Nova Premium Bankarstvo!",
-  "Sigurno, sve je u redu!",
-  "Izvještavam... - nema sumnjive aktivnosti.",
-  "Karticu kontroliraš kao profesionalac! ",
+  "Dobrodošli u Fintech Premium bankarstvo!",
+  "Sve je sigurno i sve je u redu!",
+  "Izvještavam... nema sumnjive aktivnosti.",
+  "Karticu kontroliraš kao profesionalac!",
   "Status je optimalan, nastavi dalje! ",
   "Sve je pod kontrolom. Bravo!",
   "Nema upozorenja na mom radaru.",
   "Tvoj račun je sigurniji nego Fort Knox!",
   "Sistem je detektovao samo normalne aktivnosti.",
-  "Finansijska stabilnost na najvišem nivou!",
+  "Financijska stabilnost na najvišem nivou!",
   "Sve transakcije su autentične i bezbjedne!"
-]
-
-const notificationMessages = {
-  pay_success: "Plaćanje uspješno! Sredstva prenesena.",
-  pay_failed: "Plaćanje nije moguće! Nedovoljno sredstava.",
-  pay_frozen: "Kartica je zamrznuta! Aktiviraj je prvo.",
-  freeze_on: "Kartica je zamrznuta zbog sigurnosti.",
-  freeze_off: "Kartica je aktivirana i spremna za upotrebu.",
-  risk_warning: "Rizik se povećao! Budite oprezniji sa trošenjem.",
-  risk_high: "Visok rizik detektovan! Razmotrite zamrzavanje.",
-  currency_change: "Valuta promijenjena na"
-}
-
-const featureMessages = {
-  transfer: "Prijenos sredstava - Slanje novca je olakšano!",
-  request: "Zahtjev plaćanja je poslán kontaktu.",
-  invest: "Otvoren investicijski portal sa boljim prinosima.",
-  bills: "pregled svih računa - Automatski plaćaj račune."
-}
+];
 
 const alerts = [
-  "Dobrodošao u Fintech Nova - Sigurna finansijska rješenja!",
+  "Dobrodošli u Fintech - Sigurna finansijska rješenja!",
   "Za sva pitanja stojimo ti na raspolaganju 24/7.",
   "Savjet: Postavi limit transakcija za dodatnu sigurnost.",
   "Bonus: Otvori račun i dobij €5 cashback.",
   "Upozorenje: Provjeri privatnost svojih podataka.",
-  "Novi premium feature: Investicije sa 0% naknada!"
-]
+  "Novi premium feature: Investicije sa 0% naknada! 🚀",
+  "Sigurnosna poruka: Nikad ne dijeli PIN kod sa nikim!",
+  "Savjet: Koristi biometrijsku autentifikaciju."
+];
 
-let alertIndex = 0
+let alertIndex = 0;
 
-/* SWITCH PAGE */
+/* ===== FUNKCIJE ===== */
 
+// LOGIN FUNKCIONALNOST
+function login() {
+  const userName = document.getElementById("loginName").value || "Korisniče";
+  loginBox.classList.add("loading");
+  
+  setTimeout(() => {
+    loginScreen.classList.remove("active");
+    loginBox.classList.remove("loading");
+    document.getElementById("userName").textContent = userName;
+    render();
+    showNotification("success", "Uspješno prijavljen!");
+  }, 1600);
+}
+
+// PREBACIVANJE STRANICA
 function switchPage(page) {
   document.querySelectorAll('.page-content').forEach(p => {
     p.classList.remove('active');
@@ -3503,112 +3361,100 @@ function switchPage(page) {
   });
 }
 
-/* CURRENCY LIST INITIALIZATION */
+// INICIJALIZACIJA KURSNIH STOPA
 function initCurrencyList() {
-  const list = document.getElementById("currencyList")
-  list.innerHTML = ""
+  const list = document.getElementById("currencyList");
+  list.innerHTML = "";
   currencyRates.forEach(curr => {
-    const item = document.createElement("div")
-    item.className = "currency-item"
+    const item = document.createElement("div");
+    item.className = "currency-item";
     item.innerHTML = `
       <div>
         <strong>${curr.code}</strong> - ${curr.name}
       </div>
       <div>${curr.symbol} ${curr.rate.toFixed(2)}</div>
-    `
-    list.appendChild(item)
-  })
+    `;
+    list.appendChild(item);
+  });
 }
 
+// AŽURIRANJE TOP ALERT
 function updateTopAlert(){
-  document.getElementById("topAlertText").textContent = alerts[alertIndex % alerts.length]
-  alertIndex++
+  document.getElementById("topAlertText").textContent = alerts[alertIndex % alerts.length];
+  alertIndex++;
 }
 
-setInterval(updateTopAlert, 8000)
+setInterval(updateTopAlert, 8000);
 
-/* NOTIFICATION SYSTEM */
+/* ===== NOTIFIKACIJSKI SISTEM ===== */
 function showNotification(type, message, duration = 3500) {
-  const notif = document.createElement("div")
-  notif.className = `notification ${type}`
-  notif.innerHTML = message
-  document.body.appendChild(notif)
+  const notif = document.createElement("div");
+  notif.className = `notification ${type}`;
+  notif.innerHTML = message;
+  document.body.appendChild(notif);
   
   setTimeout(() => {
-    notif.style.animation = "slideOut .3s ease-out forwards"
-    setTimeout(() => notif.remove(), 300)
-  }, duration)
+    notif.style.animation = "slideOut .3s ease-out forwards";
+    setTimeout(() => notif.remove(), 300);
+  }, duration);
 }
 
-/* CLOCK */
+/* ===== SAT ===== */
 function updateClock() {
-  const now = new Date()
-  const hours = String(now.getHours()).padStart(2, '0')
-  const minutes = String(now.getMinutes()).padStart(2, '0')
-  const seconds = String(now.getSeconds()).padStart(2, '0')
-  clockEl.textContent = `${hours}:${minutes}:${seconds}`
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  clockEl.textContent = `${hours}:${minutes}:${seconds}`;
 }
 
-updateClock()
-setInterval(updateClock, 1000)
+updateClock();
+setInterval(updateClock, 1000);
 
-/* CHART GRADIENT HELPER */
+/* ===== CHART GRADIENT HELPER ===== */
 function makeGradient(ctx, c1, c2){
-  const g = ctx.createLinearGradient(0, 0, 0, 250)
-  g.addColorStop(0, c1)
-  g.addColorStop(1, c2)
-  return g
+  const g = ctx.createLinearGradient(0, 0, 0, 250);
+  g.addColorStop(0, c1);
+  g.addColorStop(1, c2);
+  return g;
 }
 
-/* SPEND CHART */
-const spendCtx = document.getElementById("spendChart").getContext("2d")
-
+/* ===== SPEND CHART ===== */
+const spendCtx = document.getElementById("spendChart").getContext("2d");
 const spendChartInstance = new Chart(spendCtx, {
   type: "line",
   data: {
     labels: [""],
     datasets: [{
       data: [0],
-
       fill: true,
       tension: 0.45,
-
       backgroundColor: makeGradient(
         spendCtx,
         "rgba(34,211,238,.18)",
         "rgba(34,211,238,.01)"
       ),
-
       borderColor: "#22d3ee",
       borderWidth: 2,
-
-      pointRadius: 0,                 // 👈 KLJUČNO
+      pointRadius: 0,
       pointHoverRadius: 6,
       pointHitRadius: 12,
-
       pointBackgroundColor: "#22d3ee",
       pointBorderWidth: 0,
-
       segment: {
-        borderColor: ctx =>
-          ctx.p1DataIndex > 0
-            ? "#22d3ee"
-            : "rgba(34,211,238,.4)"
+        borderColor: ctx => ctx.p1DataIndex > 0 ? "#22d3ee" : "rgba(34,211,238,.4)"
       }
     }]
   },
   options: {
     responsive: true,
     maintainAspectRatio: false,
-
     interaction: {
       mode: "index",
       intersect: false
     },
-
     plugins: {
       legend: { display: false },
-
       tooltip: {
         backgroundColor: "rgba(2,8,23,.95)",
         borderColor: "rgba(34,211,238,.35)",
@@ -3617,39 +3463,43 @@ const spendChartInstance = new Chart(spendCtx, {
         displayColors: false,
         titleColor: "#22d3ee",
         bodyColor: "#e5e7eb",
-
         titleFont: { size: 13, weight: "600" },
-        bodyFont: { size: 12 }
+        bodyFont: { size: 12 },
+        callbacks: {
+          label: function(context) {
+            const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
+            return currSymbol + context.parsed.y.toFixed(2);
+          }
+        }
       }
     },
-
     scales: {
       x: {
         display: false
       },
       y: {
         beginAtZero: true,
-
         grid: {
           color: "rgba(255,255,255,.04)",
           drawBorder: false
         },
-
         ticks: {
           maxTicksLimit: 5,
           padding: 8,
-          callback: v => `€${v}`,
+          callback: v => {
+            const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
+            return currSymbol + v;
+          },
           font: { size: 11 },
           color: "rgba(226,232,240,.55)"
         }
       }
     }
   }
-})
+});
 
-
-/* CATEGORY CHART */
-const categoryCtx = document.getElementById("categoryChart").getContext("2d")
+/* ===== CATEGORY CHART ===== */
+const categoryCtx = document.getElementById("categoryChart").getContext("2d");
 const categoryChartInstance = new Chart(categoryCtx, {
   type: "bar",
   data: {
@@ -3703,7 +3553,10 @@ const categoryChartInstance = new Chart(categoryCtx, {
         padding: 12,
         displayColors: true,
         callbacks: {
-          label: (ctx) => ` €${ctx.parsed.x.toFixed(2)}`
+          label: (ctx) => {
+            const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
+            return ` ${currSymbol}${ctx.parsed.x.toFixed(2)}`;
+          }
         }
       }
     },
@@ -3711,7 +3564,14 @@ const categoryChartInstance = new Chart(categoryCtx, {
       x: {
         display: true,
         grid: {color: "rgba(34,211,238,.08)", drawBorder: false},
-        ticks: {color: "rgba(229,231,235,.5)", font: {size: 11}},
+        ticks: {
+          color: "rgba(229,231,235,.5)",
+          font: {size: 11},
+          callback: v => {
+            const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
+            return currSymbol + v;
+          }
+        },
         beginAtZero: true
       },
       y: {
@@ -3720,10 +3580,10 @@ const categoryChartInstance = new Chart(categoryCtx, {
       }
     }
   }
-})
+});
 
-/* RISK CHART */
-const riskCtx = document.getElementById("riskChart").getContext("2d")
+/* ===== RISK CHART ===== */
+const riskCtx = document.getElementById("riskChart").getContext("2d");
 const riskChartInstance = new Chart(riskCtx, {
   type: "doughnut",
   data: {
@@ -3754,95 +3614,65 @@ const riskChartInstance = new Chart(riskCtx, {
       }
     }
   }
-})
+});
 
-/* UPDATE RISK UI */
+/* ===== AŽURIRANJE RISK UI ===== */
 function updateRiskUI(){
-  riskChartInstance.data.datasets[0].data = [100 - state.risk, state.risk]
-  riskChartInstance.update()
+  riskChartInstance.data.datasets[0].data = [100 - state.risk, state.risk];
+  riskChartInstance.update();
 
-  const riskPercentage = Math.round(state.risk)
-  document.getElementById("riskValue").textContent = riskPercentage
+  const riskPercentage = Math.round(state.risk);
+  document.getElementById("riskValue").textContent = riskPercentage;
 
-  let riskLabel, glow, msg
+  let riskLabel, glow, msg;
   if (state.risk < 50) {
-    riskLabel = "Nizak rizik - Sve je sigurno "
-    glow = "radial-gradient(circle, rgba(34,211,238,.5), transparent 65%)"
-    msg = "Tvoj račun je u odličnom sigurnosnom stanju"
+    riskLabel = "Nizak rizik - Sve je sigurno ✓";
+    glow = "radial-gradient(circle, rgba(34,211,238,.5), transparent 65%)";
+    msg = "Tvoj račun je u odličnom sigurnosnom stanju";
   } else if (state.risk < 80) {
-    riskLabel = "Srednji rizik - Budi oprezniji"
-    glow = "radial-gradient(circle, rgba(250,204,21,.5), transparent 65%)"
-    msg = "Detektovan povećan rizik - preporuka je smanjenje transakcija"
+    riskLabel = "Srednji rizik - Budi oprezniji.";
+    glow = "radial-gradient(circle, rgba(250,204,21,.5), transparent 65%)";
+    msg = "Detektovan povećan rizik - preporuka je smanjenje transakcija.";
   } else {
-    riskLabel = "Visok rizik - Nemedljeno dejstvo!"
-    glow = "radial-gradient(circle, rgba(239,68,68,.6), transparent 65%)"
-    msg = "Visok rizik – odmah zamrzni karticu i kontaktiraj podršku"
+    riskLabel = "Visok rizik - nedjeljivo dejstvo! ";
+    glow = "radial-gradient(circle, rgba(239,68,68,.6), transparent 65%)";
+    msg = "Visok rizik – odmah zamrzni karticu i kontaktiraj podršku!";
   }
 
-  document.getElementById("riskText").textContent = riskLabel
-  riskRing.style.background = glow
-  riskTip.textContent = msg
-  riskRing.classList.toggle("danger", state.risk >= 80)
+  document.getElementById("riskText").textContent = riskLabel;
+  riskRing.style.background = glow;
+  riskTip.textContent = msg;
+  riskRing.classList.toggle("danger", state.risk >= 80);
 
-  document.getElementById("transactionCount").textContent = state.transactions.length
-  const totalSpent = state.transactions.reduce((a, b) => a + b, 0)
-  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
-  document.getElementById("totalSpent").textContent = currSymbol + totalSpent.toFixed(2)
+  document.getElementById("transactionCount").textContent = state.transactions.length;
+  const totalSpent = state.transactions.reduce((a, b) => a + b, 0);
+  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
+  document.getElementById("totalSpent").textContent = currSymbol + formatNumber(totalSpent);
 
-  document.getElementById("headerRisk").textContent = riskPercentage + "%"
+  document.getElementById("headerRisk").textContent = riskPercentage + "%";
   
-  updateTransactionsPreview()
+  updateTransactionsPreview();
 }
 
-/* UPDATE TRANSACTIONS PREVIEW */
+/* ===== AŽURIRANJE TRANSAKCIJA ===== */
 function updateTransactionsPreview(){
-  const preview = document.getElementById("transactionsPreview")
-  const list = document.getElementById("transactionsList")
-  
   if (state.transactionHistory.length === 0) {
-    preview.style.display = "none"
-    return
+    document.getElementById("firstTransaction").style.display = "none";
+    return;
   }
   
-  preview.style.display = "block"
-  list.innerHTML = ""
+  const firstTrans = state.transactionHistory[0];
+  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
   
-  const categoryIcons = {
-    grocery: "fa-shopping-cart",
-    food: "fa-utensils",
-    transport: "fa-taxi",
-    entertainment: "fa-ticket-alt",
-    utilities: "fa-home",
-    health: "fa-heartbeat",
-    education: "fa-graduation-cap",
-    travel: "fa-plane"
-  }
-  
-  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
-  
-  state.transactionHistory.slice(-5).reverse().forEach((transaction) => {
-    const iconClass = categoryIcons[transaction.category] || "fa-money-bill"
-    const item = document.createElement("div")
-    item.className = "transaction-item"
-    item.innerHTML = `
-      <div class="transaction-left">
-        <div class="transaction-icon" style="background:rgba(34,211,238,.15);color:#22d3ee">
-          <i class="fas ${iconClass}"></i>
-        </div>
-        <div class="transaction-details">
-          <strong>${transaction.recipient}</strong>
-          <span>Prije nekoliko trenutaka</span>
-        </div>
-      </div>
-      <div class="transaction-amount">-${currSymbol}${transaction.amount.toFixed(2)}</div>
-    `
-    list.appendChild(item)
-  })
+  document.getElementById("transFirstName").textContent = firstTrans.recipient;
+  document.getElementById("transFirstAmount").textContent = firstTrans.category + " • Prije par trenutaka";
+  document.getElementById("transFirstValue").textContent = "-" + currSymbol + formatNumber(firstTrans.amount);
+  document.getElementById("firstTransaction").style.display = "flex";
 }
 
-/* UPDATE CATEGORY STATS */
+/* ===== AŽURIRANJE KATEGORIJE CHART ===== */
 function updateCategoryChart(){
-  const categories = state.categories
+  const categories = state.categories;
   
   categoryChartInstance.data.datasets[0].data = [
     categories.food,
@@ -3851,107 +3681,113 @@ function updateCategoryChart(){
     categories.other,
     categories.education,
     categories.travel
-  ]
-  categoryChartInstance.update()
+  ];
+  categoryChartInstance.update();
 
-  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
-  document.getElementById("cat-food").textContent = currSymbol + categories.food.toFixed(2)
-  document.getElementById("cat-transport").textContent = currSymbol + categories.transport.toFixed(2)
-  document.getElementById("cat-entertainment").textContent = currSymbol + categories.entertainment.toFixed(2)
-  document.getElementById("cat-other").textContent = currSymbol + categories.other.toFixed(2)
-  document.getElementById("cat-education").textContent = currSymbol + categories.education.toFixed(2)
-  document.getElementById("cat-travel").textContent = currSymbol + categories.travel.toFixed(2)
+  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
+  document.getElementById("cat-food").textContent = currSymbol + formatNumber(categories.food);
+  document.getElementById("cat-transport").textContent = currSymbol + formatNumber(categories.transport);
+  document.getElementById("cat-entertainment").textContent = currSymbol + formatNumber(categories.entertainment);
+  document.getElementById("cat-other").textContent = currSymbol + formatNumber(categories.other);
+  document.getElementById("cat-education").textContent = currSymbol + formatNumber(categories.education);
+  document.getElementById("cat-travel").textContent = currSymbol + formatNumber(categories.travel);
 }
 
-/* FILTER CATEGORY */
+/* ===== FORMATIRANJE BROJEVA ===== */
+function formatNumber(num) {
+  return num.toLocaleString('bs-BA', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+/* ===== FILTRIRANJE KATEGORIJE ===== */
 function filterCategory(cat){
-  state.categoryFilter = cat
-  const buttons = document.querySelectorAll(".category-filter")
-  buttons.forEach(btn => btn.classList.remove("active"))
-  event.target.classList.add("active")
-  const catNames = {all: "svim kategorijama", food: "hrani", transport: "prijevozu", entertainment: "zabavi", other: "ostalom"}
-  showNotification("success", `📊 Filtriranje po ${catNames[cat]}`)
+  state.categoryFilter = cat;
+  const buttons = document.querySelectorAll(".category-filter");
+  buttons.forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+  const catNames = {all: "svim kategorijama", food: "hrani", transport: "prijevozu", entertainment: "zabavi", other: "ostalom"};
+  showNotification("success", `Filtriranje po ${catNames[cat]}`);
 }
 
-/* SELECT PAYMENT CATEGORY */
+/* ===== IZBOR KATEGORIJE PLAĆANJA ===== */
 function selectPaymentCategory(e, category) {
-  document.querySelectorAll(".payment-category-btn").forEach(btn => btn.classList.remove("active"))
-  e.target.closest(".payment-category-btn").classList.add("active")
-  state.selectedPaymentCategory = category
+  document.querySelectorAll(".payment-category-btn").forEach(btn => btn.classList.remove("active"));
+  e.target.closest(".payment-category-btn").classList.add("active");
+  state.selectedPaymentCategory = category;
 }
 
-/* MAIN RENDER FUNCTION */
+/* ===== GLAVNA RENDER FUNKCIJA ===== */
 function render(){
-  let value, rate, currSymbol
+  let value, rate, currSymbol;
   
   if (currencyEl.value === "EUR") {
-    value = state.balanceEUR
-    currSymbol = "€"
+    value = state.balanceEUR;
+    currSymbol = "€";
   } else if (currencyEl.value === "BAM") {
-    value = state.balanceEUR * RATE_BAM
-    currSymbol = "KM"
+    value = state.balanceEUR * RATE_BAM;
+    currSymbol = "KM";
   } else {
-    value = state.balanceEUR * RATE_USD
-    currSymbol = "$"
+    value = state.balanceEUR * RATE_USD;
+    currSymbol = "$";
   }
 
-  balanceEl.textContent = value.toFixed(2)
-  document.getElementById("symbol").textContent = currSymbol
-  document.getElementById("headerBalance").textContent = currSymbol + value.toFixed(0)
+  balanceEl.textContent = formatNumber(value);
+  document.getElementById("symbol").textContent = currSymbol;
+  document.getElementById("headerBalance").textContent = currSymbol + Math.floor(value).toLocaleString();
 
-  updateRiskUI()
-  updateCategoryChart()
+  updateRiskUI();
+  updateCategoryChart();
 }
 
-/* PAY FUNCTION */
+/* ===== PLAĆANJE ===== */
 function pay(){
-  const amount = parseFloat(amountEl.value)
-  const recipient = recipientEl.value
+  const amount = parseFloat(amountEl.value);
+  const recipient = recipientEl.value;
   
   if (!amount || amount <= 0) {
-    showNotification("danger", "Unesite ispravan iznos!")
-    return
+    showNotification("danger", "Unesite ispravan iznos!");
+    return;
   }
 
-  if (recipient === "Odaberi primatelja..." || recipient === "Novi primatelj...") {
-    showNotification("danger", "Molimo odaberite primatelja!")
-    return
+  if (recipient === "Odaberite primatelja..." || recipient === "Novi primatelj...") {
+    showNotification("danger", "Molimo odaberite primatelja!");
+    return;
   }
   
   if (state.frozen) {
-    showNotification("danger", notificationMessages.pay_frozen)
-    return
+    showNotification("danger", "Kartica je zamrznuta! Aktiviraj je prvo.");
+    return;
   }
 
-  let eurAmount
+  let eurAmount;
   if (currencyEl.value === "EUR") {
-    eurAmount = amount
+    eurAmount = amount;
   } else if (currencyEl.value === "BAM") {
-    eurAmount = amount / RATE_BAM
+    eurAmount = amount / RATE_BAM;
   } else {
-    eurAmount = amount / RATE_USD
+    eurAmount = amount / RATE_USD;
   }
   
   if (eurAmount > state.balanceEUR) {
-    showNotification("danger", notificationMessages.pay_failed)
-    return
+    showNotification("danger", " Nedovoljno sredstava!");
+    return;
   }
 
-  balanceEl.classList.remove("balance-flash")
-  void balanceEl.offsetWidth
-  balanceEl.classList.add("balance-flash")
+  balanceEl.classList.remove("balance-flash");
+  void balanceEl.offsetWidth;
+  balanceEl.classList.add("balance-flash");
 
-  state.balanceEUR -= eurAmount
-  state.risk = Math.min(95, state.risk + amount / 100)
-  state.transactions.push(amount)
+  state.balanceEUR -= eurAmount;
+  state.risk = Math.min(95, state.risk + amount / 100);
+  state.transactions.push(amount);
+  state.savings = Math.min(state.savingsGoal, state.savings + amount * 0.1);
 
-  // Add to transaction history
-  state.transactionHistory.push({
+  // Dodaj u historiju transakcija
+  state.transactionHistory.unshift({
     amount: amount,
     recipient: recipient,
     category: state.selectedPaymentCategory,
     timestamp: new Date()
-  })
+  });
 
   const categoryMap = {
     grocery: "other",
@@ -3962,237 +3798,183 @@ function pay(){
     health: "other",
     education: "education",
     travel: "travel"
-  }
-  const mappedCat = categoryMap[state.selectedPaymentCategory]
-  state.categories[mappedCat] += amount
+  };
+  const mappedCat = categoryMap[state.selectedPaymentCategory];
+  state.categories[mappedCat] += amount;
 
-  state.spendHistory.push(state.spendHistory.at(-1) + amount)
+  state.spendHistory.push(state.spendHistory.at(-1) + amount);
   if (state.spendHistory.length > 30) {
-    state.spendHistory.shift()
-    spendChartInstance.data.labels.shift()
-    spendChartInstance.data.datasets[0].data.shift()
+    state.spendHistory.shift();
+    spendChartInstance.data.labels.shift();
+    spendChartInstance.data.datasets[0].data.shift();
   }
 
-  spendChartInstance.data.labels.push("")
-  spendChartInstance.data.datasets[0].data.push(state.spendHistory.at(-1))
-  spendChartInstance.update()
+  spendChartInstance.data.labels.push("");
+  spendChartInstance.data.datasets[0].data.push(state.spendHistory.at(-1));
+  spendChartInstance.update();
 
-  showNotification("success", notificationMessages.pay_success)
+  showNotification("success", "Plaćanje uspješno!");
   
   if (state.risk >= 80) {
-    setTimeout(() => showNotification("danger", notificationMessages.risk_high, 4000), 1500)
+    setTimeout(() => showNotification("danger", "Visok rizik detektovan! Razmotri zamrzavanje.", 4000), 1500);
   } else if (state.risk >= 60) {
-    setTimeout(() => showNotification("warning", notificationMessages.risk_warning, 4000), 1500)
+    setTimeout(() => showNotification("warning", "Rizik se povećao! Budite oprezniji.", 4000), 1500);
   }
 
-  amountEl.value = ""
-  recipientEl.value = "Odaberite primatelja"
-  render()
+  amountEl.value = "";
+  recipientEl.value = "Odaberite primatelja...";
+  render();
+  updateSavingsBar();
 }
 
-/* TOGGLE FREEZE FUNCTION */
-function toggleFreeze(){
-  state.frozen = !state.frozen
-  cardStatusEl.textContent = state.frozen ? "Zamrznuta" : "Aktivna"
-  cardStatusEl.className = "status " + (state.frozen ? "frozen" : "active")
-  bankCardEl.classList.toggle("frozen", state.frozen)
-  freezeBtn.innerHTML = state.frozen ? '<i class="fas fa-lock-open"></i> Odmrzni' : '<i class="fas fa-lock"></i> Zamrzni'
-  freezeBtn.classList.toggle("btn-success", !state.frozen)
-  freezeBtn.classList.toggle("btn-danger", state.frozen)
+/* ===== AŽURIRANJE ŠTEDNJE ===== */
+function updateSavingsBar() {
+  const percentage = (state.savings / state.savingsGoal) * 100;
+  const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
   
-  const message = state.frozen ? notificationMessages.freeze_on : notificationMessages.freeze_off
-  const type = state.frozen ? "danger" : "success"
-  showNotification(type, message)
-}
-
-/* QUICK ACTIONS */
-function quickAction(action){
-  const btn = event.target.closest(".action-btn") || event.currentTarget
-  if (btn.classList) {
-    btn.classList.add("active")
-    showNotification("success", featureMessages[action])
-    setTimeout(() => btn.classList.remove("active"), 1500)
+  let savingsEUR = state.savings;
+  if (currencyEl.value === "BAM") {
+    savingsEUR = state.savings * RATE_BAM;
+  } else if (currencyEl.value === "USD") {
+    savingsEUR = state.savings * RATE_USD;
   }
+  
+  document.getElementById("savingsBar").style.width = percentage + "%";
+  document.getElementById("savingsAmount").textContent = `${currSymbol}${formatNumber(savingsEUR)} / ${currSymbol}${formatNumber(state.savingsGoal)}`;
 }
 
-/* SETTINGS MODAL */
+/* ===== ZAMRZAVANJE KARTICE ===== */
+function toggleFreeze(){
+  state.frozen = !state.frozen;
+  cardStatusEl.textContent = state.frozen ? "Zamrznuta" : "Aktivna";
+  cardStatusEl.className = "status " + (state.frozen ? "frozen" : "active");
+  bankCardEl.classList.toggle("frozen", state.frozen);
+  freezeBtn.innerHTML = state.frozen ? '<i class="fas fa-lock-open"></i> Odmrzni' : '<i class="fas fa-lock"></i> Zamrzni';
+  freezeBtn.classList.toggle("btn-success", !state.frozen);
+  freezeBtn.classList.toggle("btn-danger", state.frozen);
+  
+  const message = state.frozen ? "Kartica je zamrznuta zbog sigurnosti." : "Kartica je aktivirana i spremna za upotrebu.";
+  const type = state.frozen ? "danger" : "success";
+  showNotification(type, message);
+}
+
+/* ===== BRZE AKCIJE ===== */
+function quickAction(action){
+  const messages = {
+    transfer: "Otvoren prenos sredstava",
+    request: "Zahtjev plaćanja je poslán",
+    invest: "Otvoren investicijski portal",
+    bills: "Pregled računa"
+  };
+  
+  showNotification("success", messages[action]);
+}
+
+/* ===== POSTAVKE ===== */
 function openSettings(){
-  settingsModal.classList.add("active")
+  settingsModal.classList.add("active");
 }
 
 function closeSettings(){
-  settingsModal.classList.remove("active")
+  settingsModal.classList.remove("active");
 }
 
 function toggleModalSetting(e, label){
-  e.currentTarget.classList.toggle("active")
-  const isActive = e.currentTarget.classList.contains("active")
-  
-  // Update state
-  const settingsMap = {
-    'Biometrijska autentifikacija': 'biometric',
-    '2FA zaštita': 'twofa',
-    'Pitanja za sigurnost': 'securityQuestions',
-    'Notifikacije o pokušajima': 'attemptNotifications',
-    'Obavijest transakcija': 'transactionNotifications',
-    'Sigurnosne obavijesti': 'securityNotifications',
-    'Obavijest o novim uslugama': 'newServiceNotifications',
-    'Email obavijesti': 'emailNotifications',
-    'Djeljenje podataka': 'dataSharing',
-    'Analitika i praćenje': 'analytics',
-    'Marketinške obavijesti': 'marketing',
-    'Kolačići trećih strana': 'thirdPartyCookies',
-    'Dark mode': 'darkmode',
-    'Kompaktan pregled': 'compactView',
-    'Animacije': 'animations',
-    'Velika slova': 'largeText'
-  }
-  
-  const settingKey = settingsMap[label]
-  if (settingKey) {
-    state.settings[settingKey] = isActive
-  }
-  
-  showNotification("success", `${isActive ? "✅" : "❌"} ${label} je ${isActive ? "aktivirana" : "deaktivirana"}`)
+  e.currentTarget.classList.toggle("active");
+  const isActive = e.currentTarget.classList.contains("active");
+  showNotification("success", `${isActive ? "✅" : "❌"} ${label} je ${isActive ? "aktivirana" : "deaktivirana"}`);
 }
 
 function setDailyLimit(value) {
   const displayValues = {
-    '5000': '€5,000',
-    '10000': '€10,000',
-    '20000': '€20,000',
-    'unlimited': 'Bez limitacije'
-  }
-  state.dailyLimit = displayValues[value] || value
-  showNotification("update", `Dnevni limit je postavljen na: ${state.dailyLimit}`)
+    '5000': '€5.000',
+    '10000': '€10.000',
+    '20000': '€20.000',
+    'unlimited': 'Bez ograničenja'
+  };
+  state.dailyLimit = displayValues[value] || value;
+  showNotification("update", `Dnevni limit je postavljen na: ${state.dailyLimit}`);
 }
 
 function setMonthlyLimit(value) {
   const displayValues = {
-    '50000': '€50,000',
-    '100000': '€100,000',
-    '200000': '€200,000',
-    'unlimited': 'Bez limitacije'
-  }
-  state.monthlyLimit = displayValues[value] || value
-  showNotification("update", `Mjesečni limit je postavljen na: ${state.monthlyLimit}`)
+    '50000': '€50.000',
+    '100000': '€100.000',
+    '200000': '€200.000',
+    'unlimited': 'Bez ograničenja'
+  };
+  state.monthlyLimit = displayValues[value] || value;
+  showNotification("update", `Mjesečni limit je postavljen na: ${state.monthlyLimit}`);
 }
 
-/* AI CHAT */
+/* ===== AI CHAT ===== */
 function askAI(){
-  const q = document.getElementById("chatInput").value.trim().toLowerCase()
-  if (!q) return
+  const q = document.getElementById("chatInput").value.trim().toLowerCase();
+  if (!q) return;
 
-  const userMsg = document.createElement("div")
-  userMsg.className = "msg user"
-  userMsg.textContent = q
-  document.getElementById("chatLog").appendChild(userMsg)
+  const userMsg = document.createElement("div");
+  userMsg.className = "msg user";
+  userMsg.textContent = q;
+  document.getElementById("chatLog").appendChild(userMsg);
 
-  let response = randomAIResponses[Math.floor(Math.random() * randomAIResponses.length)]
+  let response = randomAIResponses[Math.floor(Math.random() * randomAIResponses.length)];
   
   if (q.includes("stanje") || q.includes("saldo") || q.includes("balanc")) {
-    const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$"
+    const currSymbol = currencyEl.value === "EUR" ? "€" : currencyEl.value === "BAM" ? "KM" : "$";
     const displayAmount = currencyEl.value === "EUR" ? state.balanceEUR : 
                          currencyEl.value === "BAM" ? state.balanceEUR * RATE_BAM :
-                         state.balanceEUR * RATE_USD
-    response = `💰 Tvoje trenutno stanje je ${currSymbol}${displayAmount.toFixed(2)}`
+                         state.balanceEUR * RATE_USD;
+    response = `Tvoje trenutno stanje je ${currSymbol}${formatNumber(displayAmount)}`;
   }
-  else if (q.includes("rizik")) response = `🛡️ Trenutni rizik je ${Math.round(state.risk)}%`
-  else if (q.includes("kartica")) response = state.frozen ? " Kartica je zamrznuta." : " Kartica je aktivna i spremna."
+  else if (q.includes("rizik")) response = `Trenutni rizik je ${Math.round(state.risk)}%`;
+  else if (q.includes("kartica")) response = state.frozen ? " Kartica je zamrznuta." : "Kartica je aktivna i spremna.";
   else if (q.includes("transakcij")) {
-    const total = state.transactions.reduce((a, b) => a + b, 0)
-    response = ` Izvršio si ${state.transactions.length} transakcija sa ukupno €${total.toFixed(2)}`
+    const total = state.transactions.reduce((a, b) => a + b, 0);
+    response = `📊 Izvršio si ${state.transactions.length} transakcija sa ukupno €${formatNumber(total)}`;
   }
-  else if (q.includes("sigurnost")) response = " Tvoj račun je zaštićen sa najvišom razinom enkripcije i AI monitoringom!"
-  else if (q.includes("limite")) response = ` Dnevni limit je ${state.dailyLimit}, mjesečni je ${state.monthlyLimit}`
-  else if (q.includes("povratak") || q.includes("povrat")) response = " Povratne poreze trebaju 5-7 radnih dana."
-  else if (q.includes("podrška") || q.includes("pomoc")) response = " Naš tim podrške je dostupan 24/7. Kontaktiraj nas na support@fintechnova.com."
-  else if (q.includes("plaćanje") || q.includes("transfer")) response = "Možeš izvršiti plaćanje putem brze akcije 'Prijenos' ili popuniti formu za plaćanje."
-  else if (q.includes("valuta") || q.includes("kurs")) response = " Možeš vidjeti sve kursne stope u sekciji 'Kursne Stope' ispod opcija plaćanja."
+  else if (q.includes("sigurnost")) response = "Tvoj račun je zaštićen sa najvišom razinom enkripcije i AI monitoringom!";
+  else if (q.includes("limite")) response = `Dnevni limit je ${state.dailyLimit}, mjesečni je ${state.monthlyLimit}`;
+  else if (q.includes("povratak") || q.includes("povrat")) response = "Povratne poreze trebaju 5-7 radnih dana.";
+  else if (q.includes("podrška") || q.includes("pomoc") || q.includes("pomoć")) response = "Naš tim podrške je dostupan 24/7. Kontaktiraj nas na support@fintechnova.com";
+  else if (q.includes("plaćanje") || q.includes("transfer")) response = "Možeš izvršiti plaćanje putem brze akcije 'Prenos' ili popuniti formu za plaćanje.";
+  else if (q.includes("valuta") || q.includes("kurs")) response = "Možeš vidjeti sve kursne stope u sekciji 'Kursne stope' ispod opcija plaćanja.";
 
   setTimeout(() => {
-    const botMsg = document.createElement("div")
-    botMsg.className = "msg bot"
-    botMsg.textContent = response
-    document.getElementById("chatLog").appendChild(botMsg)
-    document.getElementById("chatLog").scrollTop = document.getElementById("chatLog").scrollHeight
-  }, 600)
+    const botMsg = document.createElement("div");
+    botMsg.className = "msg bot";
+    botMsg.textContent = response;
+    document.getElementById("chatLog").appendChild(botMsg);
+    document.getElementById("chatLog").scrollTop = document.getElementById("chatLog").scrollHeight;
+  }, 600);
 
-  document.getElementById("chatInput").value = ""
-  document.getElementById("chatLog").scrollTop = document.getElementById("chatLog").scrollHeight
+  document.getElementById("chatInput").value = "";
+  document.getElementById("chatLog").scrollTop = document.getElementById("chatLog").scrollHeight;
 }
 
-/* TOGGLE SETTINGS */
+/* ===== TOGGLE SETTING ===== */
 function toggleSetting(e, label, isRealSetting = false){
-  e.currentTarget.classList.toggle("active")
-  const isActive = e.currentTarget.classList.contains("active")
-  showNotification("success", `${isActive ? "✅" : "❌"} ${label} je ${isActive ? "aktivirana" : "deaktivirana"}`)
+  e.currentTarget.classList.toggle("active");
+  const isActive = e.currentTarget.classList.contains("active");
+  showNotification("success", `${isActive ? "✅" : "❌"} ${label} je ${isActive ? "aktivirana" : "deaktivirana"}`);
 }
 
-/* CURRENCY CHANGE EVENT */
+/* ===== PROMJENA VALUTE ===== */
 currencyEl.addEventListener("change", function(){
-  const currNames = {"EUR": "EUR (Evro)", "BAM": "BAM (Marka)", "USD": "USD (Dolar)"}
-  showNotification("success", notificationMessages.currency_change + currNames[this.value])
-  render()
-})
+  const currNames = {"EUR": "EUR (Evro)", "BAM": "BAM (Marka)", "USD": "USD (Dolar)"};
+  showNotification("success", "Valuta je promijenjena na " + currNames[this.value]);
+  render();
+  updateSavingsBar();
+});
 
-/* CLOSE MODAL ON OUTSIDE CLICK */
+/* ===== ZATVARANJE MODAL NA KLIK IZVAN ===== */
 settingsModal.addEventListener("click", function(e){
-  if(e.target === settingsModal) closeSettings()
-})
+  if(e.target === settingsModal) closeSettings();
+});
 
-/* INITIALIZE */
-initCurrencyList()
-render()
-
-// Show update banner after 3 seconds
-setTimeout(() => {
-  showUpdateBanner()
-}, 3000)
-
-document.addEventListener('DOMContentLoaded', showUpdateIfNeeded);
-
-function login(){
-  // ... tvoja loading animacija
-  setTimeout(() => {
-    document.getElementById("loginScreen").classList.remove("active")
-    box.classList.remove("loading")
-    render()
-    updateHeader()
-
-    // scroll automatski na dashboard / home
-    const home = document.getElementById("home")
-    if(home) home.scrollIntoView({ behavior: "smooth" })
-  }, 1600)
-}
-
-function goToHome() {
-  // tražimo element home
-  const homeSection = document.getElementById("home")
-  if (!homeSection) return // ako ne postoji, ništa ne radimo
-
-  // scrollamo animirano do tog elementa
-  homeSection.scrollIntoView({ behavior: "smooth" })
-}
-
-// SALDO → scroll + highlight
-document.getElementById('headerBalanceStat')
-  .addEventListener('click', () => {
-    const balanceSection = document.querySelector('.balance-section');
-    balanceSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    balanceSection.classList.add('highlight');
-    setTimeout(() => balanceSection.classList.remove('highlight'), 1300);
-  });
-
-// RIZIK → highlight risk kartice
-document.getElementById('headerRiskStat')
-  .addEventListener('click', () => {
-    const riskCard = document.querySelector('#riskChart').closest('.card');
-    riskCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    riskCard.classList.add('highlight');
-    setTimeout(() => riskCard.classList.remove('highlight'), 1300);
-  });
-
+/* ===== INICIJALIZACIJA ===== */
+initCurrencyList();
+render();
+updateSavingsBar();
 </script>
 </body>
 </html>
